@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#172554">
+    <title>@yield('title', 'SIGI Calidad')</title>
+    <script>
+        document.documentElement.dataset.theme = localStorage.getItem('sigi-theme') || 'light';
+    </script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <div class="app-shell">
+        <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+            <div class="brand">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 32 32"><path d="M6 7h20v5H6zM6 15h13v5H6zM6 23h8v3H6z"/><path d="M22 15h4v11h-4z"/></svg>
+                </span>
+                <span><strong>SIGI</strong><small>Gestión de calidad</small></span>
+            </div>
+
+            <nav class="nav-list">
+                <a href="{{ route('dashboard') }}" @class(['nav-link', 'active' => request()->routeIs('dashboard')])>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>
+                    <span>Resumen</span>
+                </a>
+                <a href="{{ route('indicators.index') }}" @class(['nav-link', 'active' => request()->routeIs('indicators.*')])>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/></svg>
+                    <span>Indicadores</span>
+                </a>
+                <a href="{{ route('documents.index') }}" @class(['nav-link', 'active' => request()->routeIs('documents.*')])>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v5h5M9 12h6M9 16h6"/></svg>
+                    <span>Documentos</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-note">
+                <span class="status-dot"></span>
+                <div><strong>Sistema operativo</strong><small>Datos actualizados</small></div>
+            </div>
+        </aside>
+
+        <div class="page-shell">
+            <header class="topbar">
+                <button class="icon-btn mobile-menu" type="button" data-menu-toggle aria-controls="sidebar" aria-expanded="false" aria-label="Abrir menú">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                </button>
+                <div class="topbar-context">
+                    <span class="eyebrow">Sistema institucional</span>
+                    <strong>@yield('page-label', 'Panel de control')</strong>
+                </div>
+                <div class="topbar-actions">
+                    <button class="icon-btn" type="button" data-theme-toggle aria-label="Cambiar tema de color">
+                        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+                    </button>
+                    <div class="profile-chip">
+                        <span class="avatar">OC</span>
+                        <span><strong>Oficina de Calidad</strong><small>Administrador</small></span>
+                    </div>
+                </div>
+            </header>
+
+            <main id="contenido" class="page-content" tabindex="-1">
+                @if (session('success'))
+                    <div class="alert success" role="status">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert error" role="alert">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 17h.01"/></svg>
+                        <div><strong>Revisa la información.</strong><span>{{ $errors->first() }}</span></div>
+                    </div>
+                @endif
+
+                @yield('content')
+            </main>
+        </div>
+    </div>
+
+    <div class="mobile-overlay" data-menu-overlay hidden></div>
+    @stack('modals')
+</body>
+</html>
