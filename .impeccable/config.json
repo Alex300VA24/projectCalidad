@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "resources/css/app.css"
+        ],
+        "createdAt": "2026-09-17T22:09:35.324Z",
+        "reason": "pre-existing accent-border motif (.formato-guia, .mapa-flow a, .mapa-feedback) shipped before this session; not introduced by current changes, out of scope for documentos/indicadores/tramites task"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "resources/css/app.css"
+        ],
+        "createdAt": "2026-09-17T22:09:40.037Z",
+        "reason": "pre-existing accent-border-on-rounded (.mapa-flow a, .support-card) shipped before this session; not introduced by current changes, out of scope for documentos/indicadores/tramites task"
+      }
+    ]
+  }
+}

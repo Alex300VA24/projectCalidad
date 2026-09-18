@@ -1,0 +1,31 @@
+ESCUELA PROFESIONAL - PREGRADO
+Plan de Consejería Académica y Tutoría
+Plan de Consejería Académica 
+Datos informativos:
+Facultad:________________________________________________________Escuela:________________________________________________________
+Director de Escuela Profesional:_____________________________________
+Duración:_______________________________________________________
+Fecha:_________________________________________________________
+Fundamentación
+Identificación de necesidades
+Objetivos
+Cronograma de Actividades
+Evaluación de resultados
+Plan de mejora
+			Lugar y fecha
+Director (a) Escuela
+Plan de Tutoría
+Datos informativos:
+Facultad:________________________________________________________Escuela:________________________________________________________
+Director de Escuela Profesional:_____________________________________
+Duración:_______________________________________________________
+Fecha:_________________________________________________________
+Fundamentación
+Identificación de necesidades
+Objetivos
+Cronograma de Actividades
+Evaluación de resultados
+Plan de mejora
+			Lugar y fecha
+	
+Director (a) Escuela

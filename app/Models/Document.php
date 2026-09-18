@@ -4,14 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Document extends Model
 {
     use HasFactory;
 
+    public const TIPO_INSTITUCIONAL = 'institucional';
+
+    public const TIPO_SILABO = 'silabo';
+
+    public const TIPO_CALIDAD = 'calidad';
+
     protected $fillable = [
         'title',
+        'document_type',
         'section',
+        'periodo_academico_id',
+        'ciclo_academico',
         'description',
         'drive_url',
         'publication_date',
@@ -19,7 +29,15 @@ class Document extends Model
 
     protected function casts(): array
     {
-        return ['publication_date' => 'date'];
+        return [
+            'publication_date' => 'date',
+            'ciclo_academico' => 'integer',
+        ];
+    }
+
+    public function periodoAcademico(): BelongsTo
+    {
+        return $this->belongsTo(PeriodoAcademico::class);
     }
 
     public function getDriveFileIdAttribute(): ?string
@@ -43,10 +61,26 @@ class Document extends Model
             : $this->drive_url;
     }
 
+    public function getIsDriveFolderAttribute(): bool
+    {
+        $path = parse_url($this->drive_url, PHP_URL_PATH);
+
+        return is_string($path) && str_contains($path, '/folders/');
+    }
+
     public function getExternalUrlAttribute(): string
     {
         return $this->drive_file_id
             ? "https://drive.google.com/file/d/{$this->drive_file_id}/view"
             : $this->drive_url;
+    }
+
+    public function getTypeLabelAttribute(): string
+    {
+        return match ($this->document_type) {
+            self::TIPO_SILABO => 'Sílabo',
+            self::TIPO_CALIDAD => 'Documento de calidad',
+            default => 'Documento institucional',
+        };
     }
 }

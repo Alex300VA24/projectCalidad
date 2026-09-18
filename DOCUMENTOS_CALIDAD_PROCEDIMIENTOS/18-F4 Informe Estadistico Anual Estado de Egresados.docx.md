@@ -1,0 +1,6 @@
+ESCUELA PROFESIONAL - PREGRADO
+Informe Estadístico Anual sobre el Estado de los Egresados, Graduados y Titulados.
+(*) CASO MEDICINA DIFIERE PORQUE LOS EGRESADOS OBTIENEN AL MISMO TIEMPO, SU GRADO DE BACHILLER Y SU TÍTULO.
+……………………………………………………………………
+V° B° 
+DIRECTOR DE ESCUELA PROFESIONAL

@@ -27,13 +27,21 @@
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>
                     <span>Resumen</span>
                 </a>
-                <a href="{{ route('indicators.index') }}" @class(['nav-link', 'active' => request()->routeIs('indicators.*')])>
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/></svg>
-                    <span>Indicadores</span>
+                <a href="{{ route('mapa-procesos.index') }}" @class(['nav-link', 'active' => request()->routeIs('mapa-procesos.*')])>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h4M17.5 10v4M10 17.5h4M6.5 10v4"/></svg>
+                    <span>Mapa de procesos</span>
+                </a>
+                <a href="{{ route('quality-indicators.dashboard') }}" @class(['nav-link', 'active' => request()->routeIs('quality-indicators.*')])>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m5 10V5m5 14v-8m5 8V7"/><path d="m4 8 5-3 5 5 5-4"/></svg>
+                    <span>Dashboard calidad</span>
                 </a>
                 <a href="{{ route('documents.index') }}" @class(['nav-link', 'active' => request()->routeIs('documents.*')])>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v5h5M9 12h6M9 16h6"/></svg>
                     <span>Documentos</span>
+                </a>
+                <a href="{{ route('tramites.hub') }}" @class(['nav-link', 'active' => request()->routeIs('tramites.*') || request()->routeIs(['matriculas.*', 'curricula.*', 'courses.*', 'research-lines.*', 'curriculum-reviews.*', 'curriculum-redesigns.*', 'syllabi.*', 'admission-analyses.*', 'tutoring-sessions.*', 'student-referrals.*', 'syllabus-socializations.*', 'anonymous-exams.*', 'sufficiency-exams.*', 'grade-corrections.*', 'graduate-competency-evaluations.*', 'research-competency-matrices.*', 'research-projects.*', 'teaching-load-requirements.*', 'academic-calendars.*', 'course-execution-reports.*', 'teacher-performance-evaluations.*', 'internships.*', 'physical-academic-histories.*', 'graduate-folders.*', 'graduate-registries.*', 'educational-objective-evaluations.*', 'student-mobilities.*'])])>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6l1 4H8zM5 7h14l-1 14H6z"/><path d="M9 12h6M9 16h4"/></svg>
+                    <span>Trámites</span>
                 </a>
             </nav>
 

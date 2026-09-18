@@ -1,5 +1,55 @@
+import { Chart, registerables } from 'chart.js';
+
+Chart.register(...registerables);
+
 const body = document.body;
 const getFocusable = (container) => [...container.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),textarea:not([disabled]),select:not([disabled]),iframe,[tabindex]:not([tabindex="-1"])')].filter((element) => !element.hidden);
+
+const qualityCharts = new Map();
+const destroyQualityCharts = (root = document) => {
+    const canvases = root.matches?.('[data-quality-chart]') ? [root] : [...root.querySelectorAll?.('[data-quality-chart]') ?? []];
+    canvases.forEach((canvas) => {
+        qualityCharts.get(canvas)?.destroy();
+        qualityCharts.delete(canvas);
+    });
+};
+window.renderQualityCharts = (root = document) => {
+    const styles = getComputedStyle(document.documentElement);
+    const textColor = styles.getPropertyValue('--ink-soft').trim() || '#536078';
+    const gridColor = styles.getPropertyValue('--border').trim() || '#dde1da';
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    root.querySelectorAll('[data-quality-chart]').forEach((canvas) => {
+        if (!canvas.dataset.chartConfig) return;
+
+        qualityCharts.get(canvas)?.destroy();
+        const config = JSON.parse(canvas.dataset.chartConfig);
+        const isDoughnut = config.type === 'doughnut';
+        config.options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: reducedMotion ? false : { duration: 350 },
+            plugins: {
+                legend: { position: 'bottom', labels: { color: textColor, usePointStyle: true, padding: 18 } },
+                tooltip: { intersect: false },
+            },
+            scales: isDoughnut ? undefined : {
+                x: { ticks: { color: textColor }, grid: { display: false } },
+                y: { beginAtZero: true, ticks: { color: textColor }, grid: { color: gridColor } },
+            },
+        };
+
+        qualityCharts.set(canvas, new Chart(canvas, config));
+    });
+};
+
+document.addEventListener('DOMContentLoaded', () => window.renderQualityCharts());
+document.addEventListener('livewire:navigating', () => destroyQualityCharts());
+document.addEventListener('livewire:navigated', () => window.renderQualityCharts());
+document.addEventListener('livewire:init', () => {
+    Livewire.hook('morph.removing', ({ el }) => destroyQualityCharts(el));
+    Livewire.hook('morphed', ({ el }) => window.renderQualityCharts(el));
+});
 
 const setupDialog = (dialog, closeSelectors) => {
     let previousFocus = null;
@@ -31,14 +81,35 @@ document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
 
 const pdfModal = document.querySelector('[data-pdf-modal]');
 if (pdfModal) {
-    const modal = setupDialog(pdfModal,'[data-modal-close]');
-    const frame = pdfModal.querySelector('[data-pdf-frame]'); const loader = pdfModal.querySelector('[data-frame-loader]');
-    document.querySelectorAll('[data-open-pdf]').forEach((button) => button.addEventListener('click', () => {
-        pdfModal.querySelector('[data-modal-title]').textContent = button.dataset.title;
-        pdfModal.querySelector('[data-modal-external]').href = button.dataset.external;
-        loader.hidden = false; frame.src = button.dataset.preview; frame.onload = () => { loader.hidden = true; }; modal.open(button);
+    const modal = setupDialog(pdfModal, '[data-modal-close]');
+    const frame = pdfModal.querySelector('[data-pdf-frame]');
+    const loader = pdfModal.querySelector('[data-frame-loader]');
+
+    document.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-open-pdf]');
+        if (!button) return;
+
+        pdfModal.querySelector('[data-modal-title]').textContent = button.dataset.title || 'Documento';
+        const externalUrl = button.dataset.external || button.dataset.preview;
+        pdfModal.querySelector('[data-modal-external]').href = externalUrl;
+
+        let previewUrl = button.dataset.preview || externalUrl;
+        if (previewUrl && previewUrl.includes('drive.google.com') && !previewUrl.includes('/preview')) {
+            previewUrl = previewUrl.replace(/\/view(\?.*)?$/, '/preview');
+        }
+
+        if (loader) loader.hidden = false;
+        if (frame) {
+            frame.src = previewUrl;
+            frame.onload = () => { if (loader) loader.hidden = true; };
+        }
+        modal.open(button);
+    });
+
+    pdfModal.querySelectorAll('[data-modal-close]').forEach((button) => button.addEventListener('click', () => {
+        if (frame) frame.src = 'about:blank';
+        if (loader) loader.hidden = false;
     }));
-    pdfModal.querySelectorAll('[data-modal-close]').forEach((button) => button.addEventListener('click', () => { frame.src = 'about:blank'; loader.hidden = false; }));
 }
 
 const formDrawer = document.querySelector('[data-form-drawer]');
@@ -48,13 +119,65 @@ if (formDrawer) {
     if (window.location.hash === `#${formDrawer.id}` || document.querySelector('.alert.error')) drawer.open();
 }
 
-const updateModal = document.querySelector('[data-update-modal]');
-if (updateModal) {
-    const updater = setupDialog(updateModal,'[data-close-update]');
-    document.querySelectorAll('[data-edit-indicator]').forEach((button) => button.addEventListener('click', () => {
-        updateModal.querySelector('[data-update-title]').textContent = button.dataset.name;
-        updateModal.querySelector('[data-update-value]').value = button.dataset.current;
-        updateModal.querySelector('[data-update-form]').action = `/indicadores/${button.dataset.id}`;
-        updater.open(button);
-    }));
+const documentForm = document.querySelector('[data-document-form]');
+if (documentForm) {
+    const typeInputs = [...documentForm.querySelectorAll('input[name="document_type"]')];
+    const panels = [...documentForm.querySelectorAll('[data-type-panel]')];
+    const periodSelect = documentForm.querySelector('[data-syllabus-period]');
+    const cycleSelect = documentForm.querySelector('[data-syllabus-cycle]');
+    const syncCycles = () => {
+        if (!periodSelect || !cycleSelect) return;
+
+        const period = periodSelect.selectedOptions[0]?.dataset.period ?? '';
+        const parity = period.endsWith('-I') ? 'odd' : period.endsWith('-II') ? 'even' : '';
+
+        [...cycleSelect.options].forEach((option) => {
+            if (!option.dataset.parity) return;
+            const available = option.dataset.parity === parity;
+            option.hidden = !available;
+            option.disabled = !available;
+            if (!available && option.selected) cycleSelect.value = '';
+        });
+    };
+    const sync = () => {
+        const selected = typeInputs.find((input) => input.checked)?.value ?? 'institucional';
+        panels.forEach((panel) => { panel.hidden = panel.dataset.typePanel !== selected; });
+        syncCycles();
+    };
+    typeInputs.forEach((input) => input.addEventListener('change', sync));
+    periodSelect?.addEventListener('change', syncCycles);
+    sync();
+}
+
+const processMap = document.querySelector('[data-process-map]');
+if (processMap) {
+    const search = processMap.querySelector('[data-process-search]');
+    const cards = [...processMap.querySelectorAll('[data-process-card]')];
+    const sections = [...processMap.querySelectorAll('[data-process-section]')];
+    const resultCount = processMap.querySelector('[data-process-count]');
+    const emptyState = processMap.querySelector('[data-process-empty]');
+    const normalize = (value) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+    search?.addEventListener('input', () => {
+        const query = normalize(search.value);
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+            const visible = !query || normalize(card.dataset.searchable || '').includes(query);
+            card.hidden = !visible;
+            if (visible) visibleCount += 1;
+        });
+
+        sections.forEach((section) => {
+            section.hidden = !section.querySelector('[data-process-card]:not([hidden])');
+        });
+
+        if (resultCount) {
+            resultCount.textContent = query
+                ? `${visibleCount} ${visibleCount === 1 ? 'proceso encontrado' : 'procesos encontrados'}`
+                : `${cards.length} procesos disponibles`;
+        }
+
+        if (emptyState) emptyState.hidden = visibleCount !== 0;
+    });
 }

@@ -23,6 +23,5 @@
             </div>
             <iframe data-pdf-frame title="Visor de documento PDF" allow="autoplay" loading="lazy"></iframe>
         </div>
-        <p class="modal-help">Si el documento no aparece, verifica que en Google Drive esté compartido como “Cualquier persona con el enlace”.</p>
     </section>
 </div>
