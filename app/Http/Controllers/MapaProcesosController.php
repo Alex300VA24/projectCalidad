@@ -76,6 +76,7 @@ class MapaProcesosController extends Controller
 
         return view('mapa-procesos.index', [
             'sections' => $sections,
+            'entities' => MapaProcesosCatalogService::allEntities(),
         ]);
     }
 }

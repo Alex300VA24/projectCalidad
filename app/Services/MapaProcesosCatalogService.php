@@ -18,6 +18,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Gestión Curricular',
                 'title' => 'Revisión y Ajuste Curricular',
                 'role' => 'COTECCU y Dirección',
+                'entities' => ['COTECCU', 'Dirección de Escuela'],
                 'route' => 'curriculum-reviews.index',
                 'formats' => [
                     [
@@ -39,6 +40,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Gestión Curricular',
                 'title' => 'Rediseño y Estructura Curricular',
                 'role' => 'COTECCU y Dirección',
+                'entities' => ['COTECCU', 'Dirección de Escuela'],
                 'route' => 'curriculum-redesigns.index',
                 'formats' => [
                     [
@@ -60,6 +62,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Gestión Curricular',
                 'title' => 'Visado de Sílabos',
                 'role' => 'Director de Escuela',
+                'entities' => ['Dirección de Escuela'],
                 'route' => 'syllabi.index',
                 'indicator_code' => 'I-M01.01-DPA-004',
                 'formats' => [
@@ -92,6 +95,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Seguimiento y Evaluación',
                 'title' => 'Nivelación de Ingresantes',
                 'role' => 'Comisión de Nivelación y Dirección',
+                'entities' => ['Comisión de Nivelación', 'Dirección de Escuela'],
                 'route' => 'admission-analyses.index',
                 'formats' => [
                     [
@@ -118,6 +122,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Seguimiento y Evaluación',
                 'title' => 'Tutoría y Consejería',
                 'role' => 'Comité de Tutoría y Docente Tutor',
+                'entities' => ['Comité de Tutoría', 'Docentes'],
                 'route' => 'tutoring-sessions.index',
                 'indicator_code' => 'M01.04-DDA-FI-001',
                 'formats' => [
@@ -150,6 +155,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Seguimiento y Evaluación',
                 'title' => 'Evaluación y Pruebas Anónimas',
                 'role' => 'Docentes, Estudiantes y Dirección',
+                'entities' => ['Docentes', 'Estudiantes', 'Dirección de Escuela'],
                 'route' => 'anonymous-exams.index',
                 'formats' => [
                     [
@@ -166,6 +172,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Seguimiento y Evaluación',
                 'title' => 'Logro de Competencias de Egreso',
                 'role' => 'Comisión de Evaluación',
+                'entities' => ['Comisión de Evaluación'],
                 'route' => 'graduate-competency-evaluations.index',
                 'formats' => [
                     [
@@ -182,6 +189,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Ejecución Curricular',
                 'title' => 'Consolidación de la Ejecución',
                 'role' => 'Dirección de Escuela',
+                'entities' => ['Dirección de Escuela'],
                 'route' => 'course-execution-reports.index',
                 'indicator_code' => 'M01.01.03.01-F-013',
                 'formats' => [
@@ -214,6 +222,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Ejecución Curricular',
                 'title' => 'Investigación Formativa',
                 'role' => 'COTECCU y Dirección',
+                'entities' => ['COTECCU', 'Dirección de Escuela'],
                 'route' => 'research-competency-matrices.index',
                 'formats' => [
                     [
@@ -235,6 +244,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Ejecución Curricular',
                 'title' => 'Prácticas Preprofesionales',
                 'role' => 'Dirección de Escuela',
+                'entities' => ['Dirección de Escuela'],
                 'route' => 'internships.index',
                 'formats' => [
                     [
@@ -261,6 +271,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Graduación y Titulación',
                 'title' => 'Certificación y Graduación',
                 'role' => 'Secretaría y Dirección de Escuela',
+                'entities' => ['Secretaría', 'Dirección de Escuela'],
                 'route' => 'graduate-folders.index',
                 'formats' => [
                     [
@@ -297,6 +308,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Seguimiento al Egresado',
                 'title' => 'Registro de Egresados',
                 'role' => 'Responsable de Seguimiento',
+                'entities' => ['Responsable de Seguimiento'],
                 'route' => 'graduate-registries.index',
                 'indicator_code' => 'M01.05-DCU-FI-001',
                 'formats' => [
@@ -329,6 +341,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Objetivos Educacionales',
                 'title' => 'Objetivos Educacionales y Retroalimentación',
                 'role' => 'Dirección de Escuela',
+                'entities' => ['Dirección de Escuela'],
                 'route' => 'educational-objective-evaluations.index',
                 'indicator_code' => 'M01.05-DCU-FI-002',
                 'formats' => [
@@ -361,6 +374,7 @@ class MapaProcesosCatalogService
                 'section_short' => 'Matrícula',
                 'title' => 'Matrícula e Incidencias',
                 'role' => 'Dirección y Secretaría de Escuela',
+                'entities' => ['Dirección de Escuela', 'Secretaría'],
                 'route' => 'matriculas.index',
                 'indicator_code' => 'M01.01.02.02-FI-001',
                 'formats' => [
@@ -417,5 +431,54 @@ class MapaProcesosCatalogService
         }
 
         return null;
+    }
+
+    /**
+     * Sorted list of unique responsible entities across every process,
+     * used to populate the "filter by entity" control on the process map.
+     *
+     * @return array<int, string>
+     */
+    public static function allEntities(): array
+    {
+        $entities = collect(self::all())
+            ->flatMap(fn (array $proceso): array => $proceso['entities'] ?? [])
+            ->unique()
+            ->sort()
+            ->values()
+            ->all();
+
+        return $entities;
+    }
+
+    /**
+     * Drive link for a format that already has a filled example, read from
+     * database/data/formatos-llenados.json (local, per-installation data).
+     */
+    public static function filledLink(string $procesoCode, string $formatoCode): ?string
+    {
+        $enlace = self::filledLinks()[$procesoCode][$formatoCode] ?? null;
+
+        return filled($enlace) ? $enlace : null;
+    }
+
+    /**
+     * @return array<string, array<string, string>>
+     */
+    private static function filledLinks(): array
+    {
+        static $links = null;
+
+        if ($links !== null) {
+            return $links;
+        }
+
+        $path = database_path('data/formatos-llenados.json');
+
+        if (! is_file($path)) {
+            return $links = [];
+        }
+
+        return $links = json_decode(file_get_contents($path), true) ?? [];
     }
 }

@@ -106,6 +106,15 @@
                     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
                     <input type="search" placeholder="Ejemplo: sílabo, matrícula, GC-03…" autocomplete="off" data-process-search>
                 </label>
+                <label class="mapa-entity-filter">
+                    <span class="sr-only">Filtrar por responsable</span>
+                    <select data-process-entity-filter>
+                        <option value="">Todos los responsables</option>
+                        @foreach ($entities as $entity)
+                            <option value="{{ Str::lower($entity) }}">{{ $entity }}</option>
+                        @endforeach
+                    </select>
+                </label>
                 <p class="mapa-result-count" aria-live="polite" data-process-count>
                     {{ $processCount }} procesos disponibles
                 </p>
@@ -136,7 +145,7 @@
                                         collect($proceso['formats'] ?? [])->pluck('name')->implode(' '),
                                     ])->implode(' ');
                                 @endphp
-                                <article class="proceso-card" data-process-card data-searchable="{{ Str::lower($searchableText) }}">
+                                <article class="proceso-card" data-process-card data-searchable="{{ Str::lower($searchableText) }}" data-entities="{{ Str::lower(implode('|', $proceso['entities'] ?? [])) }}">
                                     <div class="proceso-card-main">
                                         <div class="proceso-card-meta">
                                             <span class="badge">{{ $proceso['code'] }}</span>
@@ -178,21 +187,32 @@
                                                         @php
                                                             $formatoUrl = route('formatos.show', Str::slug($proceso['code'].' '.$formato['code']));
                                                             $esPdf = strtolower(pathinfo($formato['path'], PATHINFO_EXTENSION)) === 'pdf';
+                                                            $previewUrl = $esPdf ? $formatoUrl : 'https://view.officeapps.live.com/op/embed.aspx?src='.urlencode($formatoUrl);
+                                                            $llenadoUrl = \App\Services\MapaProcesosCatalogService::filledLink($proceso['code'], $formato['code']);
                                                         @endphp
-                                                        @if ($esPdf)
-                                                            <button type="button" data-open-pdf
-                                                                    data-title="{{ $formato['code'] }} {{ $formato['name'] }}"
-                                                                    data-preview="{{ $formatoUrl }}"
-                                                                    data-external="{{ $formatoUrl }}">
-                                                                <span><strong>{{ $formato['code'] }}</strong>{{ $formato['name'] }}</span>
-                                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"/><path d="M13 3h8v8m0-8-9 9"/></svg>
-                                                            </button>
-                                                        @else
-                                                            <a href="{{ $formatoUrl }}" title="Descargar {{ $formato['name'] }}">
-                                                                <span><strong>{{ $formato['code'] }}</strong>{{ $formato['name'] }}</span>
-                                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16"/></svg>
-                                                            </a>
-                                                        @endif
+                                                        <div class="proceso-format-row">
+                                                            <span class="proceso-format-label"><strong>{{ $formato['code'] }}</strong>{{ $formato['name'] }}</span>
+                                                            <div class="proceso-format-actions">
+                                                                <button type="button" data-open-pdf
+                                                                        data-title="{{ $formato['code'] }} {{ $formato['name'] }}"
+                                                                        data-preview="{{ $previewUrl }}"
+                                                                        data-external="{{ $formatoUrl }}"
+                                                                        title="Ver {{ $formato['name'] }}">
+                                                                    Ver
+                                                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                                                </button>
+                                                                <a href="{{ $formatoUrl }}" title="Descargar {{ $formato['name'] }}">
+                                                                    Descargar
+                                                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16"/></svg>
+                                                                </a>
+                                                                @if ($llenadoUrl)
+                                                                    <a class="proceso-format-llenado" href="{{ $llenadoUrl }}" target="_blank" rel="noopener" title="Ver ejemplo llenado en Drive">
+                                                                        Ver llenado
+                                                                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>
+                                                                    </a>
+                                                                @endif
+                                                            </div>
+                                                        </div>
                                                     @endforeach
                                                 </div>
                                             </details>

@@ -152,18 +152,22 @@ if (documentForm) {
 const processMap = document.querySelector('[data-process-map]');
 if (processMap) {
     const search = processMap.querySelector('[data-process-search]');
+    const entityFilter = processMap.querySelector('[data-process-entity-filter]');
     const cards = [...processMap.querySelectorAll('[data-process-card]')];
     const sections = [...processMap.querySelectorAll('[data-process-section]')];
     const resultCount = processMap.querySelector('[data-process-count]');
     const emptyState = processMap.querySelector('[data-process-empty]');
     const normalize = (value) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
 
-    search?.addEventListener('input', () => {
-        const query = normalize(search.value);
+    const applyFilters = () => {
+        const query = normalize(search?.value || '');
+        const entity = entityFilter?.value || '';
         let visibleCount = 0;
 
         cards.forEach((card) => {
-            const visible = !query || normalize(card.dataset.searchable || '').includes(query);
+            const matchesQuery = !query || normalize(card.dataset.searchable || '').includes(query);
+            const matchesEntity = !entity || (card.dataset.entities || '').split('|').includes(entity);
+            const visible = matchesQuery && matchesEntity;
             card.hidden = !visible;
             if (visible) visibleCount += 1;
         });
@@ -173,11 +177,14 @@ if (processMap) {
         });
 
         if (resultCount) {
-            resultCount.textContent = query
+            resultCount.textContent = query || entity
                 ? `${visibleCount} ${visibleCount === 1 ? 'proceso encontrado' : 'procesos encontrados'}`
                 : `${cards.length} procesos disponibles`;
         }
 
         if (emptyState) emptyState.hidden = visibleCount !== 0;
-    });
+    };
+
+    search?.addEventListener('input', applyFilters);
+    entityFilter?.addEventListener('change', applyFilters);
 }
