@@ -16,11 +16,195 @@
         {
             "curso": "INGENIERIA DE SOFTWARE  I",
             "grupo": "1",
-            "profesor": "GUEVARA RUIZ RICARDO MANUEL",
+            "profesor": "RICARDO MANUEL GUEVARA RUIZ",
             "link": "https://docs.google.com/document/d/1PjKtE2RzmCg45yITC815qKiMcbzPMJfR/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+        },
+        {
+            "curso": "COMPILADORES",
+            "grupo": "2",
+            "profesor": "JORGE BRAVO ESCALANTE",
+            "link": "https://drive.google.com/file/d/1TXo7mmt6psDcRNdhRVJzl--Roua1LDP5/view?usp=sharing"
+        },
+        {
+            "curso": "PARADIGMAS DE LENGUAJES DE PROGRAMACIONS",
+            "grupo": "2",
+            "profesor": "JOSE LUIS PERALTA LUJAN",
+            "link": "https://docs.google.com/document/d/1Mx8G_PjrrYgK8Jj4iyuWdNDMUN7FiHlm/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+        },
+        {
+            "curso": "TOPICOS EN INGENIRÍA DE SOFTWARE",
+            "grupo": "1",
+            "profesor": "WILMER AUFREDY APAZA CHAVEZ",
+            "link": "https://docs.google.com/document/d/1JIH7WNC3QyVTP9_BAjjoOcEh2GIrX1HU/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+        },
+        {
+            "curso": "DESARROLLO DE SOFTWARE",
+            "grupo": "1",
+            "profesor": "CARLOS CASTILLO DIESTRA",
+            "link": "https://docs.google.com/document/d/1mX9q6nZTi23sIVyD-Bx-Ae-u-XnUJZcw/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+        },
+        {
+            "curso": "PROYECTO DE TESIS",
+            "grupo": "4",
+            "profesor": "CARLOS CASTILLO DIESTRA",
+            "link": "https://docs.google.com/document/d/1Ux2mfurYmX7qzWWBgwOk3bt4LksO9Otv/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+        },
+        {
+            "curso": "PROYECTO DE TESIS",
+            "grupo": "5",
+            "profesor": "CARLOS CASTILLO DIESTRA",
+            "link": "https://docs.google.com/document/d/1fWv0HRMvTvQ0dQGGrke_u2UbSTeRHR-c/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+        },
+        {
+            "curso": "GESTIÓN DE PROYECTOS INFORMÁTICOS",
+            "grupo": "1",
+            "profesor": "MAX LEOVIGILDO CASTRO RODRIGUEZ",
+            "link": "https://drive.google.com/file/d/1knrxFaiKBqcAd6MbaRHb2mPUdLX9LTPc/view?usp=sharing"
+        },
+        {
+            "curso": "INGENIERÍA DE SOFTWARE I",
+            "grupo": "1",
+            "profesor": "MAX LEOVIGILDO CASTRO RODRIGUEZ",
+            "link": "https://drive.google.com/file/d/1sWA6FTdj6OepLFtRXaP4cu93_uUXn1JE/view?usp=sharing"
+        },
+        {
+            "curso": "INTERACCIÓN HUMANO COMPUTADOR",
+            "grupo": "1",
+            "profesor": "ANTHONY JOSÉ GÓMEZ MORALES",
+            "link": "https://drive.google.com/file/d/1rrfR5RIVAeP0wp1IsgxVmJzuRlOyvuy6/view?usp=sharing"
+        },
+        {
+            "curso": "PROYECTO DE TESIS",
+            "grupo": "1",
+            "profesor": "JORGE GUTIERREZ GUTIERREZ",
+            "link": "https://docs.google.com/document/d/1dSocgH2X4dPMmnX62ptam0tNe_HpZzFJ/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+        },
+        {
+            "curso": "INGENIERÍA DE SOFTWARE II",
+            "grupo": "1",
+            "profesor": "JORGE LUIS ALVARADO RAMOS",
+            "link": "https://drive.google.com/file/d/1mKyUTz5GuWhDhpJgvHVXz7zdlptyhrSg/view?usp=sharing"
+        },
+        {
+            "curso": "INTELIGENCIA ARTIFICIAL",
+            "grupo": "1",
+            "profesor": "JORGE GUTIERREZ GUTIERREZ",
+            "link": "https://docs.google.com/document/d/1cAS1E_ZU9hRA70Zf-_eq6BuU3JaYc2rF/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+        },
+        {
+            "curso": "REDES DE COMPUTADORAS I",
+            "grupo": "1",
+            "profesor": "JORGE LUIS ALVARADO RAMOS",
+            "link": "https://drive.google.com/file/d/1DCUTeHv5_m53_uFaUYMSRw7UBJEBFsSL/view?usp=sharing"
+        },
+        {
+            "curso": "REDES DE COMPUTADORAS I",
+            "grupo": "1",
+            "profesor": "JORGE LUIS ALVARADO RAMOS",
+            "link": "https://drive.google.com/file/d/15QB3DgvygwgTpUx62wgOPSWmFdnazvTq/view?usp=sharing"
+        },
+        {
+            "curso": "SISTEMAS OPERATIVOS I",
+            "grupo": "1",
+            "profesor": "JORGE LUIS ALVARADO RAMOS",
+            "link": "https://drive.google.com/file/d/1FfezJSjeX7Rg-brjjPlb-7AJ4zV574dU/view?usp=sharing"
+        },
+        {
+            "curso": "SISTEMAS OPERATIVOS I",
+            "grupo": "1",
+            "profesor": "JORGE LUIS ALVARADO RAMOS",
+            "link": "https://drive.google.com/file/d/1o8kSn9My8dHsxzDHjo5Qmk9CYbILCR4I/view?usp=sharing"
+        },
+        {
+            "curso": "BASE DE DATOS I",
+            "grupo": "1",
+            "profesor": "IRIS AUREA CRUZ FLORIAN",
+            "link": "https://drive.google.com/file/d/16qksv6Ekqo5KH8Gq-7pwYL-fQ9NMlnr4/view?usp=sharing"
+        },
+        {
+            "curso": "BASE DE DATOS I",
+            "grupo": "1",
+            "profesor": "IRIS AUREA CRUZ FLORIAN",
+            "link": "https://drive.google.com/file/d/1u28O3sJOa4j2LeFZA6YoWbISR7VIibeO/view?usp=sharing"
+        },
+        {
+            "curso": "PARADIGMAS DE LENGUAJES DE PROGRAMACION",
+            "grupo": "1",
+            "profesor": "JOSE LUIS PERALTA LUJAN",
+            "link": "https://docs.google.com/document/d/1DtcWEdagvkcqxoYQgAY766lCP7y01PJw/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+        },
+        {
+            "curso": "COMPILADORES",
+            "grupo": "1",
+            "profesor": "JORGE BRAVO ESCALANTE",
+            "link": "https://drive.google.com/file/d/18d2RmYddV_gsU5v6PWnB05IunTTvrF5n/view?usp=sharing"
+        },
+        {
+            "curso": "ESTRATEGIAS ALGORITMICAS",
+            "grupo": "1",
+            "profesor": "JOSÉ ANTONIO RODRÍGUEZ MELQUIADES",
+            "link": "https://drive.google.com/file/d/1RfYpwW8k3vOjMD4cFGKvyMUpqqeLgoje/view?usp=sharing"
+        },
+        {
+            "curso": "ESTRATEGIAS ALGORITMICAS",
+            "grupo": "2",
+            "profesor": "JOSÉ ANTONIO RODRÍGUEZ MELQUIADES",
+            "link": "https://drive.google.com/file/d/1FY8ILqUrLVWrfF2k0Lxcr7E92fwHGRkN/view?usp=sharing"
+        },
+        {
+            "curso": "INGENIERIA DE SOFTWARE  I",
+            "grupo": "2",
+            "profesor": "RICARDO MANUEL GUEVARA RUIZ",
+            "link": "https://docs.google.com/document/d/1s5ARks0fcFUeH71kNb11COrDiyG-fHuR/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+        },
+        {
+            "curso": "PROYECTO DE TESIS",
+            "grupo": "3",
+            "profesor": "YENNY SIFUENTES DIAZ",
+            "link": "https://drive.google.com/file/d/1CnbVG5ewpnRc9ddnVozh-mjClJQK3n-x/view?usp=sharing"
+        },
+        {
+            "curso": "PROYECTO DE TESIS",
+            "grupo": "2",
+            "profesor": "YENNY SIFUENTES DIAZ",
+            "link": "https://drive.google.com/file/d/1PU6NYmOyY0PfiSo8cA9q9V0yUL_nTGNq/view?usp=sharing"
+        },
+        {
+            "curso": "TÉCNICAS DIGITALES PARA LA COMPUTACIÓN",
+            "grupo": "2",
+            "profesor": "JOSE GABRIEL CRUZ SILVA",
+            "link": "https://docs.google.com/document/d/1Yhin7a-mWxLnT7SMaJd4i0r4x1CAMMlD/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+        },
+        {
+            "curso": "BASE DE DATOS AVANZADA",
+            "grupo": "1",
+            "profesor": "CELESTINO MEDARDO QUISPE VARON",
+            "link": "https://drive.google.com/file/d/1KDv1oL8aGAbePeXLnnIm2wMczv-D8cXu/view?usp=sharing"
+        },
+        {
+            "curso": "PERCEPCIÓN Y VISIÓN POR COMPUTADORA",
+            "grupo": "1",
+            "profesor": "LIZ SOFIA RAYMUNDA PEDRO HUAMAN",
+            "link": "https://drive.google.com/file/d/1YDVwR5VJj5tGC7u1WNRYXmOhnmZG6HZH/view?usp=sharing"
+        },
+        {
+            "curso": "PROYECTO DE TESIS",
+            "grupo": "3",
+            "profesor": "LIZ SOFIA RAYMUNDA PEDRO HUAMAN",
+            "link": "https://drive.google.com/file/d/18_KrrssEL_aFsxYRyRKVvkmAWFZnrtJu/view?usp=sharing"
+        },
+        {
+            "curso": "TOPICOS EN BASE DE DATOS",
+            "grupo": "1",
+            "profesor": "CELESTINO MEDARDO QUISPE VARON",
+            "link": "https://drive.google.com/file/d/1lkWZH-qb8DMX8_k7i5l6wygup1wtPNJQ/view?usp=sharing"
+        },
+        {
+            "curso": "TÉCNICAS DIGITALES PARA LA COMPUTACIÓN",
+            "grupo": "1",
+            "profesor": "JOSE GABRIEL CRUZ SILVA",
+            "link": "https://docs.google.com/document/d/1guyUW0Jz1Jl6kk_CELlPJm_Yxu8Un9QU/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
         }
-
-        
     ]
 },
 {
