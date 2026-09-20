@@ -10,8 +10,6 @@
 /.phpunit.cache
 /database/*.sqlite
 /database/*.sqlite-*
-/database/data/*
-!/database/data/.gitignore
 /.codex
 /.cursor/
 /.idea

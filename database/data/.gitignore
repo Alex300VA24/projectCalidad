@@ -1,3 +1,0 @@
-# Local imports and generated data stay out of version control.
-*
-!.gitignore
