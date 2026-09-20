@@ -204,12 +204,12 @@ class MapaProcesosCatalogService
                         'path' => 'M01.01.03 Enseñanza – Aprendizaje/M01.01.03.01 Ejecución del Plan Curricular/F2 Socialización de sílabo.xlsx',
                     ],
                     [
-                        'code' => 'F5',
+                        'code' => 'M01.01.03.01-F-005',
                         'name' => 'Informe de Ejecución de las Asignaturas',
                         'path' => 'M01.01.03 Enseñanza – Aprendizaje/M01.01.03.01 Ejecución del Plan Curricular/F5 Informe de  Ejecución de la Asignaturas Ver2.docx',
                     ],
                     [
-                        'code' => 'F13',
+                        'code' => 'M01.01.03.01-F-013',
                         'name' => 'Consolidado de la Ejecución de la Asignatura',
                         'path' => 'M01.01.03 Enseñanza – Aprendizaje/M01.01.03.01 Ejecución del Plan Curricular/F13 Consolidado de la Ejecución de la Asignatura Ver1.xlsx',
                     ],

@@ -42,6 +42,43 @@ class MapaProcesosTest extends TestCase
         $response->assertSee('F-M01.01-DPA-009');
     }
 
+    public function test_execution_format_lists_reports_by_semester_in_its_modal(): void
+    {
+        $response = $this->get(route('mapa-procesos.index'));
+
+        $response->assertSee('M01.01.03.01-F-005');
+        $response->assertSee('data-open-execution-reports', false);
+        $response->assertSee('data-execution-period="2025-II"', false);
+        $response->assertSee('data-execution-period="2026-I"', false);
+        $response->assertSee('3 informes');
+        $response->assertSee('ALGORITMOS Y PROGRAMACIÓN');
+        $response->assertSee('YENNY SIFUENTES DIAZ');
+        $response->assertSee('https://drive.google.com/file/d/1xMWYd2LvkVx6QEIqmrrUAZLXeOoAp2xg/view?usp=sharing');
+        $response->assertSee('data-preview="https://drive.google.com/file/d/1xMWYd2LvkVx6QEIqmrrUAZLXeOoAp2xg/preview"', false);
+        $response->assertSee('data-preview="https://drive.google.com/file/d/1PjKtE2RzmCg45yITC815qKiMcbzPMJfR/preview"', false);
+        $response->assertSee('Visualizar documento');
+        $response->assertDontSee('Abrir archivo');
+        $response->assertSee('Sin informes registrados');
+        $response->assertViewHas('executionReportsByPeriod', fn (array $reports): bool => count($reports['2025-II']) === 0
+            && count($reports['2026-I']) === 3
+            && $reports['2026-I'][0]['grupo'] === '1');
+    }
+
+    public function test_consolidated_execution_format_lists_spreadsheets_by_semester_in_its_modal(): void
+    {
+        $response = $this->get(route('mapa-procesos.index'));
+
+        $response->assertSee('data-open-execution-reports="M01.01.03.01-F-013"', false);
+        $response->assertSee('data-execution-reports-modal="M01.01.03.01-F-013"', false);
+        $response->assertSee('Consolidado de la Ejecución de la Asignatura');
+        $response->assertSee('data-preview="https://drive.google.com/file/d/1LjuHRatePDURqF9H5817Gt6EpFAGBwdk1av7iOsjtq0/preview"', false);
+        $response->assertSee('data-preview="https://drive.google.com/file/d/1ZykIT62vdKGm4gstga5wCUHTJ-sbBymeDT6O50avoB4/preview"', false);
+        $response->assertViewHas('consolidatedReportsByPeriod', fn (array $reports): bool => count($reports['2025-II']) === 1
+            && count($reports['2026-I']) === 1
+            && $reports['2025-II'][0]['detail'] === 'Semestre 2025-II'
+            && $reports['2026-I'][0]['detail'] === 'Semestre 2026-I');
+    }
+
     public function test_matriculas_page_renders_and_allows_creating_matricula_and_incidencia(): void
     {
         $programa = ProgramaEstudio::first();

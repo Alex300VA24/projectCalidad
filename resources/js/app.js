@@ -3,7 +3,7 @@ import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 const body = document.body;
-const getFocusable = (container) => [...container.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),textarea:not([disabled]),select:not([disabled]),iframe,[tabindex]:not([tabindex="-1"])')].filter((element) => !element.hidden);
+const getFocusable = (container) => [...container.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),textarea:not([disabled]),select:not([disabled]),iframe,[tabindex]:not([tabindex="-1"])')].filter((element) => !element.closest('[hidden]'));
 
 const qualityCharts = new Map();
 const destroyQualityCharts = (root = document) => {
@@ -51,9 +51,14 @@ document.addEventListener('livewire:init', () => {
     Livewire.hook('morphed', ({ el }) => window.renderQualityCharts(el));
 });
 
-const setupDialog = (dialog, closeSelectors) => {
+const setupDialog = (dialog, closeSelectors, onClose = () => {}) => {
     let previousFocus = null;
-    const close = () => { dialog.hidden = true; body.classList.remove('modal-open'); previousFocus?.focus(); };
+    const close = () => {
+        dialog.hidden = true;
+        onClose();
+        body.classList.toggle('modal-open', Boolean(document.querySelector('.modal-layer:not([hidden]), .simple-modal:not([hidden]), .form-drawer:not([hidden])')));
+        previousFocus?.focus();
+    };
     const open = (trigger) => { previousFocus = trigger || document.activeElement; dialog.hidden = false; body.classList.add('modal-open'); requestAnimationFrame(() => getFocusable(dialog)[0]?.focus()); };
     dialog.querySelectorAll(closeSelectors).forEach((button) => button.addEventListener('click', close));
     dialog.addEventListener('keydown', (event) => {
@@ -81,13 +86,25 @@ document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
 
 const pdfModal = document.querySelector('[data-pdf-modal]');
 if (pdfModal) {
-    const modal = setupDialog(pdfModal, '[data-modal-close]');
     const frame = pdfModal.querySelector('[data-pdf-frame]');
     const loader = pdfModal.querySelector('[data-frame-loader]');
+    let sourceDialog = null;
+    const modal = setupDialog(pdfModal, '[data-modal-close]', () => {
+        if (frame) {
+            frame.onload = null;
+            frame.src = 'about:blank';
+        }
+        if (loader) loader.hidden = false;
+        if (sourceDialog) sourceDialog.hidden = false;
+        sourceDialog = null;
+    });
 
     document.addEventListener('click', (event) => {
         const button = event.target.closest('[data-open-pdf]');
         if (!button) return;
+
+        sourceDialog = button.closest('[data-execution-reports-modal]');
+        if (sourceDialog) sourceDialog.hidden = true;
 
         pdfModal.querySelector('[data-modal-title]').textContent = button.dataset.title || 'Documento';
         const externalUrl = button.dataset.external || button.dataset.preview;
@@ -105,12 +122,23 @@ if (pdfModal) {
         }
         modal.open(button);
     });
-
-    pdfModal.querySelectorAll('[data-modal-close]').forEach((button) => button.addEventListener('click', () => {
-        if (frame) frame.src = 'about:blank';
-        if (loader) loader.hidden = false;
-    }));
 }
+
+document.querySelectorAll('[data-execution-reports-modal]').forEach((executionReportsModal) => {
+    const dialog = setupDialog(executionReportsModal, '[data-execution-reports-close]');
+    const periodButtons = [...executionReportsModal.querySelectorAll('[data-execution-period]')];
+    const periodPanels = [...executionReportsModal.querySelectorAll('[data-execution-period-panel]')];
+    const selectPeriod = (period) => {
+        periodButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.executionPeriod === period)));
+        periodPanels.forEach((panel) => { panel.hidden = panel.dataset.executionPeriodPanel !== period; });
+    };
+
+    document.querySelector(`[data-open-execution-reports="${executionReportsModal.dataset.executionReportsModal}"]`)?.addEventListener('click', (buttonEvent) => {
+        selectPeriod('2026-I');
+        dialog.open(buttonEvent.currentTarget);
+    });
+    periodButtons.forEach((button) => button.addEventListener('click', () => selectPeriod(button.dataset.executionPeriod)));
+});
 
 const formDrawer = document.querySelector('[data-form-drawer]');
 if (formDrawer) {
