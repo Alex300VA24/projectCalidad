@@ -210,6 +210,65 @@
 {
     "periodo": "2025-II",
     "informes": [
-        
+        {
+            "curso": "ROBÓTICA",
+            "grupo": "1",
+            "profesor": "MANUEL ABANTO CORCUERA",
+            "link": "https://docs.google.com/document/d/1yyFvCJXUFcIo32zQd3XWKMTFA-yMGxmS/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+        },
+        {
+            "curso": "INTRODUCCIÓN AL USO DE TIC",
+            "grupo": "1",
+            "profesor": "JORGE DAVID BRAVO ESCALANTE",
+            "link": "https://drive.google.com/file/d/1I4-k9a1YKvpNIiSYe7yHiOiQFSN9ivYw/view?usp=sharing"
+        },
+        {
+            "curso": "COMPUTACION GRAFICA AVANZADA",
+            "grupo": "1",
+            "profesor": "JORGE DAVID BRAVO ESCALANTE",
+            "link": "https://drive.google.com/file/d/1wscY65kb942hRWbFOqBgKBWZyd5HmpGj/view?usp=sharing"
+        },
+        {
+            "curso": "COMPUTACION GRAFICA AVANZADA",
+            "grupo": "2",
+            "profesor": "JORGE DAVID BRAVO ESCALANTE",
+            "link": "https://drive.google.com/file/d/1oZ8qjgO3RKXvifMPjRmkjVBSv8Q6NqiT/view?usp=sharing"
+        },
+        {
+            "curso": "LENGUAJES FORMALES Y AUTÓMATAS",
+            "grupo": "1",
+            "profesor": "LIZ SOFIA RAYMUNDA PEDRO HUAMAN",
+            "link": "https://drive.google.com/file/d/1ye3r0BmxAI1r1Qm6eQ3V0Xw-hsFOvFZ8/view?usp=sharing"
+        },
+        {
+            "curso": "LENGUAJES FORMALES Y AUTÓMATAS",
+            "grupo": "2",
+            "profesor": "LIZ SOFIA RAYMUNDA PEDRO HUAMAN",
+            "link": "https://drive.google.com/file/d/15eEXaA4i3sjhvYQWJABCrIRHxHzZ0rPt/view?usp=sharing"
+        },
+        {
+            "curso": "INTRODUCCIÓN AL USO DE TIC",
+            "grupo": "3",
+            "profesor": "JORGE DAVID BRAVO ESCALANTE",
+            "link": "https://drive.google.com/file/d/1PIzbW56zJzfq1qUgfeqHak87HaIP9NZZ/view?usp=sharing"
+        },
+        {
+            "curso": "ORGANIZACIÓN DE ARCHIVOS",
+            "grupo": "1",
+            "profesor": "MAX LEOVIGILDO CASTRO RODRIGUEZ",
+            "link": "https://drive.google.com/file/d/1cDaM_FmLskoU7QQC_86ThSHgd5N5Sbds/view?usp=sharingng"
+        },
+        {
+            "curso": "ORGANIZACIÓN DE ARCHIVOS",
+            "grupo": "2",
+            "profesor": "MAX LEOVIGILDO CASTRO RODRIGUEZ",
+            "link": "https://drive.google.com/file/d/1RAJFlmO7IuRBdPm71deUxIZv3Uq2HRJ3/view?usp=sharing"
+        },
+        {
+            "curso": "TRABAJO DE INVESTIGACIÓN",
+            "grupo": "1",
+            "profesor": "ANTHONY JOSÉ GÓMEZ MORALES",
+            "link": "https://drive.google.com/file/d/1lrJaWRydYmSqKPofo0AZ6W32qsb-eiqy/view?usp=sharing"
+        }
     ]
 }]
