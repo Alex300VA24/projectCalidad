@@ -228,6 +228,11 @@ input,textarea,select { width: 100%; min-height: 44px; padding: 10px 12px; color
 .execution-period-buttons button { display: flex; min-height: 48px; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 14px; color: var(--ink); background: var(--surface-alt); border: 1px solid var(--border); border-radius: 7px; font: 600 14px 'Fira Code',monospace; cursor: pointer; }
 .execution-period-buttons button:hover,.execution-period-buttons button[aria-pressed="true"] { color: var(--indigo); background: var(--indigo-soft); border-color: var(--indigo); }
 .execution-period-buttons span { display: grid; min-width: 25px; height: 25px; place-items: center; padding: 0 5px; background: var(--surface); border-radius: 999px; font: 600 12px 'Fira Sans',sans-serif; }
+.student-reference-buttons { display: grid; gap: 8px; margin-bottom: 22px; }
+.student-reference-buttons button { display: flex; min-height: 48px; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 12px 14px; color: var(--ink); background: var(--surface-alt); border: 1px solid var(--border); border-radius: 7px; font: 600 14px 'Fira Sans',sans-serif; text-align: left; cursor: pointer; }
+.student-reference-buttons button:hover,.student-reference-buttons button[aria-expanded="true"] { color: var(--indigo); background: var(--indigo-soft); border-color: var(--indigo); }
+.student-reference-count { color: var(--ink-soft); font-size: 12px; white-space: nowrap; }
+.student-reference-panel { margin-top: 4px; }
 .execution-period-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
 .execution-period-heading h3 { margin: 0; font-size: 17px; }.execution-period-heading span { color: var(--ink-soft); font-size: 13px; }
 .execution-report { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; margin-bottom: 8px; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 7px; }

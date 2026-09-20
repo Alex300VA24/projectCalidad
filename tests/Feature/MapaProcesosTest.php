@@ -79,6 +79,26 @@ class MapaProcesosTest extends TestCase
             && $reports['2026-I'][0]['detail'] === 'Semestre 2026-I');
     }
 
+    public function test_reference_format_lists_documents_by_student_in_its_modal(): void
+    {
+        $response = $this->get(route('mapa-procesos.index'));
+
+        $response->assertSee('F.M01.04-DDA/PG-06');
+        $response->assertSee('data-open-student-references', false);
+        $response->assertSee('data-student-references-modal hidden', false);
+        $response->assertSee('data-student-reference="1" aria-expanded="false" aria-controls="student-reference-files-1"', false);
+        $response->assertSee('data-student-reference-panel="1" aria-label="Archivos de Dylan Niklas Jara Solorzano" hidden', false);
+        $response->assertSee('Dylan Niklas Jara Solorzano');
+        $response->assertSee('Programacion Cita');
+        $response->assertSee('Contrareferencia');
+        $response->assertSee('data-preview="https://drive.google.com/file/d/1outzYz_Tpkm1Ho7nsCft6COorgTuaGuu/preview"', false);
+        $response->assertSee('data-preview="https://drive.google.com/file/d/1gcjEiWzi1E5-y_pMlznqBeimjEECmjqc/preview"', false);
+        $response->assertViewHas('studentReferences', fn (array $references): bool => count($references) === 1
+            && count($references['Dylan Niklas Jara Solorzano']) === 2
+            && $references['Dylan Niklas Jara Solorzano'][0]['title'] === 'Programacion Cita'
+            && $references['Dylan Niklas Jara Solorzano'][1]['title'] === 'Contrareferencia');
+    }
+
     public function test_matriculas_page_renders_and_allows_creating_matricula_and_incidencia(): void
     {
         $programa = ProgramaEstudio::first();

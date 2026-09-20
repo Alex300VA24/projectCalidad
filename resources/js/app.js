@@ -103,7 +103,7 @@ if (pdfModal) {
         const button = event.target.closest('[data-open-pdf]');
         if (!button) return;
 
-        sourceDialog = button.closest('[data-execution-reports-modal]');
+        sourceDialog = button.closest('[data-execution-reports-modal], [data-student-references-modal]');
         if (sourceDialog) sourceDialog.hidden = true;
 
         pdfModal.querySelector('[data-modal-title]').textContent = button.dataset.title || 'Documento';
@@ -139,6 +139,23 @@ document.querySelectorAll('[data-execution-reports-modal]').forEach((executionRe
     });
     periodButtons.forEach((button) => button.addEventListener('click', () => selectPeriod(button.dataset.executionPeriod)));
 });
+
+const studentReferencesModal = document.querySelector('[data-student-references-modal]');
+if (studentReferencesModal) {
+    const dialog = setupDialog(studentReferencesModal, '[data-student-references-close]');
+    const studentButtons = [...studentReferencesModal.querySelectorAll('[data-student-reference]')];
+    const studentPanels = [...studentReferencesModal.querySelectorAll('[data-student-reference-panel]')];
+    const selectStudent = (studentIndex) => {
+        studentButtons.forEach((button) => button.setAttribute('aria-expanded', String(button.dataset.studentReference === studentIndex)));
+        studentPanels.forEach((panel) => { panel.hidden = panel.dataset.studentReferencePanel !== studentIndex; });
+    };
+
+    document.querySelector('[data-open-student-references]')?.addEventListener('click', (buttonEvent) => {
+        selectStudent(null);
+        dialog.open(buttonEvent.currentTarget);
+    });
+    studentButtons.forEach((button) => button.addEventListener('click', () => selectStudent(button.dataset.studentReference)));
+}
 
 const formDrawer = document.querySelector('[data-form-drawer]');
 if (formDrawer) {

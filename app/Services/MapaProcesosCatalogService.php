@@ -137,7 +137,7 @@ class MapaProcesosCatalogService
                         'path' => 'M01.01.03 Enseñanza – Aprendizaje/M01.01.03.05 Seguimiento al Desempeño de los Estudiantes/F5 Registro de Consejería Academica y Tutoria.docx',
                     ],
                     [
-                        'code' => 'F6',
+                        'code' => 'F.M01.04-DDA/PG-06',
                         'name' => 'Hoja de Referencia y Contra Referencia',
                         'path' => 'M01.01.03 Enseñanza – Aprendizaje/M01.01.03.05 Seguimiento al Desempeño de los Estudiantes/F6 Hoja de Referencia y Contra Referencia.docx',
                     ],

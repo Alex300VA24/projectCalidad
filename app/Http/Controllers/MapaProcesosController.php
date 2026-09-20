@@ -79,6 +79,7 @@ class MapaProcesosController extends Controller
             'entities' => MapaProcesosCatalogService::allEntities(),
             'executionReportsByPeriod' => $this->executionReportsByPeriod(),
             'consolidatedReportsByPeriod' => $this->consolidatedReportsByPeriod(),
+            'studentReferences' => $this->studentReferences(),
         ]);
     }
 
@@ -161,6 +162,47 @@ class MapaProcesosController extends Controller
         }
 
         return $reportsByPeriod;
+    }
+
+    /**
+     * @return array<string, array<int, array{title: string, link: string, preview_url: string}>>
+     */
+    private function studentReferences(): array
+    {
+        $path = database_path('data/referencia_contrareferencia.json');
+
+        if (! is_file($path)) {
+            return [];
+        }
+
+        $documents = json_decode(file_get_contents($path) ?: '[]', true);
+
+        if (! is_array($documents)) {
+            return [];
+        }
+
+        $referencesByStudent = [];
+
+        foreach ($documents as $document) {
+            if (! is_array($document) || ! is_string($document['alumno'] ?? null) || ! is_string($document['concepto'] ?? null) || ! is_string($document['link'] ?? null) || ! filter_var($document['link'], FILTER_VALIDATE_URL) || parse_url($document['link'], PHP_URL_SCHEME) !== 'https') {
+                continue;
+            }
+
+            $student = trim($document['alumno']);
+            $title = trim($document['concepto']);
+
+            if ($student === '' || $title === '') {
+                continue;
+            }
+
+            $referencesByStudent[$student][] = [
+                'title' => $title,
+                'link' => $document['link'],
+                'preview_url' => $this->drivePreviewUrl($document['link']),
+            ];
+        }
+
+        return $referencesByStudent;
     }
 
     private function drivePreviewUrl(string $link): string
