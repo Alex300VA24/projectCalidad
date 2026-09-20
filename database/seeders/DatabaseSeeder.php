@@ -22,7 +22,13 @@ class DatabaseSeeder extends Seeder
             IndicadoresSeeder::class,
         ]);
 
-        $silabos = json_decode(file_get_contents(database_path('data/silabos.json')), true);
+        $path = database_path('data/silabos.json');
+
+        if (! is_file($path)) {
+            return;
+        }
+
+        $silabos = json_decode(file_get_contents($path), true);
 
         foreach ($silabos as $silabo) {
             $periodo = PeriodoAcademico::query()->firstOrCreate(['codigo' => $silabo['seccion']], ['activo' => true]);

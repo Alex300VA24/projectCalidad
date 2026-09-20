@@ -15,7 +15,13 @@ return new class extends Migration
             return;
         }
 
-        $silabos = json_decode(file_get_contents(database_path('data/silabos.json')), true, 512, JSON_THROW_ON_ERROR);
+        $path = database_path('data/silabos.json');
+
+        if (! is_file($path)) {
+            return;
+        }
+
+        $silabos = json_decode(file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
 
         DB::transaction(function () use ($silabos): void {
             DB::table('documents')->whereIn('drive_url', [
