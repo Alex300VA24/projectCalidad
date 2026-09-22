@@ -155,11 +155,6 @@ class DashboardCalidad extends Component
             ],
             'resumenTutoria' => $calculador->resumenTutoria($programa, $this->periodoAcademico),
             'resumenEgresados' => $calculador->resumenEgresados($programa, $this->periodoAcademico),
-            'graficos' => [
-                'aprobacion' => $calculador->datosAprobacionPorCiclo($programa, $this->periodoAcademico, $this->cicloAcademico, $this->cursoId ?: null),
-                'historico' => $calculador->datosHistoricos($programa),
-                'empleabilidad' => $calculador->datosCondicionLaboral($programa, $this->periodoAcademico),
-            ],
             'usuariosResponsables' => User::query()->orderBy('name')->get(['id', 'name']),
             'puedeConsolidar' => auth()->user()?->can('indicator.consolidate') ?? false,
         ]);
@@ -197,7 +192,6 @@ class DashboardCalidad extends Component
             'resumenEstados' => ['CONFORME' => 0, 'OBSERVADO' => 0, 'CRITICO' => 0, 'SIN_DATOS' => 0],
             'resumenTutoria' => ['programadas' => 0, 'realizadas' => 0, 'derivaciones' => 0],
             'resumenEgresados' => ['titulados' => null, 'laborando' => null, 'especialidad' => null],
-            'graficos' => ['aprobacion' => ['labels' => [], 'aprobados' => [], 'desaprobados' => [], 'inhabilitados' => []], 'historico' => ['labels' => [], 'retencion' => [], 'repitencia' => []], 'empleabilidad' => ['labels' => [], 'valores' => []]],
             'usuariosResponsables' => collect(), 'puedeConsolidar' => false,
         ];
     }

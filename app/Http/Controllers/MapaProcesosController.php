@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Services\MapaProcesosCatalogService;
+use App\Services\QualityEvidenceService;
 use Illuminate\View\View;
 
 class MapaProcesosController extends Controller
 {
+    public function __construct(private readonly QualityEvidenceService $qualityEvidence) {}
+
     /**
      * Additional cross-links shown on a process card besides its primary route,
      * for processes that feed more than one form in the system.
@@ -77,140 +80,9 @@ class MapaProcesosController extends Controller
         return view('mapa-procesos.index', [
             'sections' => $sections,
             'entities' => MapaProcesosCatalogService::allEntities(),
-            'executionReportsByPeriod' => $this->executionReportsByPeriod(),
-            'consolidatedReportsByPeriod' => $this->consolidatedReportsByPeriod(),
-            'studentReferences' => $this->studentReferences(),
+            'executionReportsByPeriod' => $this->qualityEvidence->executionReportsByPeriod(),
+            'consolidatedReportsByPeriod' => $this->qualityEvidence->consolidatedReportsByPeriod(),
+            'studentReferences' => $this->qualityEvidence->studentReferences(),
         ]);
-    }
-
-    /**
-     * @return array<string, array<int, array{curso: string, grupo: string, profesor: string, title: string, detail: string, link: string, preview_url: string}>>
-     */
-    private function executionReportsByPeriod(): array
-    {
-        $reportsByPeriod = ['2025-II' => [], '2026-I' => []];
-        $path = database_path('data/ejecucion-asignaturas.json');
-
-        if (! is_file($path)) {
-            return $reportsByPeriod;
-        }
-
-        $periods = json_decode(file_get_contents($path) ?: '[]', true);
-
-        if (! is_array($periods)) {
-            return $reportsByPeriod;
-        }
-
-        foreach ($periods as $period) {
-            if (! is_array($period) || ! isset($reportsByPeriod[$period['periodo'] ?? '']) || ! is_array($period['informes'] ?? null)) {
-                continue;
-            }
-
-            foreach ($period['informes'] as $report) {
-                if (! is_array($report) || ! is_string($report['link'] ?? null) || ! filter_var($report['link'], FILTER_VALIDATE_URL) || parse_url($report['link'], PHP_URL_SCHEME) !== 'https') {
-                    continue;
-                }
-
-                $course = (string) ($report['curso'] ?? '');
-                $group = (string) ($report['grupo'] ?? '');
-                $professor = (string) ($report['profesor'] ?? '');
-
-                $reportsByPeriod[$period['periodo']][] = [
-                    'curso' => $course,
-                    'grupo' => $group,
-                    'profesor' => $professor,
-                    'title' => $course,
-                    'detail' => "Grupo {$group} · {$professor}",
-                    'link' => $report['link'],
-                    'preview_url' => $this->drivePreviewUrl($report['link']),
-                ];
-            }
-        }
-
-        return $reportsByPeriod;
-    }
-
-    /**
-     * @return array<string, array<int, array{title: string, detail: string, link: string, preview_url: string}>>
-     */
-    private function consolidatedReportsByPeriod(): array
-    {
-        $reportsByPeriod = ['2025-II' => [], '2026-I' => []];
-        $path = database_path('data/consolidado-ejecucion.json');
-
-        if (! is_file($path)) {
-            return $reportsByPeriod;
-        }
-
-        $reports = json_decode(file_get_contents($path) ?: '[]', true);
-
-        if (! is_array($reports)) {
-            return $reportsByPeriod;
-        }
-
-        foreach ($reports as $report) {
-            if (! is_array($report) || ! isset($reportsByPeriod[$report['periodo'] ?? '']) || ! is_string($report['link'] ?? null) || ! filter_var($report['link'], FILTER_VALIDATE_URL) || parse_url($report['link'], PHP_URL_SCHEME) !== 'https') {
-                continue;
-            }
-
-            $reportsByPeriod[$report['periodo']][] = [
-                'title' => 'Consolidado de la Ejecución de la Asignatura',
-                'detail' => 'Semestre '.$report['periodo'],
-                'link' => $report['link'],
-                'preview_url' => $this->drivePreviewUrl($report['link']),
-            ];
-        }
-
-        return $reportsByPeriod;
-    }
-
-    /**
-     * @return array<string, array<int, array{title: string, link: string, preview_url: string}>>
-     */
-    private function studentReferences(): array
-    {
-        $path = database_path('data/referencia_contrareferencia.json');
-
-        if (! is_file($path)) {
-            return [];
-        }
-
-        $documents = json_decode(file_get_contents($path) ?: '[]', true);
-
-        if (! is_array($documents)) {
-            return [];
-        }
-
-        $referencesByStudent = [];
-
-        foreach ($documents as $document) {
-            if (! is_array($document) || ! is_string($document['alumno'] ?? null) || ! is_string($document['concepto'] ?? null) || ! is_string($document['link'] ?? null) || ! filter_var($document['link'], FILTER_VALIDATE_URL) || parse_url($document['link'], PHP_URL_SCHEME) !== 'https') {
-                continue;
-            }
-
-            $student = trim($document['alumno']);
-            $title = trim($document['concepto']);
-
-            if ($student === '' || $title === '') {
-                continue;
-            }
-
-            $referencesByStudent[$student][] = [
-                'title' => $title,
-                'link' => $document['link'],
-                'preview_url' => $this->drivePreviewUrl($document['link']),
-            ];
-        }
-
-        return $referencesByStudent;
-    }
-
-    private function drivePreviewUrl(string $link): string
-    {
-        preg_match('~/d/([a-zA-Z0-9_-]+)~', $link, $driveFileId);
-
-        return isset($driveFileId[1])
-            ? "https://drive.google.com/file/d/{$driveFileId[1]}/preview"
-            : $link;
     }
 }

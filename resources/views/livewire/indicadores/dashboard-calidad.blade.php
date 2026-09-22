@@ -130,36 +130,9 @@
         @endforeach
     </section>
 
-    @php
-        $configAprobacion = ['type' => 'bar', 'data' => ['labels' => $graficos['aprobacion']['labels'], 'datasets' => [
-            ['label' => 'Aprobados', 'data' => $graficos['aprobacion']['aprobados'], 'backgroundColor' => '#087f5b', 'borderRadius' => 4],
-            ['label' => 'Desaprobados', 'data' => $graficos['aprobacion']['desaprobados'], 'backgroundColor' => '#c0362c', 'borderRadius' => 4],
-            ['label' => 'Inhabilitados', 'data' => $graficos['aprobacion']['inhabilitados'], 'backgroundColor' => '#64748b', 'borderRadius' => 4],
-        ]]];
-        $configHistorico = ['type' => 'line', 'data' => ['labels' => $graficos['historico']['labels'], 'datasets' => [
-            ['label' => 'Retención', 'data' => $graficos['historico']['retencion'], 'borderColor' => '#4f46e5', 'backgroundColor' => '#4f46e520', 'tension' => 0.28, 'spanGaps' => true],
-            ['label' => 'Repitencia', 'data' => $graficos['historico']['repitencia'], 'borderColor' => '#a65d00', 'backgroundColor' => '#a65d0020', 'tension' => 0.28, 'spanGaps' => true],
-        ]]];
-        $configEmpleabilidad = ['type' => 'doughnut', 'data' => ['labels' => $graficos['empleabilidad']['labels'], 'datasets' => [[
-            'data' => $graficos['empleabilidad']['valores'], 'backgroundColor' => ['#087f5b', '#4f46e5', '#a65d00', '#94a3b8'], 'borderWidth' => 0,
-        ]]]];
-    @endphp
-
-    <section class="grid gap-4 xl:grid-cols-12" aria-labelledby="charts-heading" wire:key="quality-charts-{{ $programaEstudioId }}-{{ $periodoAcademico }}-{{ $cicloAcademico ?? 'todos' }}-{{ $cursoId }}" x-init="$nextTick(() => window.renderQualityCharts?.($el))">
-        <h2 id="charts-heading" class="sr-only">Gráficos estadísticos</h2>
-        <article class="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 shadow-sm xl:col-span-7">
-            <span class="eyebrow">Resultados F-013</span><h3 class="mt-1 text-lg">Aprobación por ciclo académico</h3><p class="mt-1 text-sm text-[var(--ink-soft)]">Comparación de aprobados, desaprobados e inhabilitados.</p>
-            <div class="mt-5 h-72"><canvas data-quality-chart data-chart-config="{{ json_encode($configAprobacion) }}" aria-label="Gráfico de barras de resultados por ciclo" role="img"></canvas></div>
-        </article>
-        <article class="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 shadow-sm xl:col-span-5">
-            <span class="eyebrow">Tendencia histórica</span><h3 class="mt-1 text-lg">Retención y repitencia</h3><p class="mt-1 text-sm text-[var(--ink-soft)]">Evolución semestral de FI-001 y FI-002.</p>
-            <div class="mt-5 h-72"><canvas data-quality-chart data-chart-config="{{ json_encode($configHistorico) }}" aria-label="Gráfico de líneas de retención y repitencia" role="img"></canvas></div>
-        </article>
-        <article class="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 shadow-sm xl:col-span-5">
-            <span class="eyebrow">Seguimiento al egresado</span><h3 class="mt-1 text-lg">Condición laboral</h3><p class="mt-1 text-sm text-[var(--ink-soft)]">Distribución registrada en el formato PG-06.</p>
-            <div class="mx-auto mt-5 h-72 max-w-sm"><canvas data-quality-chart data-chart-config="{{ json_encode($configEmpleabilidad) }}" aria-label="Gráfico de dona de condición laboral de egresados" role="img"></canvas></div>
-        </article>
-        <article class="rounded-lg border border-[var(--border)] bg-[#172554] p-5 text-white shadow-sm xl:col-span-7">
+    <section aria-labelledby="student-support-heading">
+        <h2 id="student-support-heading" class="sr-only">Acompañamiento estudiantil</h2>
+        <article class="rounded-lg border border-[var(--border)] bg-[#172554] p-5 text-white shadow-sm">
             <span class="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-200">Tutoría y derivaciones · F-07</span><h3 class="mt-2 text-xl">Cobertura de acompañamiento estudiantil</h3>
             <div class="mt-6 grid grid-cols-3 gap-2 sm:gap-4">
                 @foreach ([['label' => 'Programadas', 'value' => $resumenTutoria['programadas']], ['label' => 'Realizadas', 'value' => $resumenTutoria['realizadas']], ['label' => 'Derivaciones', 'value' => $resumenTutoria['derivaciones']]] as $dato)

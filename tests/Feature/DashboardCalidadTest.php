@@ -33,7 +33,11 @@ class DashboardCalidadTest extends TestCase
             ->assertDontSee('Registrar datos')
             ->assertDontSee('Valor medido')
             ->assertDontSee('Conformes')
-            ->assertDontSee('Sin medición');
+            ->assertDontSee('Sin medición')
+            ->assertDontSee('Aprobación por ciclo académico')
+            ->assertDontSee('Retención y repitencia')
+            ->assertDontSee('Condición laboral')
+            ->assertDontSee('data-quality-chart', false);
     }
 
     public function test_dashboard_classifies_every_indicator_under_its_macro_process(): void

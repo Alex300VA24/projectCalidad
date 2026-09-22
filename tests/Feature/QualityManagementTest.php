@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Document;
 use App\Models\PeriodoAcademico;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Tests\TestCase;
 
 class QualityManagementTest extends TestCase
@@ -34,7 +35,7 @@ class QualityManagementTest extends TestCase
             $document->preview_url
         );
 
-        $this->get('/documentos')->assertOk()->assertSee('Informe de calidad');
+        $this->get('/documentos?tipo=institucional')->assertOk()->assertSee('Informe de calidad');
     }
 
     public function test_a_google_drive_folder_opens_externally_instead_of_in_the_pdf_viewer(): void
@@ -50,7 +51,7 @@ class QualityManagementTest extends TestCase
 
         $this->assertTrue($document->is_drive_folder);
 
-        $this->get('/documentos')
+        $this->get('/documentos?tipo=institucional')
             ->assertSee('Abrir carpeta en Drive')
             ->assertSee('href="'.$folderUrl.'"', false)
             ->assertDontSee('data-preview="'.$folderUrl.'"', false);
@@ -79,6 +80,11 @@ class QualityManagementTest extends TestCase
         ]);
 
         $this->get('/documentos?tipo=silabo')
+            ->assertViewHasAll([
+                'activeType' => Document::TIPO_SILABO,
+                'activePeriodo' => '2025-I',
+                'activeCycle' => 1,
+            ])
             ->assertSee('2025-I')
             ->assertSee('2025-II')
             ->assertSee('2026-I')
@@ -86,6 +92,7 @@ class QualityManagementTest extends TestCase
             ->assertDontSee('Inteligencia Artificial I');
 
         $this->get('/documentos?tipo=silabo&periodo=2025-I')
+            ->assertViewHas('activeCycle', 1)
             ->assertSee('1.er ciclo')
             ->assertSee('3.er ciclo')
             ->assertSee('5.º ciclo')
@@ -123,7 +130,29 @@ class QualityManagementTest extends TestCase
         ]);
 
         $this->get('/documentos?tipo=calidad')
-            ->assertSee('Matriz de calidad');
+            ->assertSee('Matriz de calidad')
+            ->assertSee('Revisión del Modelo Educativo')
+            ->assertSee(route('formatos.show', 'gc-01-f-m0101-dpa-001'), false)
+            ->assertSee('data-open-execution-reports="M01.01.03.01-F-005"', false)
+            ->assertSee('data-open-execution-reports="M01.01.03.01-F-013"', false)
+            ->assertSee('data-open-student-references', false)
+            ->assertSee('Visualizar documentos')
+            ->assertSee('Paginación de documentos de calidad')
+            ->assertSee('tipo=calidad&amp;pagina=2', false)
+            ->assertViewHas('qualityDocuments', function (LengthAwarePaginator $documents): bool {
+                return $documents->currentPage() === 1
+                    && $documents->perPage() === 12
+                    && $documents->total() > $documents->perPage()
+                    && $documents->pluck('code')->take(3)->values()->all() === [
+                        'M01.01.03.01-F-005',
+                        'M01.01.03.01-F-013',
+                        'F.M01.04-DDA/PG-06',
+                    ];
+            });
+
+        $this->get('/documentos?tipo=calidad&pagina=2')
+            ->assertOk()
+            ->assertViewHas('qualityDocuments', fn (LengthAwarePaginator $documents): bool => $documents->currentPage() === 2);
     }
 
     public function test_syllabus_requires_an_academic_cycle(): void
@@ -161,8 +190,13 @@ class QualityManagementTest extends TestCase
     {
         $this->get('/documentos')
             ->assertSee('Documentos institucionales')
-            ->assertSee('Sílabos por semestre')
+            ->assertSee('Sílabos visados')
             ->assertSee('Documentos de calidad')
+            ->assertViewHasAll([
+                'activeType' => Document::TIPO_SILABO,
+                'activePeriodo' => '2025-I',
+                'activeCycle' => 1,
+            ])
             ->assertDontSee('Políticas y lineamientos')
             ->assertDontSee('Cualquier persona con el enlace');
     }
