@@ -52,7 +52,11 @@ window.renderQualityCharts = (root = document) => {
             layout: isPercentLine ? { padding: { top: 24 } } : undefined,
             animation: reducedMotion ? false : { duration: 350 },
             plugins: {
-                legend: { position: 'bottom', labels: { color: textColor, usePointStyle: true, padding: 18 } },
+                legend: {
+                    display: !isPercentLine,
+                    position: 'bottom',
+                    labels: { color: textColor, usePointStyle: true, padding: 18 },
+                },
                 tooltip: { intersect: false },
             },
             scales: isDoughnut ? undefined : {

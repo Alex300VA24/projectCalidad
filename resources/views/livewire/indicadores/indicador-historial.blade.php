@@ -61,10 +61,11 @@
                                 $medicion = $mediciones->get($periodo);
                                 $bloqueado = $medicion?->consolidada_en !== null;
                                 $estilos = match ($medicion?->estado_cumplimiento) {
-                                    'CONFORME' => ['label' => 'Conforme', 'text' => 'text-[var(--green)]', 'bg' => 'bg-[var(--green-soft)]'],
-                                    'OBSERVADO' => ['label' => 'Observado', 'text' => 'text-[var(--amber)]', 'bg' => 'bg-[var(--amber-soft)]'],
-                                    'CRITICO' => ['label' => 'Crítico', 'text' => 'text-[var(--red)]', 'bg' => 'bg-[var(--red-soft)]'],
-                                    default => ['label' => 'Sin datos', 'text' => 'text-slate-600', 'bg' => 'bg-slate-100'],
+                                    'CONFORME' => ['label' => 'Conforme', 'dot' => 'bg-[var(--green)]'],
+                                    'OBSERVADO' => ['label' => 'Observado', 'dot' => 'bg-[var(--amber)]'],
+                                    'CRITICO' => ['label' => 'Crítico', 'dot' => 'bg-[var(--red)]'],
+                                    'NO_CONFORME' => ['label' => 'No conforme', 'dot' => 'bg-[var(--red)]'],
+                                    default => ['label' => 'Sin datos', 'dot' => 'bg-slate-400'],
                                 };
                             @endphp
                             <tr class="transition-colors hover:bg-indigo-50/60">
@@ -80,7 +81,12 @@
                                 @endif
                                 <td class="px-5 py-4 font-mono text-base font-semibold">{{ $medicion ? number_format((float) $medicion->valor_medido, 1).$unidad : '—' }}</td>
                                 <td class="px-5 py-4 font-mono text-sm text-[var(--ink-soft)]">{{ $indicador->meta_institucional === null ? '—' : number_format((float) $indicador->meta_institucional, 0).$unidad }}</td>
-                                <td class="px-5 py-4"><span class="inline-flex rounded-full px-2.5 py-1 text-xs font-semibold {{ $estilos['bg'] }} {{ $estilos['text'] }}">{{ $estilos['label'] }}</span></td>
+                                <td class="px-5 py-4">
+                                    <span class="inline-flex size-4 items-center justify-center rounded-full ring-4 ring-black/5" title="{{ $estilos['label'] }}">
+                                        <span class="size-3.5 shrink-0 rounded-full {{ $estilos['dot'] }}" aria-hidden="true"></span>
+                                        <span class="sr-only">{{ $estilos['label'] }}</span>
+                                    </span>
+                                </td>
                                 <td class="px-5 py-4 text-right">
                                     @if ($bloqueado)
                                         <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--ink-soft)]">
@@ -98,6 +104,14 @@
                     </tbody>
                 </table>
             </div>
+            <p class="border-t border-[var(--border)] px-5 py-3 text-xs leading-5 text-[var(--ink-soft)]">
+                <strong class="font-semibold text-[var(--ink)]">Nota.</strong>
+                El color indica el estado de cumplimiento frente a la meta institucional:
+                <span class="inline-flex items-center gap-1"><span class="size-2 rounded-full bg-[var(--green)]" aria-hidden="true"></span>verde, conforme (cumple la meta)</span>;
+                <span class="inline-flex items-center gap-1"><span class="size-2 rounded-full bg-[var(--amber)]" aria-hidden="true"></span>ámbar, observado (próximo a la meta)</span>;
+                <span class="inline-flex items-center gap-1"><span class="size-2 rounded-full bg-[var(--red)]" aria-hidden="true"></span>rojo, crítico (no cumple la meta)</span>;
+                <span class="inline-flex items-center gap-1"><span class="size-2 rounded-full bg-slate-400" aria-hidden="true"></span>gris, sin datos (medición aún no registrada)</span>.
+            </p>
         </section>
     @else
         <section id="history-chart-panel" class="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 shadow-sm" role="tabpanel" aria-labelledby="history-chart-tab chart-heading">
@@ -132,6 +146,27 @@
             <div class="mx-auto mt-6 h-80 w-full max-w-3xl" wire:key="indicador-chart-{{ $indicador->id }}-{{ $ventanaOffset }}" x-init="$nextTick(() => window.renderQualityCharts?.($el))">
                 <canvas data-quality-chart data-chart-percent="1" data-chart-config="{{ json_encode($chartConfig) }}" aria-label="Gráfico de barras de {{ $indicador->nombre }}" @if ($esIndicadorSilabos) aria-describedby="syllabus-chart-interpretation" @endif role="img"></canvas>
             </div>
+
+            <div class="mx-auto mt-4 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-[var(--border)] pt-4 text-xs font-medium text-[var(--ink-soft)]">
+                @if ($meta !== null)
+                    <span class="inline-flex items-center gap-1.5">
+                        <span class="inline-block h-0 w-5 border-t-2 border-dashed" style="border-color:#c0362c" aria-hidden="true"></span>
+                        Meta institucional ({{ number_format($meta, 0) }}{{ $unidad }})
+                    </span>
+                @endif
+                <span class="inline-flex items-center gap-1.5">
+                    <span class="size-2.5 shrink-0 rounded-sm" style="background-color:#087f5b" aria-hidden="true"></span>
+                    Cumple la meta
+                </span>
+                <span class="inline-flex items-center gap-1.5">
+                    <span class="size-2.5 shrink-0 rounded-sm" style="background-color:#c0362c" aria-hidden="true"></span>
+                    No cumple la meta
+                </span>
+            </div>
+
+            <p class="mx-auto mt-2 max-w-3xl text-center text-xs leading-5 text-[var(--ink-soft)]">
+                <strong class="font-semibold text-[var(--ink)]">Nota.</strong> Elaboración propia a partir del registro semestral del indicador.
+            </p>
 
             @if ($esIndicadorSilabos)
                 <aside id="syllabus-chart-interpretation" class="mt-6 border-t border-[var(--border)] pt-5" aria-labelledby="syllabus-interpretation-heading">
