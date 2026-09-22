@@ -12,37 +12,150 @@
         "proceso": "Gestión del Ingreso",
         "indicadores": [
             {
+                "subproceso": "Matrícula",
                 "titulo": "M01.01.02.02-FI-001 Tasa de Retención por Programa de Estudios",
                 "link": "https://docs.google.com/spreadsheets/d/1FHf0iAUKrPaO7Mt5pu0B-SIPBc1YXH5U/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
             },
             {
+                "subproceso": "Matrícula",
                 "titulo": "M01.01.02.02-FI-002 Porcentaje de estudiantes matriculados dos o más veces en una misma experiencia curricular",
                 "link": "https://docs.google.com/spreadsheets/d/1McW2lyjAsETKZeg4xIFKWNqNgd5O2Pm2/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
-            },
-            {
-                "titulo": "M01.01.02.02-FI-003 Índice de resolución de problemas en el proceso de matrícula",
-                "link": "https://docs.google.com/spreadsheets/d/1dYnansiJUlvv3sqJhQl_ahCkGDyBep4E/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
-            },
-            {
-                "titulo": "M01.01.02.02-FI-004 Porcentaje de rectificaciones de matrícula",
-                "link": "https://docs.google.com/spreadsheets/d/1YtNDHlkct-aU7C9qrt8Fy11-iQv5F2dl/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
-            },
-            {
-                "titulo": "M01.01.02.02-FI-005 Nivel de satisfacción de los estudiantes con el proceso de matrícula",
-                "link": "https://docs.google.com/spreadsheets/d/158pTbVTeb-EqnW86tZTKOoEDopZMakzo/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
             }
         ]
     },
     {
         "proceso": "Enseñanza y Aprendizaje",
         "indicadores": [
-
+            {
+                "subproceso": "Ejecución del Plan Curricular",
+                "titulo": "M01.01.03.01-FI-007 Cumplimiento de la ejecución de PPP (_)",
+                "link": "https://docs.google.com/spreadsheets/d/1wSxRe9vpzYh1ikXcRhDvYNZs9LyxU0e_/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Evaluación del Estudiante",
+                "titulo": "Estudiantes desaprobados en cada experiencia curricular",
+                "link": "https://docs.google.com/spreadsheets/d/1tPJC2Tfsc1k9KMzm8COer2uIXWB859t8/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Evaluación del Estudiante",
+                "titulo": "Estudiantes desaprobados dos o más veces en una experiencia curricular",
+                "link": "https://docs.google.com/spreadsheets/d/1tPJC2Tfsc1k9KMzm8COer2uIXWB859t8/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Evaluación del Estudiante",
+                "titulo": "Nivel de logro de las competencias del perfil de egreso",
+                "link": "https://docs.google.com/spreadsheets/d/1tPJC2Tfsc1k9KMzm8COer2uIXWB859t8/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Investigación Formativa",
+                "titulo": "Experiencias curriculares que aplican la investigación formativa como estrategia de enseñanza-aprendizaje (en las experiencias curriculares que las aplican)",
+                "link": "https://docs.google.com/spreadsheets/d/1tgFdhxeptNuvM967i_6MpDUOziFEVLXz/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Investigación Formativa",
+                "titulo": "Satisfacción de los estudiantes con las estrategias de investigación formativa en el proceso de enseñanza-aprendizaje (%) - Por experiencia curricular",
+                "link": "https://docs.google.com/spreadsheets/d/1tgFdhxeptNuvM967i_6MpDUOziFEVLXz/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Investigación Formativa",
+                "titulo": "Nivel de logro de las competencias del perfil de egreso relacionadas con la investigación",
+                "link": "https://docs.google.com/spreadsheets/d/1tgFdhxeptNuvM967i_6MpDUOziFEVLXz/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Seguimiento al Desempeño de los Estudiantes",
+                "titulo": "Ingresantes que cumplen con el perfil de ingreso",
+                "link": "https://docs.google.com/spreadsheets/d/1KPmac0j7eSdAzrHW_44tfwGBReFTZjvn/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Seguimiento al Desempeño de los Estudiantes",
+                "titulo": "Estudiantes que logran las COMPETENCIAS GENERALES esperadas",
+                "link": "https://docs.google.com/spreadsheets/d/1KPmac0j7eSdAzrHW_44tfwGBReFTZjvn/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Seguimiento al Desempeño de los Estudiantes",
+                "titulo": "Estudiantes que logran las COMPETENCIAS ESPECIFICAS  esperadas (%)",
+                "link": "https://docs.google.com/spreadsheets/d/1KPmac0j7eSdAzrHW_44tfwGBReFTZjvn/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Seguimiento al Desempeño de los Estudiantes",
+                "titulo": "Deserción de estudiantes (%) - Por promoción o cohorte",
+                "link": "https://docs.google.com/spreadsheets/d/1KPmac0j7eSdAzrHW_44tfwGBReFTZjvn/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Seguimiento al Desempeño de los Estudiantes",
+                "titulo": "Estudiantes desaprobados (%) - Por promoción o cohorte  y por expiencia curricular",
+                "link": "https://docs.google.com/spreadsheets/d/1KPmac0j7eSdAzrHW_44tfwGBReFTZjvn/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Seguimiento al Desempeño de los Estudiantes",
+                "titulo": "Estudiantes que terminan sus estudios en el timpo esperado (%) - Por promoción o cohorte",
+                "link": "https://docs.google.com/spreadsheets/d/1KPmac0j7eSdAzrHW_44tfwGBReFTZjvn/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Seguimiento al Desempeño de los Estudiantes",
+                "titulo": "Logro de objetivos del programa de tutoría académica y apoyo pedagógico",
+                "link": "https://docs.google.com/spreadsheets/d/1KPmac0j7eSdAzrHW_44tfwGBReFTZjvn/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Seguimiento al Desempeño de los Estudiantes",
+                "titulo": "Satisfacción del estudiante con  los programas de consejería académica y tutoría (%)",
+                "link": "https://docs.google.com/spreadsheets/d/1KPmac0j7eSdAzrHW_44tfwGBReFTZjvn/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            }
         ]
     },
     {
         "proceso": "Resultados de la Formación",
         "indicadores": [
-            
+            {
+                "subproceso": "Certificación",
+                "titulo": "M01.01.04.01-FI-001 Certificados de estudios suscritos dentro del plazo (_)",
+                "link": "https://docs.google.com/spreadsheets/d/1R2dmv3v90cQ1cu0kcSU22glTnI7YFBdi/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Graduación",
+                "titulo": "M01.01.04.02-FI-001 - Porcentaje de Egresados por año de ingreso dentro de los plazos establecidos en la malla curricular (%)",
+                "link": "https://docs.google.com/spreadsheets/d/1MKmPzfsVoVh3ujXnrjBIp-Vf5j3ozdc9/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Titulación",
+                "titulo": "M01.03.04 - EGRESADOS TITULADOS por promoción o cohorte (%)",
+                "link": "https://docs.google.com/spreadsheets/d/18Iqi1hV9QfjPzKS-hsOXv4m4EtKwZjhg/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Titulación",
+                "titulo": "M01.03.04 - Egresados titulados dentro de los DOCE MESES despues de ser declarado EGRESADO/GRADUADO (%)",
+                "link": "https://docs.google.com/spreadsheets/d/18Iqi1hV9QfjPzKS-hsOXv4m4EtKwZjhg/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Egresados",
+                "titulo": "M01.05 - Determinar el porcentaje de estudiantes que egresan por cada promoción o cohorte de ingreso",
+                "link": "https://docs.google.com/spreadsheets/d/1ilixdmJR3WqwQX3Mt0vK1REn5roz2dRd/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Egresados",
+                "titulo": "M01.05 - Determinar el porcentaje de egresados que trabajan en áreas correspondientes al ejercicio profesional del programa",
+                "link": "https://docs.google.com/spreadsheets/d/1ilixdmJR3WqwQX3Mt0vK1REn5roz2dRd/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Egresados",
+                "titulo": "M01.05 - Evaluar el nivel de logro de los objetivos educacionales (entre los egresados de la EPG)",
+                "link": "https://docs.google.com/spreadsheets/d/1ilixdmJR3WqwQX3Mt0vK1REn5roz2dRd/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Egresados",
+                "titulo": "M01.05 - Evaluar el nivel de satisfacción de los egresados con la formación profesional recibida en la EPG de la UNT",
+                "link": "https://docs.google.com/spreadsheets/d/1ilixdmJR3WqwQX3Mt0vK1REn5roz2dRd/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Egresados",
+                "titulo": "M01.05 - Evaluar el nivel de satisfacción de los empleadores con el desempeño de los egresados de la EPG de la UNT",
+                "link": "https://docs.google.com/spreadsheets/d/1ilixdmJR3WqwQX3Mt0vK1REn5roz2dRd/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "subproceso": "Egresados",
+                "titulo": "M01.05 - Verificar las mejoras en el diseño curricular (a nivel del curriculo o de los silabo) que se implentan como consecuencia de considerar los resultados del seguimiento al egresado",
+                "link": "https://docs.google.com/spreadsheets/d/1ilixdmJR3WqwQX3Mt0vK1REn5roz2dRd/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            }
         ]
     }
 ]
