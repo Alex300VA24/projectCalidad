@@ -1,0 +1,48 @@
+[
+    {
+        "proceso": "Gestión Curricular",
+        "indicadores": [
+            {
+                "titulo": "Indicadores Gestion Curricular Pregrado Rev2",
+                "link": "https://docs.google.com/spreadsheets/d/1GetkldCxcMm__QwcWQHSsUqKSNgNynzF/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            }
+        ]
+    },
+    {
+        "proceso": "Gestión del Ingreso",
+        "indicadores": [
+            {
+                "titulo": "M01.01.02.02-FI-001 Tasa de Retención por Programa de Estudios",
+                "link": "https://docs.google.com/spreadsheets/d/1FHf0iAUKrPaO7Mt5pu0B-SIPBc1YXH5U/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "titulo": "M01.01.02.02-FI-002 Porcentaje de estudiantes matriculados dos o más veces en una misma experiencia curricular",
+                "link": "https://docs.google.com/spreadsheets/d/1McW2lyjAsETKZeg4xIFKWNqNgd5O2Pm2/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "titulo": "M01.01.02.02-FI-003 Índice de resolución de problemas en el proceso de matrícula",
+                "link": "https://docs.google.com/spreadsheets/d/1dYnansiJUlvv3sqJhQl_ahCkGDyBep4E/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "titulo": "M01.01.02.02-FI-004 Porcentaje de rectificaciones de matrícula",
+                "link": "https://docs.google.com/spreadsheets/d/1YtNDHlkct-aU7C9qrt8Fy11-iQv5F2dl/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            },
+            {
+                "titulo": "M01.01.02.02-FI-005 Nivel de satisfacción de los estudiantes con el proceso de matrícula",
+                "link": "https://docs.google.com/spreadsheets/d/158pTbVTeb-EqnW86tZTKOoEDopZMakzo/edit?usp=sharing&ouid=104265357904126682796&rtpof=true&sd=true"
+            }
+        ]
+    },
+    {
+        "proceso": "Enseñanza y Aprendizaje",
+        "indicadores": [
+
+        ]
+    },
+    {
+        "proceso": "Resultados de la Formación",
+        "indicadores": [
+            
+        ]
+    }
+]
