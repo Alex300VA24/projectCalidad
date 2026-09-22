@@ -1,0 +1,253 @@
+[
+    {
+        "semestre": "2025-I",
+        "ciclos": [
+            {
+                "ciclo": "I",
+                "silabos": [
+                    {
+                        "curso": "",
+                        "link": ""
+                    }
+                ]
+            },
+            {
+                "ciclo": "III",
+                "silabos": [
+                    {
+                        "curso": "Análisis Numerico",
+                        "link": "https://drive.google.com/file/d/1oG7w5u9U8MyGRkc0yhswsSYx3ZDGRU_X/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Estrategias Algoritmicas",
+                        "link": "https://drive.google.com/file/d/16iLm9gQtPD4d4QIXBcAPJ_bJn7CXm7Ru/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Matemática Discreta",
+                        "link": "https://drive.google.com/file/d/1Omp5xc06BH6lCVECPSQ24_JMs0D7zKvR/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Paradigmas de Lenguajes de Programación",
+                        "link": "https://drive.google.com/file/d/1rhM_KgHe1WpFAg3TWPxh7iDuYySEQ2SO/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Física para Ciencia de la Computación",
+                        "link": "https://drive.google.com/file/d/1o2j5u8xuPCsMvzL4chyI1_d3CSfXN2i1/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Geometría Analítica",
+                        "link": "https://drive.google.com/file/d/1tpvdZFa39UhALfVrOfIBkBn72QGPbnn9/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "V",
+                "silabos": [
+                    {
+                        "curso": "Compiladores",
+                        "link": "https://drive.google.com/file/d/1pJhC4kyoOEsT8TIwMPV-9QAEg9HW5BVb/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Base de Datos I",
+                        "link": "https://drive.google.com/file/d/1Xz2w3cyvcKgRsnS3vRMY6s6v2dvXUQwG/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Ingeniería de Software I",
+                        "link": "https://drive.google.com/file/d/1v026th8cvEg6JscT47PxLbbMCMnoFUMQ/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Inteligencia Artificial I",
+                        "link": "https://drive.google.com/file/d/1QPpVuuUukhmKdetby8hEMvFQLLFQTJG4/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Metodología de la Investigación",
+                        "link": "https://drive.google.com/file/d/1NLdAH0ZPNX9PwnhFUzvqmj8M22VMKyvz/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Técnicas Digitales para Computación",
+                        "link": "https://drive.google.com/file/d/121qdyimhaIm0lu3VcAPjAxKCxjMIJOa1/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "VII",
+                "silabos": [
+                    {
+                        "curso": "Base de Datos Avanzada",
+                        "link": "https://drive.google.com/file/d/1ZaVG2InIa22kQmmV9ze3AI2vY6tBu8ZB/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Desarrollo de Software",
+                        "link": "https://drive.google.com/file/d/1IOg3lvSir_eLcSPNd9dVWEQoZKtI-XKU/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "IX",
+                "silabos": [
+                    {
+                        "curso": "Interacción Humano Computador",
+                        "link": "https://drive.google.com/file/d/13ITH2c7eL-sZH5_7v7Dcofhw1Gfph0VZ/view?usp=sharing"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "semestre": "2025-II",
+        "ciclos": [
+            {
+                "ciclo": "I",
+                "silabos": [
+                    {
+                        "curso": "Desarrollo del Pensamiento Lógico Matemático.pdf",
+                        "link": "https://drive.google.com/file/d/1b9M2LzkCvEOOxn2igk_RF1wXTOwVuI9S/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Introducción al Análisis Matemático",
+                        "link": "https://drive.google.com/file/d/10crtqSn5lrt00I4Fx294lLFFXAkJ-ULx/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "II",
+                "silabos": [
+                    {
+                        "curso": "Análisis Matemático",
+                        "link": "https://drive.google.com/file/d/13rehY3oyfJqaYjmpRlWHIbr7xcXzwEpF/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Estadística General",
+                        "link": "https://drive.google.com/file/d/1SYZyNa4gdnVT7pSEw-J-ow_77XuGxF9f/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Ética, Convivencia Humana Y Ciudadanía",
+                        "link": "https://drive.google.com/file/d/1J4kjWlW2bhwAGEmnJGjRezfnM7-MtFLd/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Sociedad Cultura y Ecología",
+                        "link": "https://drive.google.com/file/d/1bsewG4AkO69gQL6yF-Zha-WWRjzqCrSl/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "III",
+                "silabos": [
+                    {
+                        "curso": "Análisis Numerico",
+                        "link": "https://drive.google.com/file/d/1eeqmEePhzkzCV4pOiG0k6zaZ5yqnX7b3/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Geometría Analítica",
+                        "link": "https://drive.google.com/file/d/1jQ7kVDDCziUOGs7q0dIjrxkrLIGFkApu/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Matemática Discreta",
+                        "link": "https://drive.google.com/file/d/1BVPsR0YU2P_wYzDrHwWMp1Ou005pkDpH/view?usp=sharing"
+                    }
+                ]  
+            },
+            {
+                "ciclo": "IV",
+                "silabos": [
+                    {
+                        "curso": "Algoritmos y Complejidad",
+                        "link": "https://drive.google.com/file/d/1KO5cGoAwit08l2vkXBr6uyio1Caq3OCH/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Computación Gŕafica",
+                        "link": "https://drive.google.com/file/d/1OSK0xqINrN7Fne2Bu2_T3mSu3C0XrZ8m/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Innovación y Emprendimiento",
+                        "link": "https://drive.google.com/file/d/1vbUtXscoJoFBZPPXqkRK8L9qxiOKdZcn/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Lenguajes Formales y Autómatas",
+                        "link": "https://drive.google.com/file/d/1Ed_bbBUI0hz3AIjHwfJfLvK4jfTM-N_E/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Organización de Archivos",
+                        "link": "https://drive.google.com/file/d/1SXEYLxIiNImf34259IJ4I1dBVIT-GSBf/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "VI",
+                "silabos": [
+                    {
+                        "curso": "Comunicación de Datos",
+                        "link": "https://drive.google.com/file/d/1dqb51CqpoAn2r3Un0Z5lBQEK2UzZzC0L/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Base de Datos II",
+                        "link": "https://drive.google.com/file/d/1YQylZmBSPyBq1VzAxao0dBqXajWrtl_d/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Ingeniería de Software I",
+                        "link": "https://drive.google.com/file/d/1v026th8cvEg6JscT47PxLbbMCMnoFUMQ/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Inteligencia Artificial I",
+                        "link": "https://drive.google.com/file/d/1QPpVuuUukhmKdetby8hEMvFQLLFQTJG4/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Metodología de la Investigación",
+                        "link": "https://drive.google.com/file/d/1NLdAH0ZPNX9PwnhFUzvqmj8M22VMKyvz/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Técnicas Digitales para Computación",
+                        "link": "https://drive.google.com/file/d/121qdyimhaIm0lu3VcAPjAxKCxjMIJOa1/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "VIII",
+                "silabos": [
+                    {
+                        "curso": "Prácticas Pre-Profesionales",
+                        "link": "https://drive.google.com/file/d/1-s_kZqwu9QPkaYdmb5PVR8G9cFZl0aor/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Sistemas Operativos II",
+                        "link": "https://drive.google.com/file/d/1uY0B5STLsNhNyRXqpTORqt0LirXFzZvh/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "IX",
+                "silabos": [
+                    {
+                        "curso": "Proyecto de Tesis",
+                        "link": "https://drive.google.com/file/d/1OtkuBcZ_UsGxDOzSyS4rUMFSl1Imtv85/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "X",
+                "silabos": [
+                    {
+                        "curso": "Ética para Profesionales en Informática.pdf",
+                        "link": "https://drive.google.com/file/d/1lDuHtvqmehgKM2rn3yBVtu8vH0b__WJH/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Proyecto de Competencia",
+                        "link": "https://drive.google.com/file/d/1Pg2mnQONdw3c6at7C1ux4H7H31ud3D7V/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Sistemas de Información",
+                        "link": "https://drive.google.com/file/d/1TYHhp-RxOe05SNhGFI83Dvjch5KAdzfJ/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Tesis",
+                        "link": "https://drive.google.com/file/d/1KJY5KdNEfbweiO0_b5dSaV5s_z1MKsTu/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Tópicos en Tecnologías Inmersivas",
+                        "link": "https://drive.google.com/file/d/1mtO0BolvKDLBbOaK7LULscWf7QqcqN15/view?usp=sharing"
+                    }
+                ]
+            }
+        ]
+    }
+]
