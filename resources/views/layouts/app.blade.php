@@ -39,10 +39,6 @@
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v5h5M9 12h6M9 16h6"/></svg>
                     <span>Documentos</span>
                 </a>
-                <a href="{{ route('tramites.hub') }}" @class(['nav-link', 'active' => request()->routeIs('tramites.*') || request()->routeIs(['matriculas.*', 'curricula.*', 'courses.*', 'research-lines.*', 'curriculum-reviews.*', 'curriculum-redesigns.*', 'syllabi.*', 'admission-analyses.*', 'tutoring-sessions.*', 'student-referrals.*', 'syllabus-socializations.*', 'anonymous-exams.*', 'sufficiency-exams.*', 'grade-corrections.*', 'graduate-competency-evaluations.*', 'research-competency-matrices.*', 'research-projects.*', 'teaching-load-requirements.*', 'academic-calendars.*', 'course-execution-reports.*', 'teacher-performance-evaluations.*', 'internships.*', 'physical-academic-histories.*', 'graduate-folders.*', 'graduate-registries.*', 'educational-objective-evaluations.*', 'student-mobilities.*'])])>
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6l1 4H8zM5 7h14l-1 14H6z"/><path d="M9 12h6M9 16h4"/></svg>
-                    <span>Trámites</span>
-                </a>
             </nav>
 
             <div class="sidebar-note">

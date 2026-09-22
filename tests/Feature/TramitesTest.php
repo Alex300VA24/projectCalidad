@@ -6,14 +6,30 @@ use App\Models\Curriculum;
 use App\Models\CurriculumReview;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
 class TramitesTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_procedure_routes_are_not_available_while_the_module_is_disabled(): void
+    {
+        $this->get('/tramites')
+            ->assertNotFound();
+        $this->post('/tramites/curriculos')
+            ->assertNotFound();
+
+        $this->assertFalse(Route::has('tramites.hub'));
+        $this->assertFalse(Route::has('curricula.store'));
+        $this->assertFalse(Route::has('syllabi.update'));
+        $this->assertFalse(Route::has('matriculas.store'));
+    }
+
     public function test_the_hub_lists_the_eleven_procedure_domains(): void
     {
+        $this->markTestSkipped('El flujo de trámites está deshabilitado temporalmente.');
+
         $this->get('/tramites')
             ->assertOk()
             ->assertSee('Gestión Curricular')
@@ -22,6 +38,8 @@ class TramitesTest extends TestCase
 
     public function test_a_curriculum_can_be_created_and_edited(): void
     {
+        $this->markTestSkipped('El flujo de trámites está deshabilitado temporalmente.');
+
         $this->post('/tramites/curriculos', [
             'name' => 'Plan Curricular Ingeniería',
             'version' => '2026-I',
@@ -47,6 +65,8 @@ class TramitesTest extends TestCase
 
     public function test_a_curriculum_review_can_be_registered_with_a_json_checklist(): void
     {
+        $this->markTestSkipped('El flujo de trámites está deshabilitado temporalmente.');
+
         $curriculum = Curriculum::create(['name' => 'Plan Base', 'version' => '2025-II']);
         $coteccu = User::factory()->create();
 

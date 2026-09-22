@@ -1,0 +1,171 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Mapa de procesos para obtener indicadores de calidad",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "ruta_principal",
+        "label": "Ruta principal",
+        "focus": ["planificar", "ejecutar", "registrar", "validar", "calcular", "evaluar", "consolidar", "publicar", "decidir"],
+        "note": "Desde objetivos y procesos académicos hasta indicadores consolidados para decisión."
+      },
+      {
+        "id": "control_datos",
+        "label": "Control de datos",
+        "focus": ["registrar", "validar", "corregir", "calcular"],
+        "note": "La medición solo avanza cuando evidencia y datos cumplen reglas de calidad."
+      },
+      {
+        "id": "mejora_continua",
+        "label": "Mejora continua",
+        "focus": ["evaluar", "consolidar", "decidir", "mejorar", "planificar"],
+        "note": "Las brechas generan acciones que alimentan el siguiente ciclo."
+      }
+    ]
+  },
+  "lanes": [
+    { "id": "gobierno", "label": "Dirección, COTECCU y Comité de Calidad" },
+    { "id": "responsables", "label": "Responsables de procesos académicos" },
+    { "id": "sistema", "label": "Sistema de Gestión de Indicadores" }
+  ],
+  "phases": [
+    { "id": "planear", "label": "Planear", "fromCol": 0, "toCol": 0 },
+    { "id": "hacer", "label": "Ejecutar y registrar", "fromCol": 1, "toCol": 2 },
+    { "id": "verificar", "label": "Medir y evaluar", "fromCol": 3, "toCol": 4, "variant": "emphasis" },
+    { "id": "actuar", "label": "Decidir y mejorar", "fromCol": 5, "toCol": 5, "variant": "dashed" }
+  ],
+  "groups": [
+    { "id": "fuentes", "label": "Datos y evidencias de procesos", "lane": "responsables", "fromCol": 1, "toCol": 2 },
+    { "id": "motor_indicadores", "label": "Motor de indicadores", "lane": "sistema", "fromCol": 2, "toCol": 4, "variant": "emphasis" }
+  ],
+  "mainPath": ["planificar", "ejecutar", "registrar", "validar", "calcular", "evaluar", "consolidar", "publicar", "decidir"],
+  "semanticChecks": {
+    "allowedRoots": ["planificar"],
+    "allowedTerminals": ["decidir", "mejorar"],
+    "requiredPaths": [
+      { "from": "planificar", "to": "decidir" },
+      { "from": "registrar", "to": "calcular" },
+      { "from": "evaluar", "to": "mejorar" }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "planificar",
+      "lane": "gobierno",
+      "col": 0,
+      "type": "security",
+      "label": "Definir metas",
+      "sublabel": "meta · fórmula",
+      "tag": "entrada del ciclo",
+      "width": 150
+    },
+    {
+      "id": "ejecutar",
+      "lane": "responsables",
+      "col": 1,
+      "type": "backend",
+      "label": "Ejecutar procesos",
+      "sublabel": "gestión · enseñanza · egreso",
+      "width": 150
+    },
+    {
+      "id": "registrar",
+      "lane": "responsables",
+      "col": 2,
+      "type": "database",
+      "label": "Registrar evidencias",
+      "sublabel": "registros trazables",
+      "width": 160
+    },
+    {
+      "id": "validar",
+      "lane": "sistema",
+      "col": 2,
+      "type": "security",
+      "label": "Validar datos",
+      "sublabel": "integridad · trazabilidad",
+      "tag": "compuerta",
+      "width": 150
+    },
+    {
+      "id": "calcular",
+      "lane": "sistema",
+      "col": 3,
+      "type": "backend",
+      "label": "Calcular indicadores",
+      "sublabel": "fuentes aprobadas",
+      "width": 150
+    },
+    {
+      "id": "evaluar",
+      "lane": "gobierno",
+      "col": 3,
+      "type": "security",
+      "label": "Evaluar metas",
+      "sublabel": "conforme · crítico",
+      "tag": "meta y umbral",
+      "width": 150
+    },
+    {
+      "id": "consolidar",
+      "lane": "gobierno",
+      "col": 4,
+      "type": "database",
+      "label": "Consolidar resultados",
+      "sublabel": "programa · periodo",
+      "width": 165
+    },
+    {
+      "id": "publicar",
+      "lane": "sistema",
+      "col": 4,
+      "type": "frontend",
+      "label": "Publicar tablero",
+      "sublabel": "tendencias · brechas",
+      "width": 150
+    },
+    {
+      "id": "decidir",
+      "lane": "gobierno",
+      "col": 5,
+      "type": "external",
+      "label": "Decidir con indicadores",
+      "sublabel": "recursos · calidad",
+      "tag": "resultado final",
+      "width": 170
+    },
+    {
+      "id": "corregir",
+      "lane": "responsables",
+      "col": 3,
+      "type": "security",
+      "label": "Corregir datos",
+      "sublabel": "subsanar observaciones",
+      "width": 140
+    },
+    {
+      "id": "mejorar",
+      "lane": "responsables",
+      "col": 5,
+      "type": "messagebus",
+      "label": "Ejecutar mejora",
+      "sublabel": "responsable · cierre",
+      "width": 140
+    }
+  ],
+  "edges": [
+    { "from": "planificar", "to": "ejecutar", "label": "plan y metas", "role": "main" },
+    { "from": "ejecutar", "to": "registrar", "label": "resultados", "role": "main" },
+    { "from": "registrar", "to": "validar", "label": "evidencia", "role": "main" },
+    { "from": "validar", "to": "calcular", "label": "datos válidos", "variant": "emphasis", "role": "main" },
+    { "from": "calcular", "to": "evaluar", "label": "valor medido", "role": "main" },
+    { "from": "evaluar", "to": "consolidar", "label": "clasificación", "role": "main" },
+    { "from": "consolidar", "to": "publicar", "label": "medición cerrada", "role": "main" },
+    { "from": "publicar", "to": "decidir", "label": "indicadores", "variant": "emphasis", "role": "main" },
+    { "from": "validar", "to": "corregir", "label": "inconsistente", "variant": "security", "role": "error" },
+    { "from": "corregir", "to": "validar", "label": "revalidar", "variant": "dashed", "role": "return" },
+    { "from": "decidir", "to": "mejorar", "label": "brecha", "variant": "security", "role": "branch" }
+  ]
+}

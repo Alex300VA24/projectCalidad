@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\Course;
-use App\Models\Matricula;
 use App\Models\ProgramaEstudio;
 use App\Models\User;
 use App\Services\CalculadorIndicadoresService;
@@ -101,6 +100,8 @@ class MapaProcesosTest extends TestCase
 
     public function test_matriculas_page_renders_and_allows_creating_matricula_and_incidencia(): void
     {
+        $this->markTestSkipped('El flujo de trámites está deshabilitado temporalmente.');
+
         $programa = ProgramaEstudio::first();
         $curso = Course::create(['name' => 'Ingeniería de Software', 'code' => 'IS-101', 'credits' => 4]);
         $estudiante = User::factory()->create();
@@ -110,7 +111,6 @@ class MapaProcesosTest extends TestCase
         $response->assertSee('Gestión de Matrícula e Incidencias');
         $response->assertSee('MAT-01');
 
-        // Store Matricula
         $postResponse = $this->post(route('matriculas.store'), [
             'programa_estudio_id' => $programa->id,
             'estudiante_id' => $estudiante->id,
@@ -130,7 +130,6 @@ class MapaProcesosTest extends TestCase
             'numero_matricula' => 2,
         ]);
 
-        // Store Incidencia
         $incidenciaResponse = $this->post(route('incidencias-matricula.store'), [
             'programa_estudio_id' => $programa->id,
             'periodo_academico' => '2026-I',
@@ -145,12 +144,19 @@ class MapaProcesosTest extends TestCase
             'estado' => 'RESUELTA',
         ]);
 
-        // Verify that CalculadorIndicadoresService calculates repetition and incidents resolution
         $calculador = app(CalculadorIndicadoresService::class);
         $valores = $calculador->calcularValores($programa, '2026-I');
 
         $this->assertNotNull($valores[CalculadorIndicadoresService::CODIGO_REPITENCIA]);
         $this->assertEquals(100.0, $valores[CalculadorIndicadoresService::CODIGO_REPITENCIA]);
         $this->assertEquals(100.0, $valores[CalculadorIndicadoresService::CODIGO_INCIDENCIAS]);
+    }
+
+    public function test_process_map_does_not_link_to_disabled_procedures(): void
+    {
+        $this->get(route('mapa-procesos.index'))
+            ->assertOk()
+            ->assertDontSee('Todos los trámites')
+            ->assertDontSee('href="/tramites', false);
     }
 }

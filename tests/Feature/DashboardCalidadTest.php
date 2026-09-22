@@ -28,7 +28,12 @@ class DashboardCalidadTest extends TestCase
             ->assertSee('Gestión del Ingreso')
             ->assertSee('Enseñanza y Aprendizaje')
             ->assertSee('Resultados de la Formación')
-            ->assertSee('I-M01.01-DPA-004');
+            ->assertSee('I-M01.01-DPA-004')
+            ->assertSee('Ver')
+            ->assertDontSee('Registrar datos')
+            ->assertDontSee('Valor medido')
+            ->assertDontSee('Conformes')
+            ->assertDontSee('Sin medición');
     }
 
     public function test_dashboard_classifies_every_indicator_under_its_macro_process(): void

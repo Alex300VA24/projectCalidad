@@ -130,8 +130,43 @@
             @endif
 
             <div class="mx-auto mt-6 h-80 w-full max-w-3xl" wire:key="indicador-chart-{{ $indicador->id }}-{{ $ventanaOffset }}" x-init="$nextTick(() => window.renderQualityCharts?.($el))">
-                <canvas data-quality-chart data-chart-percent="1" data-chart-config="{{ json_encode($chartConfig) }}" aria-label="Gráfico de barras de {{ $indicador->nombre }}" role="img"></canvas>
+                <canvas data-quality-chart data-chart-percent="1" data-chart-config="{{ json_encode($chartConfig) }}" aria-label="Gráfico de barras de {{ $indicador->nombre }}" @if ($esIndicadorSilabos) aria-describedby="syllabus-chart-interpretation" @endif role="img"></canvas>
             </div>
+
+            @if ($esIndicadorSilabos)
+                <aside id="syllabus-chart-interpretation" class="mt-6 border-t border-[var(--border)] pt-5" aria-labelledby="syllabus-interpretation-heading">
+                    <div class="max-w-2xl">
+                        <span class="eyebrow">Lectura del resultado</span>
+                        <h3 id="syllabus-interpretation-heading" class="mt-1 text-lg">Interpretación del gráfico</h3>
+                        <p class="mb-0 mt-1 text-sm leading-6 text-[var(--ink-soft)]">La lectura relaciona el último semestre medido con la meta institucional y con el periodo anterior visible.</p>
+                    </div>
+                    <div class="mt-4 grid gap-3 lg:grid-cols-3">
+                        @foreach ($interpretacionesSilabos as $interpretacion)
+                            <article @class([
+                                'rounded-lg border p-4',
+                                'border-[var(--green)] bg-[var(--green-soft)]' => $interpretacion['tono'] === 'positivo',
+                                'border-[var(--amber)] bg-[var(--amber-soft)]' => $interpretacion['tono'] === 'atencion',
+                                'border-[var(--border)] bg-[var(--surface-alt)]' => $interpretacion['tono'] === 'neutral',
+                            ])>
+                                <div class="flex items-start gap-3">
+                                    <span @class([
+                                        'grid size-9 shrink-0 place-items-center rounded-full',
+                                        'bg-[var(--surface)] text-[var(--green)]' => $interpretacion['tono'] === 'positivo',
+                                        'bg-[var(--surface)] text-[var(--amber)]' => $interpretacion['tono'] === 'atencion',
+                                        'bg-[var(--indigo-soft)] text-[var(--indigo)]' => $interpretacion['tono'] === 'neutral',
+                                    ]) aria-hidden="true">
+                                        <svg class="size-4" viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-8m5 8V7"/></svg>
+                                    </span>
+                                    <div>
+                                        <h4 class="text-sm font-semibold">{{ $interpretacion['titulo'] }}</h4>
+                                        <p class="mb-0 mt-1 text-sm leading-6 text-[var(--ink-soft)]">{{ $interpretacion['texto'] }}</p>
+                                    </div>
+                                </div>
+                            </article>
+                        @endforeach
+                    </div>
+                </aside>
+            @endif
         </section>
     @endif
 

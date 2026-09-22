@@ -181,11 +181,23 @@ class IndicadorHistorial extends Component
             ],
         ];
 
-        $ultimoValor = collect($valoresVentana)->last();
-        $ultimoPeriodo = collect($labelsVentana)->last();
+        $puntosMedidos = [];
+
+        foreach ($labelsVentana as $indice => $periodo) {
+            $valor = $valoresVentana[$indice] ?? null;
+
+            if ($valor !== null) {
+                $puntosMedidos[] = ['periodo' => $periodo, 'valor' => (float) $valor];
+            }
+        }
+
+        $ultimoPunto = $puntosMedidos === [] ? null : $puntosMedidos[array_key_last($puntosMedidos)];
+        $ultimoValor = $ultimoPunto['valor'] ?? null;
+        $ultimoPeriodo = $ultimoPunto['periodo'] ?? null;
         $ultimoCumple = $ultimoValor === null || $meta === null
             ? null
             : ($sentidoMenorIgual ? $ultimoValor <= $meta : $ultimoValor >= $meta);
+        $esIndicadorSilabos = $this->indicador->codigo === CalculadorIndicadoresService::CODIGO_SILABOS;
 
         return view('livewire.indicadores.indicador-historial', [
             'periodos' => array_reverse($historico['labels']),
@@ -200,7 +212,85 @@ class IndicadorHistorial extends Component
             'ultimoPeriodo' => $ultimoPeriodo,
             'ultimoCumple' => $ultimoCumple,
             'meta' => $meta,
+            'esIndicadorSilabos' => $esIndicadorSilabos,
+            'interpretacionesSilabos' => $esIndicadorSilabos ? $this->interpretacionesSilabos($puntosMedidos, $meta) : [],
         ]);
+    }
+
+    /**
+     * @param  list<array{periodo: string, valor: float}>  $puntosMedidos
+     * @return list<array{titulo: string, texto: string, tono: string}>
+     */
+    private function interpretacionesSilabos(array $puntosMedidos, ?float $meta): array
+    {
+        if ($puntosMedidos === []) {
+            return [[
+                'titulo' => 'Lectura pendiente',
+                'texto' => 'Aún no hay mediciones para interpretar la evolución de los sílabos visados.',
+                'tono' => 'neutral',
+            ]];
+        }
+
+        $ultimo = $puntosMedidos[array_key_last($puntosMedidos)];
+        $interpretaciones = [[
+            'titulo' => 'Resultado más reciente',
+            'texto' => 'En '.$ultimo['periodo'].', el '.number_format($ultimo['valor'], 1, ',', '.').'% de los sílabos fue visado antes del inicio del semestre.',
+            'tono' => 'neutral',
+        ]];
+
+        if ($meta === null) {
+            $interpretaciones[] = [
+                'titulo' => 'Meta institucional',
+                'texto' => 'Este indicador todavía no tiene una meta institucional configurada para comparar el resultado.',
+                'tono' => 'neutral',
+            ];
+        } else {
+            $brecha = round($ultimo['valor'] - $meta, 1);
+            $metaFormateada = number_format($meta, 1, ',', '.').'%';
+
+            if ($brecha > 0) {
+                $textoMeta = 'El resultado supera la meta institucional de '.$metaFormateada.' en '.number_format($brecha, 1, ',', '.').' puntos porcentuales.';
+            } elseif ($brecha < 0) {
+                $textoMeta = 'Faltan '.number_format(abs($brecha), 1, ',', '.').' puntos porcentuales para alcanzar la meta institucional de '.$metaFormateada.'.';
+            } else {
+                $textoMeta = 'El resultado alcanza exactamente la meta institucional de '.$metaFormateada.'.';
+            }
+
+            $interpretaciones[] = [
+                'titulo' => 'Cumplimiento de la meta',
+                'texto' => $textoMeta,
+                'tono' => $brecha >= 0 ? 'positivo' : 'atencion',
+            ];
+        }
+
+        if (count($puntosMedidos) < 2) {
+            $interpretaciones[] = [
+                'titulo' => 'Tendencia semestral',
+                'texto' => 'Se necesita al menos una segunda medición para identificar una tendencia.',
+                'tono' => 'neutral',
+            ];
+
+            return $interpretaciones;
+        }
+
+        $anterior = $puntosMedidos[count($puntosMedidos) - 2];
+        $variacion = round($ultimo['valor'] - $anterior['valor'], 1);
+
+        if ($variacion > 0) {
+            $textoTendencia = 'La cobertura aumentó '.number_format($variacion, 1, ',', '.').' puntos porcentuales respecto a '.$anterior['periodo'].'.';
+        } elseif ($variacion < 0) {
+            $textoTendencia = 'La cobertura disminuyó '.number_format(abs($variacion), 1, ',', '.').' puntos porcentuales respecto a '.$anterior['periodo'].'.';
+        } else {
+            $textoTendencia = 'La cobertura se mantuvo sin variación respecto a '.$anterior['periodo'].'.';
+        }
+
+        $interpretaciones[] = [
+            'titulo' => 'Tendencia semestral',
+            'texto' => $textoTendencia,
+            'tono' => $variacion > 0 ? 'positivo' : ($variacion < 0 ? 'atencion' : 'neutral'),
+        ];
+
+        return $interpretaciones;
     }
 
     /** @return array{labels: list<string>, valores: list<float|null>} */

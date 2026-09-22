@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Modelo entidad-relación para gestión de indicadores",
+    "quality_profile": "showcase",
+    "viewBox": [1250, 700],
+    "views": [
+      {
+        "id": "trazabilidad",
+        "label": "Trazabilidad del dato",
+        "focus": ["procesos", "ejecuciones", "evidencias", "fuentes", "indicadores", "mediciones"],
+        "note": "Sigue cada medición desde el proceso y evidencia que la sustentan."
+      },
+      {
+        "id": "dimensiones",
+        "label": "Programa y periodo",
+        "focus": ["programas", "periodos", "ejecuciones", "metas", "mediciones"],
+        "note": "Programa y periodo contextualizan ejecución, meta y resultado."
+      },
+      {
+        "id": "mejora",
+        "label": "Control y mejora",
+        "focus": ["usuarios", "mediciones", "acciones", "auditorias"],
+        "note": "Responsables, acciones y auditoría cierran el ciclo de calidad."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "usuarios",
+      "type": "security",
+      "label": "usuarios",
+      "sublabel": "PK id · nombre · email",
+      "tag": "actor y responsable",
+      "pos": [1010, 500],
+      "size": [210, 78]
+    },
+    {
+      "id": "programas",
+      "type": "database",
+      "label": "programas_estudio",
+      "sublabel": "PK id · UQ codigo · nombre",
+      "pos": [205, 50],
+      "size": [175, 78]
+    },
+    {
+      "id": "periodos",
+      "type": "database",
+      "label": "periodos_academicos",
+      "sublabel": "PK id · UQ codigo · fechas",
+      "pos": [1010, 50],
+      "size": [210, 78]
+    },
+    {
+      "id": "metas",
+      "type": "database",
+      "label": "metas_indicador",
+      "sublabel": "FK indicador · programa · periodo",
+      "tag": "propuesta normalizada",
+      "pos": [795, 50],
+      "size": [190, 78]
+    },
+    {
+      "id": "procesos",
+      "type": "database",
+      "label": "procesos",
+      "sublabel": "PK id · codigo · macroproceso",
+      "tag": "GC · SD · EPC · GRAD · SE",
+      "pos": [20, 280],
+      "size": [160, 82]
+    },
+    {
+      "id": "ejecuciones",
+      "type": "backend",
+      "label": "ejecuciones_proceso",
+      "sublabel": "FK proceso · programa · periodo",
+      "pos": [205, 280],
+      "size": [175, 82]
+    },
+    {
+      "id": "evidencias",
+      "type": "database",
+      "label": "evidencias",
+      "sublabel": "FK ejecucion · tipo · ubicación",
+      "pos": [405, 280],
+      "size": [165, 82]
+    },
+    {
+      "id": "fuentes",
+      "type": "messagebus",
+      "label": "indicador_fuentes",
+      "sublabel": "FK indicador · evidencia · campo",
+      "tag": "tabla puente",
+      "pos": [595, 280],
+      "size": [175, 82]
+    },
+    {
+      "id": "indicadores",
+      "type": "database",
+      "label": "indicadores_maestros",
+      "sublabel": "PK id · codigo · fórmula",
+      "pos": [795, 280],
+      "size": [190, 82]
+    },
+    {
+      "id": "mediciones",
+      "type": "database",
+      "label": "indicadores_mediciones",
+      "sublabel": "FK indicador · programa · periodo",
+      "tag": "UQ indicador+programa+periodo",
+      "pos": [1010, 280],
+      "size": [210, 82]
+    },
+    {
+      "id": "acciones",
+      "type": "backend",
+      "label": "acciones_mejora_indicadores",
+      "sublabel": "FK medicion · responsable · estado",
+      "pos": [795, 500],
+      "size": [190, 82]
+    },
+    {
+      "id": "auditorias",
+      "type": "security",
+      "label": "auditorias",
+      "sublabel": "actor · entidad · cambio · fecha",
+      "tag": "trazabilidad",
+      "pos": [595, 500],
+      "size": [175, 82]
+    }
+  ],
+  "connections": [
+    { "from": "procesos", "to": "ejecuciones", "label": "1 : N", "variant": "emphasis", "labelDy": 82 },
+    { "from": "ejecuciones", "to": "evidencias", "label": "1 : N", "variant": "emphasis", "labelDy": 82 },
+    { "from": "evidencias", "to": "fuentes", "label": "1 : N", "labelDy": 82 },
+    { "from": "indicadores", "to": "fuentes", "label": "1 : N", "labelDy": 82 },
+    { "from": "indicadores", "to": "mediciones", "label": "1 : N", "variant": "emphasis", "labelDy": 82, "labelDx": -32 },
+    { "from": "mediciones", "to": "acciones", "label": "1 : N", "variant": "security" },
+    { "from": "programas", "to": "ejecuciones", "label": "1 : N", "fromSide": "bottom", "toSide": "top", "route": "orthogonal-v" },
+    { "from": "periodos", "to": "mediciones", "label": "1 : N", "fromSide": "bottom", "toSide": "top", "route": "orthogonal-v" },
+    { "from": "indicadores", "to": "metas", "label": "1 : N", "fromSide": "top", "toSide": "bottom", "route": "orthogonal-v" },
+    { "from": "usuarios", "to": "acciones", "label": "1 : N", "variant": "security", "labelDy": 82 },
+    { "from": "acciones", "to": "auditorias", "label": "1 : N", "variant": "dashed", "labelDy": 82 }
+  ]
+}

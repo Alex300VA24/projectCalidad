@@ -19,7 +19,7 @@
                 <span class="eyebrow">Gestión integral por procesos</span>
                 <h1>Mapa de Procesos y Gestión Documental</h1>
                 <p>
-                    Sigue la ruta académica completa, identifica responsables y abre cada formulario o evidencia oficial desde un solo lugar.
+                    Sigue la ruta académica completa, identifica responsables y consulta cada formato o evidencia oficial desde un solo lugar.
                 </p>
                 <div class="mapa-hero-actions">
                     <a class="btn btn-primary" href="#catalogo-procesos">
@@ -94,10 +94,6 @@
                     <h2 id="catalogo-title">Procesos, responsables y formatos</h2>
                     <p>Busca por nombre, código, responsable o documento.</p>
                 </div>
-                <a class="btn btn-secondary btn-compact" href="{{ route('tramites.hub') }}">
-                    Todos los trámites
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>
-                </a>
             </div>
 
             <div class="panel mapa-toolbar">
@@ -162,19 +158,6 @@
                                     </div>
 
                                     <div class="proceso-card-actions">
-                                        <div class="proceso-links">
-                                            @if (!empty($proceso['extra_links']))
-                                                @foreach ($proceso['extra_links'] as $link)
-                                                    <a class="btn btn-secondary btn-compact" href="{{ route($link['route']) }}">{{ $link['label'] }}</a>
-                                                @endforeach
-                                            @else
-                                                <a class="btn {{ $proceso['code'] === 'MAT-01' ? 'btn-primary' : 'btn-secondary' }} btn-compact" href="{{ route($proceso['route']) }}">
-                                                    {{ $proceso['code'] === 'MAT-01' ? 'Llenar datos' : 'Abrir formulario' }}
-                                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>
-                                                </a>
-                                            @endif
-                                        </div>
-
                                         @if (!empty($proceso['formats']))
                                             <details class="proceso-formats">
                                                 <summary>
@@ -256,8 +239,6 @@
                     <p>Gestión administrativa, tecnológica, documental y de acompañamiento académico.</p>
                     <div class="support-links">
                         <a href="{{ route('documents.index') }}">Gestión documental</a>
-                        <a href="{{ route('teaching-load-requirements.index') }}">Recursos humanos</a>
-                        <a href="{{ route('tutoring-sessions.index') }}">Soporte académico</a>
                     </div>
                 </article>
 
@@ -278,11 +259,6 @@
                         <div><small>Resultados</small><strong>Egreso y retroalimentación</strong></div>
                     </div>
                     <p>Graduación, inserción laboral y evaluación de objetivos educacionales.</p>
-                    <div class="support-links">
-                        <a href="{{ route('graduate-folders.index') }}">Graduación</a>
-                        <a href="{{ route('graduate-registries.index') }}">Inserción laboral</a>
-                        <a href="{{ route('educational-objective-evaluations.index') }}">Retroalimentación</a>
-                    </div>
                 </article>
             </div>
         </section>

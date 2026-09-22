@@ -73,4 +73,34 @@ class IndicadorHistorialTest extends TestCase
             ->assertSee($indicador->nombre)
             ->assertSee('N° de sílabos visados');
     }
+
+    public function test_syllabus_chart_explains_latest_result_goal_and_trend(): void
+    {
+        $this->seed([RolesAndPermissionsSeeder::class, IndicadoresSeeder::class]);
+        $programa = ProgramaEstudio::query()->firstOrFail();
+        $indicador = IndicadorMaestro::query()->where('codigo', CalculadorIndicadoresService::CODIGO_SILABOS)->firstOrFail();
+        IndicadorMedicion::factory()->create([
+            'indicador_id' => $indicador->id,
+            'programa_estudio_id' => $programa->id,
+            'periodo_academico' => '2025-II',
+            'valor_medido' => 70,
+            'meta_programada' => 80,
+            'estado_cumplimiento' => 'NO_CONFORME',
+        ]);
+        IndicadorMedicion::factory()->create([
+            'indicador_id' => $indicador->id,
+            'programa_estudio_id' => $programa->id,
+            'periodo_academico' => '2026-I',
+            'valor_medido' => 85,
+            'meta_programada' => 80,
+            'estado_cumplimiento' => 'CONFORME',
+        ]);
+
+        Livewire::test(IndicadorHistorial::class, ['indicador' => $indicador])
+            ->call('cambiarVista', 'grafico')
+            ->assertSee('Interpretación del gráfico')
+            ->assertSee('En 2026-I, el 85,0% de los sílabos')
+            ->assertSee('supera la meta institucional de 80,0% en 5,0 puntos porcentuales')
+            ->assertSee('aumentó 15,0 puntos porcentuales respecto a 2025-II');
+    }
 }

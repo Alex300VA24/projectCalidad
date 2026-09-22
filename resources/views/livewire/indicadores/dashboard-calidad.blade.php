@@ -73,35 +73,13 @@
         </div>
     @endif
 
-    <section class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4" aria-label="Resumen de estados">
-        @foreach ([
-            ['key' => 'CONFORME', 'label' => 'Conformes', 'caption' => 'Cumplen la meta', 'color' => 'text-[var(--green)]', 'surface' => 'bg-[var(--green-soft)]', 'border' => 'border-t-[var(--green)]'],
-            ['key' => 'OBSERVADO', 'label' => 'Observados', 'caption' => 'Requieren seguimiento', 'color' => 'text-[var(--amber)]', 'surface' => 'bg-[var(--amber-soft)]', 'border' => 'border-t-[var(--amber)]'],
-            ['key' => 'CRITICO', 'label' => 'Críticos', 'caption' => 'Acción prioritaria', 'color' => 'text-[var(--red)]', 'surface' => 'bg-[var(--red-soft)]', 'border' => 'border-t-[var(--red)]'],
-            ['key' => 'SIN_DATOS', 'label' => 'Sin medición', 'caption' => 'Fuente aún vacía', 'color' => 'text-slate-600', 'surface' => 'bg-slate-100', 'border' => 'border-t-slate-400'],
-        ] as $estado)
-            <article class="rounded-xl border border-[var(--border)] border-t-4 {{ $estado['border'] }} bg-[var(--surface)] p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md motion-reduce:transform-none motion-reduce:transition-none">
-                <div class="flex items-start justify-between gap-3">
-                    <div>
-                        <p class="mb-1 text-xs font-semibold uppercase tracking-[0.08em] text-[var(--ink-soft)]">{{ $estado['label'] }}</p>
-                        <strong class="font-mono text-3xl leading-none tracking-[-0.04em] {{ $estado['color'] }}">{{ $resumenEstados[$estado['key']] }}</strong>
-                    </div>
-                    <span class="grid size-9 place-items-center rounded-full {{ $estado['surface'] }} {{ $estado['color'] }}" aria-hidden="true">
-                        <svg class="size-4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4m0 4h.01"/></svg>
-                    </span>
-                </div>
-                <p class="mb-0 mt-2 text-sm text-[var(--ink-soft)]">{{ $estado['caption'] }}</p>
-            </article>
-        @endforeach
-    </section>
-
     @php
         $procesosUnt = ['Gestión Curricular', 'Gestión del Ingreso', 'Enseñanza y Aprendizaje', 'Resultados de la Formación'];
         $indicadoresPorProceso = $indicadores->groupBy('macro_proceso');
     @endphp
     <section aria-labelledby="kpi-heading" x-data="{ proceso: '{{ $procesosUnt[0] }}' }">
         <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
-            <div><span class="eyebrow">Semáforo institucional</span><h2 id="kpi-heading" class="mt-1">Indicadores por proceso</h2><p class="mb-0 mt-1 text-sm text-[var(--ink-soft)]">Compara el valor medido con la meta y abre el historial de cada indicador.</p></div>
+            <div><span class="eyebrow">Consulta institucional</span><h2 id="kpi-heading" class="mt-1">Indicadores por proceso</h2><p class="mb-0 mt-1 text-sm text-[var(--ink-soft)]">Selecciona un indicador para consultar su detalle e histórico.</p></div>
             <div class="flex flex-wrap gap-2">
                 <a href="{{ route('quality-indicators.export', ['programa_estudio_id' => $programaEstudioId, 'periodo_academico' => $periodoAcademico]) }}" class="inline-flex min-h-11 cursor-pointer items-center rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 text-sm font-semibold transition hover:border-indigo-500 hover:text-indigo-700 focus-visible:ring-2 focus-visible:ring-indigo-500">Exportar PDF</a>
                 @if ($puedeConsolidar)
@@ -136,58 +114,14 @@
         @foreach ($procesosUnt as $proceso)
             <div id="process-panel-{{ Str::slug($proceso) }}" x-show="proceso === '{{ $proceso }}'" x-cloak class="grid gap-3 md:grid-cols-2 xl:grid-cols-4" role="tabpanel" aria-labelledby="process-tab-{{ Str::slug($proceso) }}">
                 @forelse ($indicadoresPorProceso->get($proceso, collect()) as $indicador)
-                    @php
-                        $medicion = $indicador->mediciones->first();
-                        $estado = $medicion?->estado_cumplimiento ?? 'SIN_DATOS';
-                        $estilos = match ($estado) {
-                            'CONFORME' => ['label' => 'Conforme', 'text' => 'text-[var(--green)]', 'bg' => 'bg-[var(--green-soft)]', 'bar' => 'bg-[var(--green)]', 'border' => 'border-l-[var(--green)]'],
-                            'OBSERVADO' => ['label' => 'Observado', 'text' => 'text-[var(--amber)]', 'bg' => 'bg-[var(--amber-soft)]', 'bar' => 'bg-[var(--amber)]', 'border' => 'border-l-[var(--amber)]'],
-                            'NO_CONFORME' => ['label' => 'No conforme', 'text' => 'text-[var(--amber)]', 'bg' => 'bg-[var(--amber-soft)]', 'bar' => 'bg-[var(--amber)]', 'border' => 'border-l-[var(--amber)]'],
-                            'SIN_CONFIGURACION' => ['label' => 'Sin meta oficial', 'text' => 'text-slate-600', 'bg' => 'bg-slate-100', 'bar' => 'bg-slate-400', 'border' => 'border-l-slate-400'],
-                            'CRITICO' => ['label' => 'Crítico', 'text' => 'text-[var(--red)]', 'bg' => 'bg-[var(--red-soft)]', 'bar' => 'bg-[var(--red)]', 'border' => 'border-l-[var(--red)]'],
-                            default => ['label' => 'Sin datos', 'text' => 'text-slate-600', 'bg' => 'bg-slate-100', 'bar' => 'bg-slate-400', 'border' => 'border-l-slate-400'],
-                        };
-                        $valor = $medicion ? (float) $medicion->valor_medido : null;
-                        $anchoBarra = $valor === null ? 0 : min(max($valor, 0), 100);
-                        $unidad = $indicador->unidad_medida === 'PORCENTAJE' ? '%' : '';
-                        $operadorMeta = $indicador->sentido_meta === 'MENOR_IGUAL' ? '≤' : '≥';
-                    @endphp
-                    <article class="group flex min-h-72 flex-col rounded-xl border border-[var(--border)] border-l-4 {{ $estilos['border'] }} bg-[var(--surface)] p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-within:border-indigo-400 motion-reduce:transform-none motion-reduce:transition-none">
-                        <div class="flex items-start justify-between gap-3">
-                            <span class="rounded bg-[var(--indigo-soft)] px-2 py-1 font-mono text-[10px] font-semibold text-[var(--indigo)]">{{ $indicador->codigo }}</span>
-                            <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold {{ $estilos['bg'] }} {{ $estilos['text'] }}"><i class="size-1.5 rounded-full bg-current" aria-hidden="true"></i>{{ $estilos['label'] }}</span>
-                        </div>
+                    <article class="group flex min-h-56 flex-col rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-within:border-indigo-400 motion-reduce:transform-none motion-reduce:transition-none">
+                        <span class="w-fit rounded bg-[var(--indigo-soft)] px-2 py-1 font-mono text-[10px] font-semibold text-[var(--indigo)]">{{ $indicador->codigo }}</span>
                         <h3 class="mt-4 text-base font-semibold leading-6">{{ $indicador->nombre }}</h3>
-                        <p class="mb-4 mt-1 text-sm text-[var(--ink-soft)]">{{ $indicador->proceso }}</p>
-                        <div class="mt-auto">
-                            <div class="flex items-end justify-between gap-3">
-                                <div><span class="block text-xs text-[var(--ink-soft)]">Valor medido</span><strong class="font-mono text-3xl tracking-[-0.04em]">{{ $valor === null ? '—' : number_format($valor, 1) }}<small class="ml-0.5 text-base">{{ $unidad }}</small></strong></div>
-                                <span class="text-right text-xs text-[var(--ink-soft)]">Meta<br><strong class="font-mono text-[var(--ink)]">{{ $indicador->meta_institucional === null ? 'No configurada' : $operadorMeta.' '.number_format((float) $indicador->meta_institucional, 1).$unidad }}</strong></span>
-                            </div>
-                            <div class="relative mt-3 h-2 overflow-hidden rounded-full bg-[var(--surface-alt)]" aria-hidden="true"><span class="block h-full rounded-full {{ $estilos['bar'] }} transition-[width] duration-300 motion-reduce:transition-none" style="width:{{ $anchoBarra }}%"></span></div>
-
-                            @php
-                                $rutaLlenado = match($indicador->codigo) {
-                                    'I-M01.01-DPA-004' => route('syllabi.index'),
-                                    'M01.01.02.02-FI-001', 'M01.01.02.02-FI-002' => route('matriculas.index', ['tab' => 'matriculas', 'periodo' => $periodoAcademico]),
-                                    'M01.01.02.02-FI-003' => route('matriculas.index', ['tab' => 'incidencias', 'periodo' => $periodoAcademico]),
-                                    'M01.01.03.01-F-013' => route('course-execution-reports.index'),
-                                    'M01.04-DDA-FI-001' => route('tutoring-sessions.index'),
-                                    'M01.05-DCU-FI-001', 'M01.05-DCU-FI-002' => route('graduate-registries.index'),
-                                    default => route('tramites.hub'),
-                                };
-                            @endphp
-                            <div class="mt-4 grid gap-2 sm:grid-cols-2 md:grid-cols-1 2xl:grid-cols-2">
-                                <a href="{{ $rutaLlenado }}" class="quality-card-link">
-                                    <svg class="size-3.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-                                    Registrar datos
-                                </a>
-                                <a href="{{ route('quality-indicators.historial', $indicador->codigo) }}" class="quality-card-link primary">
-                                    <svg class="size-3.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m5 10V5m5 14v-8m5 8V7"/></svg>
-                                    Ver historial
-                                </a>
-                            </div>
-                        </div>
+                        <p class="mb-5 mt-1 text-sm text-[var(--ink-soft)]">{{ $indicador->proceso }}</p>
+                        <a href="{{ route('quality-indicators.historial', $indicador->codigo) }}" class="quality-card-link primary mt-auto" aria-label="Ver {{ $indicador->nombre }}">
+                            <svg class="size-3.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m5 10V5m5 14v-8m5 8V7"/></svg>
+                            Ver
+                        </a>
                     </article>
                 @empty
                     <div class="col-span-full rounded-lg border border-dashed border-[var(--border)] bg-[var(--surface)] p-10 text-center"><h3>Sin indicadores en este proceso</h3><p class="mb-0 text-[var(--ink-soft)]">Aún no se ha configurado ningún indicador para {{ $proceso }}.</p></div>

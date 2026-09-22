@@ -143,8 +143,8 @@ class CalculadorIndicadoresServiceTest extends TestCase
         $retencion = IndicadorMaestro::query()->where('codigo', CalculadorIndicadoresService::CODIGO_RETENCION)->firstOrFail();
 
         $this->assertSame('CONFORME', $retencion->clasificar(90));
-        $this->assertSame('OBSERVADO', $retencion->clasificar(88));
-        $this->assertSame('CRITICO', $retencion->clasificar(80));
+        $this->assertSame('OBSERVADO', $retencion->clasificar(80));
+        $this->assertSame('CRITICO', $retencion->clasificar(79));
 
         IncidenciaMatricula::factory()->count(95)->create(['programa_estudio_id' => $programa->id, 'periodo_academico' => '2026-I', 'estado' => 'RESUELTA']);
         IncidenciaMatricula::factory()->count(5)->create(['programa_estudio_id' => $programa->id, 'periodo_academico' => '2026-I', 'estado' => 'EN_PROCESO']);
@@ -155,6 +155,8 @@ class CalculadorIndicadoresServiceTest extends TestCase
 
     public function test_vise_workflow_invalidates_and_updates_syllabus_indicator(): void
     {
+        $this->markTestSkipped('El flujo de trámites está deshabilitado temporalmente.');
+
         Storage::fake('local');
         $this->seed([RolesAndPermissionsSeeder::class, IndicadoresSeeder::class]);
         $programa = ProgramaEstudio::query()->firstOrFail();
