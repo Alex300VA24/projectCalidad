@@ -484,6 +484,15 @@
         "semestre": "2026-II",
         "ciclos": [
             {
+                "ciclo": "I",
+                "silabos": [
+                    {
+                        "curso": "Introducción al Análisis Matemático",
+                        "link": "https://drive.google.com/file/d/1Ny-Y-MfiHhS_HAlwqgfwPcK5R9AYN_19/view?usp=sharing"
+                    }
+                ]
+            },
+            {
                 "ciclo": "II",
                 "silabos": [
                     {
@@ -492,11 +501,11 @@
                     },
                     {
                         "curso": "Estructura de Datos",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1Z9Xb2-ClSFQWEXNEgUUMzVb-t2zxI5Ps/view?usp=sharing"
                     },
                     {
                         "curso": "Estadística General",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1HqNAlYLzWSNAImFdymOBiVCyv2bE_PmR/view?usp=sharing"
                     },
                     {
                         "curso": "Ética, Convivencia Humana Y Ciudadanía",
@@ -504,11 +513,32 @@
                     },
                     {
                         "curso": "Sociedad Cultura y Ecología",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1_SDmds0uybRYSVTfNMEeIVwoDOhcNJEc/view?usp=sharing"
                     },
                     {
                         "curso": "Cultura Investigativa y Pensamiento Crítico",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/18Uq2T9ZVtYYYEn47gyQaerDHPo8UB86u/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Taller de Manejo de TIC",
+                        "link": "https://drive.google.com/file/d/1yS5kDO0JpopnRJlUlbwcfM-ICpwSjaFG/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "III",
+                "silabos": [
+                    {
+                        "curso": "Análisis Numerico",
+                        "link": "https://drive.google.com/file/d/1P6RCcp0ATeX6mpRy96H4G6_X9pShVM3Y/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Matemática Discreta",
+                        "link": "https://drive.google.com/file/d/1XIGTUJ4X_UmDkMjoghpcMHvneC08ygZ0/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Geometría Analítica",
+                        "link": "https://drive.google.com/file/d/1ukBSyS06PG5WhgQOhyzOMwnNFWD6CQ1F/view?usp=sharing"
                     }
                 ]
             },
@@ -517,7 +547,7 @@
                 "silabos": [
                     {
                         "curso": "Algoritmos y Complejidad",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1S_teOCTami6MwzkxMp7E502YrnsGQ2J8/view?usp=sharing"
                     },
                     {
                         "curso": "Computación Gŕafica",
@@ -525,7 +555,7 @@
                     },
                     {
                         "curso": "Innovación y Emprendimiento",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1AQPWj7m8lX83ISptMik6tRGWOpIJu5WW/view?usp=sharing"
                     },
                     {
                         "curso": "Lenguajes Formales y Autómatas",
@@ -533,11 +563,11 @@
                     },
                     {
                         "curso": "Organización de Archivos",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1Bku8t_mCwLmF8R_ysBvbeKQMm5I7_Tlq/view?usp=sharing"
                     },
                     {
                         "curso": "Electrónica para Computación",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/16IsbbWOHgETTk5mLwIxHrG4rxHjRuLG-/view?usp=sharing"
                     }
                 ]
             },
@@ -546,27 +576,36 @@
                 "silabos": [
                     {
                         "curso": "Comunicación de Datos",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1FzC8mKGzGrWMOZUkn_OMio9m90dPXTMJ/view?usp=sharing"
                     },
                     {
                         "curso": "Base de Datos II",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1znPf_IX1HH6b1du2NJGFBeOHxhEpiph-/view?usp=sharing"
                     },
                     {
                         "curso": "Computación Gŕafica Avanzada",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1sw_ObnRS70goZNmf-3BYrfSVfBaXKe-5/view?usp=sharing"
                     },
                     {
                         "curso": "Inteligencia Artificial II",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1aPe3Xp0psgcmxh-_ud1DuLpWChPheumn/view?usp=sharing"
                     },
                     {
                         "curso": "Arquitectura y Organización de Computadoras",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1kgZbf1fjfeJXwNzg-cFXlPMXBacaTNBZ/view?usp=sharing"
                     },
                     {
                         "curso": "Ingeniería de Software II",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1FxQ1MZ7fcBvdB3cyy083DbJnZEmDRbzq/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "VII",
+                "silabos": [
+                    {
+                        "curso": "Sistemas Operativos I",
+                        "link": "https://drive.google.com/file/d/12GJabSD2hDenrcE5qg-sddOx-e7m6bTm/view?usp=sharing"
                     }
                 ]
             },
@@ -575,7 +614,7 @@
                 "silabos": [
                     {
                         "curso": "Prácticas Pre-Profesionales",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1deKtPFokK60JmU1zJXOd0-PRtd9NMrOF/view?usp=sharing"
                     },
                     {
                         "curso": "Sistemas Operativos II",
@@ -583,11 +622,11 @@
                     },
                     {
                         "curso": "Robótica",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1feEpl0gHOz7s99i0r1puqLAH687cqHlZ/view?usp=sharing"
                     },
                     {
                         "curso": "Redes de Computadoras II",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1KY_24MsAxWt9w7DsXNCnhZ-yCs_4u_1j/view?usp=sharing"
                     }
                 ]
             },
@@ -600,23 +639,23 @@
                     },
                     {
                         "curso": "Proyecto de Competencia",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/12yKnBk5V8S2blHNFb9wSjWKGfR1pGIzO/view?usp=sharing"
                     },
                     {
                         "curso": "Sistemas de Información",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1YvtQc2kcwv1U5vrygbRd-8t5FSWKzLRx/view?usp=sharing"
                     },
                     {
                         "curso": "Tesis",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/126kSLlbGXJXyPfRGkp2GwIv40HWOS_pX/view?usp=sharing"
                     },
                     {
                         "curso": "Tópicos en Tecnologías Inmersivas",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1TxvjahIB8UEoEfG1lf39XFjDrh1qlo7L/view?usp=sharing"
                     },
                     {
                         "curso": "Trabajo de Investigación",
-                        "link": ""
+                        "link": "https://drive.google.com/file/d/1-_Y6J2L2qE4TFS2alEx_27Yt8DEV5arY/view?usp=sharing"
                     }
                 ]
             }
