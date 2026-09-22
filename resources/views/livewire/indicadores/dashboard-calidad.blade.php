@@ -1,51 +1,70 @@
-<div class="space-y-5">
-    <header class="relative overflow-hidden rounded-xl bg-[#172554] px-5 py-6 text-white shadow-[0_18px_50px_rgba(23,37,84,.18)] sm:px-7 lg:flex lg:items-end lg:justify-between lg:gap-8 lg:px-9 lg:py-8">
+<div class="space-y-6">
+    <header class="relative overflow-hidden rounded-xl bg-[#172554] px-5 py-7 text-white shadow-[0_18px_50px_rgba(23,37,84,.18)] sm:px-7 lg:flex lg:items-end lg:justify-between lg:gap-8 lg:px-9 lg:py-9">
         <div class="pointer-events-none absolute inset-0 opacity-15" aria-hidden="true" style="background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(to left,#000,transparent 80%)"></div>
         <div class="relative max-w-3xl">
-            <span class="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-200">Dirección de Escuela · Control institucional</span>
-            <h1 class="mt-3 max-w-2xl text-balance font-mono text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">Indicadores de calidad académica</h1>
-            <p class="mt-3 max-w-2xl text-base leading-7 text-white/70">Lectura automática de sílabos, matrícula, tutoría, avance académico y seguimiento al egresado.</p>
+            <span class="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-200">Indicadores de calidad académica</span>
+            <h1 class="mt-3 max-w-2xl text-balance font-mono text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">Indicadores</h1>
+            <p class="mt-3 max-w-2xl text-base leading-7 text-white/75">Monitorea el cumplimiento institucional, detecta brechas y prioriza acciones de mejora desde una sola vista.</p>
         </div>
+        <div class="relative mt-6 flex flex-wrap gap-2 lg:mt-0 lg:max-w-md lg:justify-end">
+            <span class="inline-flex min-h-9 items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-3 text-sm text-white/85">
+                <svg class="size-4 text-emerald-300" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4m8-4v4M3 10h18"/><rect x="3" y="4" width="18" height="17" rx="2"/></svg>
+                Periodo {{ $periodoAcademico }}
+            </span>
+            <span class="inline-flex min-h-9 items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-3 text-sm text-white/85">
+                <svg class="size-4 text-emerald-300" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m5 10V5m5 14v-8m5 8V7"/></svg>
+                {{ $indicadores->count() }} indicadores
+            </span>
+        </div>
+    </header>
 
-        <div class="relative mt-6 grid gap-3 sm:grid-cols-2 lg:mt-0 lg:min-w-[420px]">
+    <section class="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm sm:p-5" aria-labelledby="quality-filters-heading">
+        <div class="mb-4 flex flex-wrap items-end justify-between gap-2">
+            <div>
+                <span class="eyebrow">Contexto de medición</span>
+                <h2 id="quality-filters-heading" class="mt-1 text-lg">Filtros del tablero</h2>
+            </div>
+            <p class="mb-0 text-sm text-[var(--ink-soft)]">Los resultados se actualizan al cambiar una opción.</p>
+        </div>
+        <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             <label class="grid gap-1.5 text-sm font-semibold">
-                <span class="text-white/70">Programa de estudios</span>
-                <select wire:model.live="programaEstudioId" class="min-h-11 cursor-pointer rounded-lg border border-white/20 bg-white/10 px-3 text-white outline-none transition focus:border-emerald-300 focus:ring-2 focus:ring-emerald-300/30">
+                <span>Programa de estudios</span>
+                <select wire:model.live="programaEstudioId" class="min-h-11 w-full cursor-pointer rounded-lg border border-[var(--border)] bg-[var(--surface-alt)] px-3 text-[var(--ink)] outline-none transition hover:border-indigo-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20">
                     @forelse ($programas as $programa)
-                        <option class="text-slate-900" value="{{ $programa->id }}">{{ $programa->nombre }}</option>
+                        <option value="{{ $programa->id }}">{{ $programa->nombre }}</option>
                     @empty
-                        <option class="text-slate-900" value="0">Sin programas configurados</option>
+                        <option value="0">Sin programas configurados</option>
                     @endforelse
                 </select>
             </label>
             <label class="grid gap-1.5 text-sm font-semibold">
-                <span class="text-white/70">Semestre académico</span>
-                <select wire:model.live="periodoAcademico" class="min-h-11 cursor-pointer rounded-lg border border-white/20 bg-white/10 px-3 font-mono text-white outline-none transition focus:border-emerald-300 focus:ring-2 focus:ring-emerald-300/30">
+                <span>Semestre académico</span>
+                <select wire:model.live="periodoAcademico" class="min-h-11 w-full cursor-pointer rounded-lg border border-[var(--border)] bg-[var(--surface-alt)] px-3 font-mono text-[var(--ink)] outline-none transition hover:border-indigo-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20">
                     @foreach ($periodos as $periodo)
-                        <option class="text-slate-900" value="{{ $periodo }}">{{ $periodo }}</option>
+                        <option value="{{ $periodo }}">{{ $periodo }}</option>
                     @endforeach
                 </select>
             </label>
             <label class="grid gap-1.5 text-sm font-semibold">
-                <span class="text-white/70">Ciclo académico</span>
-                <select wire:model.live="cicloAcademico" class="min-h-11 cursor-pointer rounded-lg border border-white/20 bg-white/10 px-3 text-white outline-none transition focus:border-emerald-300 focus:ring-2 focus:ring-emerald-300/30">
-                    <option class="text-slate-900" value="">Todos los ciclos</option>
+                <span>Ciclo académico</span>
+                <select wire:model.live="cicloAcademico" class="min-h-11 w-full cursor-pointer rounded-lg border border-[var(--border)] bg-[var(--surface-alt)] px-3 text-[var(--ink)] outline-none transition hover:border-indigo-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20">
+                    <option value="">Todos los ciclos</option>
                     @foreach ($ciclos as $ciclo)
-                        <option class="text-slate-900" value="{{ $ciclo }}">Ciclo {{ $ciclo }}</option>
+                        <option value="{{ $ciclo }}">Ciclo {{ $ciclo }}</option>
                     @endforeach
                 </select>
             </label>
             <label class="grid gap-1.5 text-sm font-semibold">
-                <span class="text-white/70">Curso</span>
-                <select wire:model.live="cursoId" class="min-h-11 cursor-pointer rounded-lg border border-white/20 bg-white/10 px-3 text-white outline-none transition focus:border-emerald-300 focus:ring-2 focus:ring-emerald-300/30">
-                    <option class="text-slate-900" value="0">Todos los cursos</option>
+                <span>Curso</span>
+                <select wire:model.live="cursoId" class="min-h-11 w-full cursor-pointer rounded-lg border border-[var(--border)] bg-[var(--surface-alt)] px-3 text-[var(--ink)] outline-none transition hover:border-indigo-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20">
+                    <option value="0">Todos los cursos</option>
                     @foreach ($cursos as $curso)
-                        <option class="text-slate-900" value="{{ $curso->id }}">{{ $curso->name }}</option>
+                        <option value="{{ $curso->id }}">{{ $curso->name }}</option>
                     @endforeach
                 </select>
             </label>
         </div>
-    </header>
+    </section>
 
     @if (session('quality-success'))
         <div class="flex items-center gap-3 rounded-lg border border-emerald-600/25 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800" role="status">
@@ -54,18 +73,18 @@
         </div>
     @endif
 
-    <section class="grid grid-cols-2 gap-3 lg:grid-cols-4" aria-label="Resumen de estados">
+    <section class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4" aria-label="Resumen de estados">
         @foreach ([
             ['key' => 'CONFORME', 'label' => 'Conformes', 'caption' => 'Cumplen la meta', 'color' => 'text-[var(--green)]', 'surface' => 'bg-[var(--green-soft)]', 'border' => 'border-t-[var(--green)]'],
             ['key' => 'OBSERVADO', 'label' => 'Observados', 'caption' => 'Requieren seguimiento', 'color' => 'text-[var(--amber)]', 'surface' => 'bg-[var(--amber-soft)]', 'border' => 'border-t-[var(--amber)]'],
             ['key' => 'CRITICO', 'label' => 'Críticos', 'caption' => 'Acción prioritaria', 'color' => 'text-[var(--red)]', 'surface' => 'bg-[var(--red-soft)]', 'border' => 'border-t-[var(--red)]'],
             ['key' => 'SIN_DATOS', 'label' => 'Sin medición', 'caption' => 'Fuente aún vacía', 'color' => 'text-slate-600', 'surface' => 'bg-slate-100', 'border' => 'border-t-slate-400'],
         ] as $estado)
-            <article class="rounded-lg border border-[var(--border)] border-t-4 {{ $estado['border'] }} bg-[var(--surface)] p-4 shadow-sm sm:p-5">
+            <article class="rounded-xl border border-[var(--border)] border-t-4 {{ $estado['border'] }} bg-[var(--surface)] p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md motion-reduce:transform-none motion-reduce:transition-none">
                 <div class="flex items-start justify-between gap-3">
                     <div>
                         <p class="mb-1 text-xs font-semibold uppercase tracking-[0.08em] text-[var(--ink-soft)]">{{ $estado['label'] }}</p>
-                        <strong class="font-mono text-3xl leading-none {{ $estado['color'] }}">{{ $resumenEstados[$estado['key']] }}</strong>
+                        <strong class="font-mono text-3xl leading-none tracking-[-0.04em] {{ $estado['color'] }}">{{ $resumenEstados[$estado['key']] }}</strong>
                     </div>
                     <span class="grid size-9 place-items-center rounded-full {{ $estado['surface'] }} {{ $estado['color'] }}" aria-hidden="true">
                         <svg class="size-4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4m0 4h.01"/></svg>
@@ -76,9 +95,13 @@
         @endforeach
     </section>
 
-    <section aria-labelledby="kpi-heading">
-        <div class="mb-3 flex flex-wrap items-end justify-between gap-3">
-            <div><span class="eyebrow">Semáforo institucional</span><h2 id="kpi-heading" class="mt-1">Desempeño frente a metas UNT</h2></div>
+    @php
+        $procesosUnt = ['Gestión Curricular', 'Gestión del Ingreso', 'Enseñanza y Aprendizaje', 'Resultados de la Formación'];
+        $indicadoresPorProceso = $indicadores->groupBy('macro_proceso');
+    @endphp
+    <section aria-labelledby="kpi-heading" x-data="{ proceso: '{{ $procesosUnt[0] }}' }">
+        <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
+            <div><span class="eyebrow">Semáforo institucional</span><h2 id="kpi-heading" class="mt-1">Indicadores por proceso</h2><p class="mb-0 mt-1 text-sm text-[var(--ink-soft)]">Compara el valor medido con la meta y abre el historial de cada indicador.</p></div>
             <div class="flex flex-wrap gap-2">
                 <a href="{{ route('quality-indicators.export', ['programa_estudio_id' => $programaEstudioId, 'periodo_academico' => $periodoAcademico]) }}" class="inline-flex min-h-11 cursor-pointer items-center rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 text-sm font-semibold transition hover:border-indigo-500 hover:text-indigo-700 focus-visible:ring-2 focus-visible:ring-indigo-500">Exportar PDF</a>
                 @if ($puedeConsolidar)
@@ -91,59 +114,86 @@
             </div>
         </div>
 
-        <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            @forelse ($indicadores as $indicador)
-                @php
-                    $medicion = $indicador->mediciones->first();
-                    $estado = $medicion?->estado_cumplimiento ?? 'SIN_DATOS';
-                    $estilos = match ($estado) {
-                        'CONFORME' => ['label' => 'Conforme', 'text' => 'text-[var(--green)]', 'bg' => 'bg-[var(--green-soft)]', 'bar' => 'bg-[var(--green)]', 'border' => 'border-l-[var(--green)]'],
-                        'OBSERVADO' => ['label' => 'Observado', 'text' => 'text-[var(--amber)]', 'bg' => 'bg-[var(--amber-soft)]', 'bar' => 'bg-[var(--amber)]', 'border' => 'border-l-[var(--amber)]'],
-                        'NO_CONFORME' => ['label' => 'No conforme', 'text' => 'text-[var(--amber)]', 'bg' => 'bg-[var(--amber-soft)]', 'bar' => 'bg-[var(--amber)]', 'border' => 'border-l-[var(--amber)]'],
-                        'SIN_CONFIGURACION' => ['label' => 'Sin meta oficial', 'text' => 'text-slate-600', 'bg' => 'bg-slate-100', 'bar' => 'bg-slate-400', 'border' => 'border-l-slate-400'],
-                        'CRITICO' => ['label' => 'Crítico', 'text' => 'text-[var(--red)]', 'bg' => 'bg-[var(--red-soft)]', 'bar' => 'bg-[var(--red)]', 'border' => 'border-l-[var(--red)]'],
-                        default => ['label' => 'Sin datos', 'text' => 'text-slate-600', 'bg' => 'bg-slate-100', 'bar' => 'bg-slate-400', 'border' => 'border-l-slate-400'],
-                    };
-                    $valor = $medicion ? (float) $medicion->valor_medido : null;
-                    $anchoBarra = $valor === null ? 0 : min(max($valor, 0), 100);
-                    $unidad = $indicador->unidad_medida === 'PORCENTAJE' ? '%' : '';
-                    $operadorMeta = $indicador->sentido_meta === 'MENOR_IGUAL' ? '≤' : '≥';
-                @endphp
-                <article class="flex min-h-64 flex-col rounded-lg border border-[var(--border)] border-l-4 {{ $estilos['border'] }} bg-[var(--surface)] p-5 shadow-sm">
-                    <div class="flex items-start justify-between gap-3">
-                        <span class="rounded bg-indigo-50 px-2 py-1 font-mono text-[10px] font-semibold text-indigo-700">{{ $indicador->codigo }}</span>
-                        <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold {{ $estilos['bg'] }} {{ $estilos['text'] }}"><i class="size-1.5 rounded-full bg-current" aria-hidden="true"></i>{{ $estilos['label'] }}</span>
-                    </div>
-                    <h3 class="mt-4 text-base font-semibold leading-6">{{ $indicador->nombre }}</h3>
-                    <p class="mb-4 mt-1 text-sm text-[var(--ink-soft)]">{{ $indicador->proceso }}</p>
-                    <div class="mt-auto">
-                        <div class="flex items-end justify-between gap-3">
-                            <div><span class="block text-xs text-[var(--ink-soft)]">Valor medido</span><strong class="font-mono text-3xl tracking-[-0.04em]">{{ $valor === null ? '—' : number_format($valor, 1) }}<small class="ml-0.5 text-base">{{ $unidad }}</small></strong></div>
-                            <span class="text-right text-xs text-[var(--ink-soft)]">Meta<br><strong class="font-mono text-[var(--ink)]">{{ $indicador->meta_institucional === null ? 'No configurada' : $operadorMeta.' '.number_format((float) $indicador->meta_institucional, 1).$unidad }}</strong></span>
-                        </div>
-                        <div class="relative mt-3 h-2 overflow-hidden rounded-full bg-[var(--surface-alt)]" aria-hidden="true"><span class="block h-full rounded-full {{ $estilos['bar'] }} transition-[width] duration-300 motion-reduce:transition-none" style="width:{{ $anchoBarra }}%"></span></div>
-
-                        @php
-                            $rutaLlenado = match($indicador->codigo) {
-                                'I-M01.01-DPA-004' => route('syllabi.index'),
-                                'M01.01.02.02-FI-001', 'M01.01.02.02-FI-002' => route('matriculas.index', ['tab' => 'matriculas', 'periodo' => $periodoAcademico]),
-                                'M01.01.02.02-FI-003' => route('matriculas.index', ['tab' => 'incidencias', 'periodo' => $periodoAcademico]),
-                                'M01.01.03.01-F-013' => route('course-execution-reports.index'),
-                                'M01.04-DDA-FI-001' => route('tutoring-sessions.index'),
-                                'M01.05-DCU-FI-001', 'M01.05-DCU-FI-002' => route('graduate-registries.index'),
-                                default => route('tramites.hub'),
-                            };
-                        @endphp
-                        <a href="{{ $rutaLlenado }}" class="mt-3.5 inline-flex w-full items-center justify-center gap-1.5 rounded-md border border-[var(--border)] bg-[var(--surface-alt)] px-3 py-1.5 text-xs font-semibold text-[var(--indigo)] transition hover:border-[var(--indigo)] hover:bg-[var(--surface)]">
-                            <svg class="size-3.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-                            Llenar datos en formato &rarr;
-                        </a>
-                    </div>
-                </article>
-            @empty
-                <div class="col-span-full rounded-lg border border-dashed border-[var(--border)] bg-[var(--surface)] p-10 text-center"><h3>No hay catálogo de indicadores</h3><p class="mb-0 text-[var(--ink-soft)]">Ejecuta el seeder de indicadores para iniciar el cálculo.</p></div>
-            @endforelse
+        @php
+            $iconosProceso = [
+                'Gestión Curricular' => '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+                'Gestión del Ingreso' => '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 8v6M19 11h6"/>',
+                'Enseñanza y Aprendizaje' => '<path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/>',
+                'Resultados de la Formación' => '<path d="M3 3v18h18"/><path d="M7 15l4-6 3 3 5-7"/>',
+            ];
+        @endphp
+        <div class="mb-4 flex gap-2 overflow-x-auto pb-1" role="tablist" aria-label="Procesos institucionales">
+            @foreach ($procesosUnt as $proceso)
+                <button id="process-tab-{{ Str::slug($proceso) }}" type="button" role="tab" aria-controls="process-panel-{{ Str::slug($proceso) }}" x-on:click="proceso = '{{ $proceso }}'" :aria-selected="proceso === '{{ $proceso }}'"
+                    class="quality-process-tab">
+                    <svg class="size-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true">{!! $iconosProceso[$proceso] ?? '' !!}</svg>
+                    {{ $proceso }}
+                    <span class="ml-1 font-mono text-xs opacity-70">({{ $indicadoresPorProceso->get($proceso, collect())->count() }})</span>
+                </button>
+            @endforeach
         </div>
+
+        @foreach ($procesosUnt as $proceso)
+            <div id="process-panel-{{ Str::slug($proceso) }}" x-show="proceso === '{{ $proceso }}'" x-cloak class="grid gap-3 md:grid-cols-2 xl:grid-cols-4" role="tabpanel" aria-labelledby="process-tab-{{ Str::slug($proceso) }}">
+                @forelse ($indicadoresPorProceso->get($proceso, collect()) as $indicador)
+                    @php
+                        $medicion = $indicador->mediciones->first();
+                        $estado = $medicion?->estado_cumplimiento ?? 'SIN_DATOS';
+                        $estilos = match ($estado) {
+                            'CONFORME' => ['label' => 'Conforme', 'text' => 'text-[var(--green)]', 'bg' => 'bg-[var(--green-soft)]', 'bar' => 'bg-[var(--green)]', 'border' => 'border-l-[var(--green)]'],
+                            'OBSERVADO' => ['label' => 'Observado', 'text' => 'text-[var(--amber)]', 'bg' => 'bg-[var(--amber-soft)]', 'bar' => 'bg-[var(--amber)]', 'border' => 'border-l-[var(--amber)]'],
+                            'NO_CONFORME' => ['label' => 'No conforme', 'text' => 'text-[var(--amber)]', 'bg' => 'bg-[var(--amber-soft)]', 'bar' => 'bg-[var(--amber)]', 'border' => 'border-l-[var(--amber)]'],
+                            'SIN_CONFIGURACION' => ['label' => 'Sin meta oficial', 'text' => 'text-slate-600', 'bg' => 'bg-slate-100', 'bar' => 'bg-slate-400', 'border' => 'border-l-slate-400'],
+                            'CRITICO' => ['label' => 'Crítico', 'text' => 'text-[var(--red)]', 'bg' => 'bg-[var(--red-soft)]', 'bar' => 'bg-[var(--red)]', 'border' => 'border-l-[var(--red)]'],
+                            default => ['label' => 'Sin datos', 'text' => 'text-slate-600', 'bg' => 'bg-slate-100', 'bar' => 'bg-slate-400', 'border' => 'border-l-slate-400'],
+                        };
+                        $valor = $medicion ? (float) $medicion->valor_medido : null;
+                        $anchoBarra = $valor === null ? 0 : min(max($valor, 0), 100);
+                        $unidad = $indicador->unidad_medida === 'PORCENTAJE' ? '%' : '';
+                        $operadorMeta = $indicador->sentido_meta === 'MENOR_IGUAL' ? '≤' : '≥';
+                    @endphp
+                    <article class="group flex min-h-72 flex-col rounded-xl border border-[var(--border)] border-l-4 {{ $estilos['border'] }} bg-[var(--surface)] p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-within:border-indigo-400 motion-reduce:transform-none motion-reduce:transition-none">
+                        <div class="flex items-start justify-between gap-3">
+                            <span class="rounded bg-[var(--indigo-soft)] px-2 py-1 font-mono text-[10px] font-semibold text-[var(--indigo)]">{{ $indicador->codigo }}</span>
+                            <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold {{ $estilos['bg'] }} {{ $estilos['text'] }}"><i class="size-1.5 rounded-full bg-current" aria-hidden="true"></i>{{ $estilos['label'] }}</span>
+                        </div>
+                        <h3 class="mt-4 text-base font-semibold leading-6">{{ $indicador->nombre }}</h3>
+                        <p class="mb-4 mt-1 text-sm text-[var(--ink-soft)]">{{ $indicador->proceso }}</p>
+                        <div class="mt-auto">
+                            <div class="flex items-end justify-between gap-3">
+                                <div><span class="block text-xs text-[var(--ink-soft)]">Valor medido</span><strong class="font-mono text-3xl tracking-[-0.04em]">{{ $valor === null ? '—' : number_format($valor, 1) }}<small class="ml-0.5 text-base">{{ $unidad }}</small></strong></div>
+                                <span class="text-right text-xs text-[var(--ink-soft)]">Meta<br><strong class="font-mono text-[var(--ink)]">{{ $indicador->meta_institucional === null ? 'No configurada' : $operadorMeta.' '.number_format((float) $indicador->meta_institucional, 1).$unidad }}</strong></span>
+                            </div>
+                            <div class="relative mt-3 h-2 overflow-hidden rounded-full bg-[var(--surface-alt)]" aria-hidden="true"><span class="block h-full rounded-full {{ $estilos['bar'] }} transition-[width] duration-300 motion-reduce:transition-none" style="width:{{ $anchoBarra }}%"></span></div>
+
+                            @php
+                                $rutaLlenado = match($indicador->codigo) {
+                                    'I-M01.01-DPA-004' => route('syllabi.index'),
+                                    'M01.01.02.02-FI-001', 'M01.01.02.02-FI-002' => route('matriculas.index', ['tab' => 'matriculas', 'periodo' => $periodoAcademico]),
+                                    'M01.01.02.02-FI-003' => route('matriculas.index', ['tab' => 'incidencias', 'periodo' => $periodoAcademico]),
+                                    'M01.01.03.01-F-013' => route('course-execution-reports.index'),
+                                    'M01.04-DDA-FI-001' => route('tutoring-sessions.index'),
+                                    'M01.05-DCU-FI-001', 'M01.05-DCU-FI-002' => route('graduate-registries.index'),
+                                    default => route('tramites.hub'),
+                                };
+                            @endphp
+                            <div class="mt-4 grid gap-2 sm:grid-cols-2 md:grid-cols-1 2xl:grid-cols-2">
+                                <a href="{{ $rutaLlenado }}" class="quality-card-link">
+                                    <svg class="size-3.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                                    Registrar datos
+                                </a>
+                                <a href="{{ route('quality-indicators.historial', $indicador->codigo) }}" class="quality-card-link primary">
+                                    <svg class="size-3.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m5 10V5m5 14v-8m5 8V7"/></svg>
+                                    Ver historial
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                @empty
+                    <div class="col-span-full rounded-lg border border-dashed border-[var(--border)] bg-[var(--surface)] p-10 text-center"><h3>Sin indicadores en este proceso</h3><p class="mb-0 text-[var(--ink-soft)]">Aún no se ha configurado ningún indicador para {{ $proceso }}.</p></div>
+                @endforelse
+            </div>
+        @endforeach
     </section>
 
     @php
@@ -205,9 +255,9 @@
         <div class="overflow-x-auto">
             <table class="w-full min-w-[760px] border-collapse text-left">
                 <thead class="bg-[var(--surface-alt)] font-mono text-[11px] uppercase tracking-[0.08em] text-[var(--ink-soft)]"><tr><th class="px-5 py-3">Indicador</th><th class="px-5 py-3">Estado</th><th class="px-5 py-3">Análisis</th><th class="px-5 py-3">Acción</th><th class="px-5 py-3"><span class="sr-only">Editar</span></th></tr></thead>
-                <tbody class="divide-y divide-[var(--border)]">
+                <tbody class="divide-y divide-[var(--border)] [&>tr:nth-child(even)]:bg-[var(--surface-alt)]/40">
                     @forelse ($planesPendientes as $medicion)
-                        <tr>
+                        <tr class="transition-colors hover:bg-indigo-50/60">
                             <td class="px-5 py-4"><strong class="block text-sm">{{ $medicion->indicador->nombre }}</strong><small class="mt-1 block font-mono text-[11px] text-indigo-700">{{ $medicion->indicador->codigo }}</small></td>
                             <td class="px-5 py-4"><span @class(['inline-flex rounded-full px-2.5 py-1 text-xs font-semibold', 'bg-red-50 text-red-700' => $medicion->estado_cumplimiento === 'CRITICO', 'bg-amber-50 text-amber-800' => $medicion->estado_cumplimiento === 'OBSERVADO'])>{{ ucfirst(mb_strtolower($medicion->estado_cumplimiento)) }}</span></td>
                             <td class="max-w-xs px-5 py-4 text-sm text-[var(--ink-soft)]">{{ $medicion->analisis_causas ?: 'Pendiente de registrar' }}</td>

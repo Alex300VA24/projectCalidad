@@ -23,6 +23,7 @@ class IndicadorMaestro extends Model
         'codigo',
         'nombre',
         'proceso',
+        'macro_proceso',
         'finalidad',
         'formula_texto',
         'unidad_medida',

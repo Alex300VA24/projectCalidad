@@ -33,7 +33,7 @@
                 </a>
                 <a href="{{ route('quality-indicators.dashboard') }}" @class(['nav-link', 'active' => request()->routeIs('quality-indicators.*')])>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m5 10V5m5 14v-8m5 8V7"/><path d="m4 8 5-3 5 5 5-4"/></svg>
-                    <span>Dashboard calidad</span>
+                    <span>Indicadores</span>
                 </a>
                 <a href="{{ route('documents.index') }}" @class(['nav-link', 'active' => request()->routeIs('documents.*')])>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v5h5M9 12h6M9 16h6"/></svg>

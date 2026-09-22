@@ -1,6 +1,26 @@
 import { Chart, registerables } from 'chart.js';
 
-Chart.register(...registerables);
+const valueLabelsPlugin = {
+    id: 'valueLabels',
+    afterDatasetsDraw(chart) {
+        chart.data.datasets.forEach((dataset, datasetIndex) => {
+            if (!dataset.showValueLabels) return;
+            const { ctx } = chart;
+            ctx.save();
+            ctx.font = '600 11px system-ui, sans-serif';
+            ctx.fillStyle = dataset.borderColor || '#172554';
+            ctx.textAlign = 'center';
+            chart.getDatasetMeta(datasetIndex).data.forEach((point, index) => {
+                const value = dataset.data[index];
+                if (value === null || value === undefined) return;
+                ctx.fillText(`${Number(value).toFixed(1)}${dataset.valueLabelSuffix || ''}`, point.x, point.y - 10);
+            });
+            ctx.restore();
+        });
+    },
+};
+
+Chart.register(...registerables, valueLabelsPlugin);
 
 const body = document.body;
 const getFocusable = (container) => [...container.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),textarea:not([disabled]),select:not([disabled]),iframe,[tabindex]:not([tabindex="-1"])')].filter((element) => !element.closest('[hidden]'));
@@ -25,9 +45,11 @@ window.renderQualityCharts = (root = document) => {
         qualityCharts.get(canvas)?.destroy();
         const config = JSON.parse(canvas.dataset.chartConfig);
         const isDoughnut = config.type === 'doughnut';
+        const isPercentLine = canvas.dataset.chartPercent === '1';
         config.options = {
             responsive: true,
             maintainAspectRatio: false,
+            layout: isPercentLine ? { padding: { top: 24 } } : undefined,
             animation: reducedMotion ? false : { duration: 350 },
             plugins: {
                 legend: { position: 'bottom', labels: { color: textColor, usePointStyle: true, padding: 18 } },
@@ -35,7 +57,9 @@ window.renderQualityCharts = (root = document) => {
             },
             scales: isDoughnut ? undefined : {
                 x: { ticks: { color: textColor }, grid: { display: false } },
-                y: { beginAtZero: true, ticks: { color: textColor }, grid: { color: gridColor } },
+                y: isPercentLine
+                    ? { min: 0, max: 100, ticks: { color: textColor, callback: (value) => `${value}%` }, grid: { color: gridColor } }
+                    : { beginAtZero: true, ticks: { color: textColor }, grid: { color: gridColor } },
             },
         };
 

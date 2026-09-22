@@ -17,14 +17,29 @@ class DashboardCalidadTest extends TestCase
 {
     use LazilyRefreshDatabase;
 
-    public function test_dashboard_renders_the_official_indicator_catalog(): void
+    public function test_dashboard_renders_the_curricular_process_indicator(): void
     {
         $this->seed([RolesAndPermissionsSeeder::class, IndicadoresSeeder::class]);
 
         $this->get('/indicadores/calidad')
             ->assertOk()
             ->assertSee('Indicadores de calidad académica')
-            ->assertSee('M01.01.02.02-FI-001');
+            ->assertSee('Gestión Curricular')
+            ->assertSee('Gestión del Ingreso')
+            ->assertSee('Enseñanza y Aprendizaje')
+            ->assertSee('Resultados de la Formación')
+            ->assertSee('I-M01.01-DPA-004');
+    }
+
+    public function test_dashboard_classifies_every_indicator_under_its_macro_process(): void
+    {
+        $this->seed([RolesAndPermissionsSeeder::class, IndicadoresSeeder::class]);
+
+        $this->get('/indicadores/calidad')
+            ->assertOk()
+            ->assertSee('M01.01.02.02-FI-001')
+            ->assertSee('M01.04-DDA-FI-001')
+            ->assertSee('M01.05-DCU-FI-002');
     }
 
     public function test_director_can_record_an_improvement_plan_for_a_critical_measurement(): void

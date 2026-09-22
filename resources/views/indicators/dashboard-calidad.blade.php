@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard de calidad | SIGI Calidad')
-@section('page-label', 'Indicadores institucionales')
+@section('title', 'Indicadores | SIGI Calidad')
+@section('page-label', 'Indicadores')
 
 @section('content')
     <livewire:indicadores.dashboard-calidad />

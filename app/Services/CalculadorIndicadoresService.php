@@ -210,6 +210,26 @@ class CalculadorIndicadoresService
         ];
     }
 
+    /** @return array{labels: list<string>, valores: list<float|null>} */
+    public function datosHistoricoIndicador(ProgramaEstudio $programaEstudio, IndicadorMaestro $indicador): array
+    {
+        $mediciones = IndicadorMedicion::query()
+            ->whereBelongsTo($programaEstudio)
+            ->where('indicador_id', $indicador->id)
+            ->get(['periodo_academico', 'valor_medido'])
+            ->keyBy('periodo_academico');
+
+        $periodos = PeriodoAcademico::query()->orderBy('codigo')->pluck('codigo')
+            ->merge($mediciones->keys())
+            ->filter(fn (mixed $periodo): bool => is_string($periodo) && preg_match('/^\d{4}-(I|II)$/', $periodo) === 1 && $periodo <= $this->periodoActual())
+            ->unique()->sort()->values();
+
+        return [
+            'labels' => $periodos->all(),
+            'valores' => $periodos->map(fn (string $periodo): ?float => ($m = $mediciones->get($periodo)) ? (float) $m->valor_medido : null)->all(),
+        ];
+    }
+
     /** @return array{labels: list<string>, valores: list<int>} */
     public function datosCondicionLaboral(ProgramaEstudio $programaEstudio, string $periodoAcademico): array
     {
@@ -370,6 +390,11 @@ class CalculadorIndicadoresService
     private function porcentaje(int $numerador, int $denominador): ?float
     {
         return $denominador === 0 ? null : round(($numerador / $denominador) * 100, 2);
+    }
+
+    private function periodoActual(): string
+    {
+        return now()->format('Y').(now()->month <= 6 ? '-I' : '-II');
     }
 
     private function periodoAnterior(string $periodoAcademico): string
