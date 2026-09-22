@@ -6,7 +6,27 @@
                 "ciclo": "I",
                 "silabos": [
                     {
-                        "curso": "",
+                        "curso": "Algoritmos Y Programación",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Desarrollo del Pensamiento Lógico Matemático",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Desarrollo Personal",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Física General",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Introducción al Análisis Matemático",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Lectura y Redacción de Textos",
                         "link": ""
                     }
                 ]
@@ -79,6 +99,22 @@
                     {
                         "curso": "Desarrollo de Software",
                         "link": "https://drive.google.com/file/d/1IOg3lvSir_eLcSPNd9dVWEQoZKtI-XKU/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Gestión de Proyectos Informáticos",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Percepción y Visión por Computadora",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Redes de Computadoras I",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Sistemas Operativos I",
+                        "link": ""
                     }
                 ]
             },
@@ -88,6 +124,26 @@
                     {
                         "curso": "Interacción Humano Computador",
                         "link": "https://drive.google.com/file/d/13ITH2c7eL-sZH5_7v7Dcofhw1Gfph0VZ/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Ingeniería de Software Avanzada",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Proyecto de Tesis",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Seguridad Informática",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Tópicos en Bases de Datos",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Tópicos en Ingeniería de Software",
+                        "link": ""
                     }
                 ]
             }
@@ -117,6 +173,10 @@
                         "link": "https://drive.google.com/file/d/13rehY3oyfJqaYjmpRlWHIbr7xcXzwEpF/view?usp=sharing"
                     },
                     {
+                        "curso": "Estructura de Datos",
+                        "link": ""
+                    },
+                    {
                         "curso": "Estadística General",
                         "link": "https://drive.google.com/file/d/1SYZyNa4gdnVT7pSEw-J-ow_77XuGxF9f/view?usp=sharing"
                     },
@@ -127,6 +187,10 @@
                     {
                         "curso": "Sociedad Cultura y Ecología",
                         "link": "https://drive.google.com/file/d/1bsewG4AkO69gQL6yF-Zha-WWRjzqCrSl/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Cultura Investigativa y Pensamiento Crítico",
+                        "link": ""
                     }
                 ]
             },
@@ -169,6 +233,10 @@
                     {
                         "curso": "Organización de Archivos",
                         "link": "https://drive.google.com/file/d/1SXEYLxIiNImf34259IJ4I1dBVIT-GSBf/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Electrónica para Computación",
+                        "link": ""
                     }
                 ]
             },
@@ -184,20 +252,20 @@
                         "link": "https://drive.google.com/file/d/1YQylZmBSPyBq1VzAxao0dBqXajWrtl_d/view?usp=sharing"
                     },
                     {
-                        "curso": "Ingeniería de Software I",
-                        "link": "https://drive.google.com/file/d/1v026th8cvEg6JscT47PxLbbMCMnoFUMQ/view?usp=sharing"
+                        "curso": "Computación Gŕafica Avanzada",
+                        "link": ""
                     },
                     {
-                        "curso": "Inteligencia Artificial I",
-                        "link": "https://drive.google.com/file/d/1QPpVuuUukhmKdetby8hEMvFQLLFQTJG4/view?usp=sharing"
+                        "curso": "Inteligencia Artificial II",
+                        "link": ""
                     },
                     {
-                        "curso": "Metodología de la Investigación",
-                        "link": "https://drive.google.com/file/d/1NLdAH0ZPNX9PwnhFUzvqmj8M22VMKyvz/view?usp=sharing"
+                        "curso": "Arquitectura y Organización de Computadoras",
+                        "link": ""
                     },
                     {
-                        "curso": "Técnicas Digitales para Computación",
-                        "link": "https://drive.google.com/file/d/121qdyimhaIm0lu3VcAPjAxKCxjMIJOa1/view?usp=sharing"
+                        "curso": "Ingeniería de Software II",
+                        "link": ""
                     }
                 ]
             },
@@ -211,6 +279,14 @@
                     {
                         "curso": "Sistemas Operativos II",
                         "link": "https://drive.google.com/file/d/1uY0B5STLsNhNyRXqpTORqt0LirXFzZvh/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Robótica",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Redes de Computadoras II",
+                        "link": ""
                     }
                 ]
             },
@@ -245,6 +321,302 @@
                     {
                         "curso": "Tópicos en Tecnologías Inmersivas",
                         "link": "https://drive.google.com/file/d/1mtO0BolvKDLBbOaK7LULscWf7QqcqN15/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Trabajo de Investigación",
+                        "link": ""
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "semestre": "2026-I",
+        "ciclos": [
+            {
+                "ciclo": "I",
+                "silabos": [
+                    {
+                        "curso": "Algoritmos Y Programación",
+                        "link": "https://drive.google.com/file/d/1vRVgXX7v4vubLcEQFBEbMBVNlXTjD8DG/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Desarrollo del Pensamiento Lógico Matemático",
+                        "link": "https://drive.google.com/file/d/1Esw3lmA1VaqH5q-9INcTcVT7edkIb9uJ/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Desarrollo Personal",
+                        "link": "https://drive.google.com/file/d/1y2hXYn28_5n3AYGADi6YFp9LCWni85sV/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Física General",
+                        "link": "https://drive.google.com/file/d/18sLPhPnyz4O3CnnxG8vKYMMioXJCGfER/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Introducción al Análisis Matemático",
+                        "link": "https://drive.google.com/file/d/1blhk60jKX5BGDst0dg8rXUawjidZ1r_i/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Lectura y Redacción de Textos",
+                        "link": ""
+                    }
+                ]
+            },
+            {
+                "ciclo": "III",
+                "silabos": [
+                    {
+                        "curso": "Análisis Numerico",
+                        "link": "https://drive.google.com/file/d/1n0RSLBAYiqokbVES5E109c2DFe6YbMJf/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Estrategias Algoritmicas",
+                        "link": "https://drive.google.com/file/d/1eTEfFoYNGyafOdijHAhPICuubX1wDcCH/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Matemática Discreta",
+                        "link": "https://drive.google.com/file/d/1pXh-T7rTiyKxatCB-wHNbbDAp-fyJLeH/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Paradigmas de Lenguajes de Programación",
+                        "link": "https://drive.google.com/file/d/1KtutZauzhyzmOd2lmOyywhP-ILKwoLAz/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Física para Ciencia de la Computación",
+                        "link": "https://drive.google.com/file/d/1LYY4ass2T9UYp77RETySp1E6ugHdwdNz/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Geometría Analítica",
+                        "link": "https://drive.google.com/file/d/15AootHpQ8KZ9q_oSI0aPEwZr4E-2MV0c/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "V",
+                "silabos": [
+                    {
+                        "curso": "Compiladores",
+                        "link": "https://drive.google.com/file/d/1EZxPoV6zj_dnhrXpy9bay7ZUOph9e-fh/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Base de Datos I",
+                        "link": "https://drive.google.com/file/d/1F7tSy8xOiZcz7gM8wuWPNXlF8OGAusS5/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Ingeniería de Software I",
+                        "link": "https://drive.google.com/file/d/1s55zY4MSFNEateAfotH37HTF_3it-36n/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Inteligencia Artificial I",
+                        "link": "https://drive.google.com/file/d/1iN7J8t_mkx3JQsL1mW75U-DXUy3Npgqu/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Metodología de la Investigación",
+                        "link": "https://drive.google.com/file/d/1OE_TxHvf7fPcNE7ryTUXYIJYtD0FwVtT/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Técnicas Digitales para Computación",
+                        "link": "https://drive.google.com/file/d/1v7pUa9nIi3QgvbxXdt7Rhfdo4MwXcTFb/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "VII",
+                "silabos": [
+                    {
+                        "curso": "Base de Datos Avanzada",
+                        "link": "https://drive.google.com/file/d/1euRYd0c0xeTbJnKwI8zgzag-RlDoEz8X/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Desarrollo de Software",
+                        "link": "https://drive.google.com/file/d/1yEgaKhd2i5Mx2qJTL34tlRlINUgnf9gy/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Gestión de Proyectos Informáticos",
+                        "link": "https://drive.google.com/file/d/1IVy5iLR9ywJthccNrlphDulMwKCX6_X0/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Percepción y Visión por Computadora",
+                        "link": "https://drive.google.com/file/d/14mb1Gr-tnuq2d-KygnmoU9rL8K-sfJRP/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Redes de Computadoras I",
+                        "link": "https://drive.google.com/file/d/1uWLzww3mEnIP229zVRiZRJsCMG44BbUw/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Sistemas Operativos I",
+                        "link": "https://drive.google.com/file/d/1NfxEPi45JV7y1xnfFGh2YYMx2dPqZOGJ/view?usp=sharing"
+                    }
+                ]
+            },
+            {
+                "ciclo": "IX",
+                "silabos": [
+                    {
+                        "curso": "Interacción Humano Computador",
+                        "link": "https://drive.google.com/file/d/1Sn-ZzZlMFHNhVBo_Da1EMJFaAP79dIRu/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Ingeniería de Software Avanzada",
+                        "link": "https://drive.google.com/file/d/1IVy5iLR9ywJthccNrlphDulMwKCX6_X0/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Proyecto de Tesis",
+                        "link": "https://drive.google.com/file/d/1twqb1ZrnFwR4PYo7KmTkVFZo81CK06V9/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Seguridad Informática",
+                        "link": "https://drive.google.com/file/d/17cRWDbqtfi2UeNoVK6JeWzYaDkEYNfUf/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Tópicos en Bases de Datos",
+                        "link": "https://drive.google.com/file/d/1Ttcd2XEYjbQ4XbzePVtCYB5KVBSCsstt/view?usp=sharing"
+                    },
+                    {
+                        "curso": "Tópicos en Ingeniería de Software",
+                        "link": "https://drive.google.com/file/d/15CugxO6hha0YZnA_8BFXsQUd6X2XU7FT/view?usp=sharing"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "semestre": "2026-II",
+        "ciclos": [
+            {
+                "ciclo": "II",
+                "silabos": [
+                    {
+                        "curso": "Análisis Matemático",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Estructura de Datos",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Estadística General",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Ética, Convivencia Humana Y Ciudadanía",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Sociedad Cultura y Ecología",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Cultura Investigativa y Pensamiento Crítico",
+                        "link": ""
+                    }
+                ]
+            },
+            {
+                "ciclo": "IV",
+                "silabos": [
+                    {
+                        "curso": "Algoritmos y Complejidad",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Computación Gŕafica",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Innovación y Emprendimiento",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Lenguajes Formales y Autómatas",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Organización de Archivos",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Electrónica para Computación",
+                        "link": ""
+                    }
+                ]
+            },
+            {
+                "ciclo": "VI",
+                "silabos": [
+                    {
+                        "curso": "Comunicación de Datos",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Base de Datos II",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Computación Gŕafica Avanzada",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Inteligencia Artificial II",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Arquitectura y Organización de Computadoras",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Ingeniería de Software II",
+                        "link": ""
+                    }
+                ]
+            },
+            {
+                "ciclo": "VIII",
+                "silabos": [
+                    {
+                        "curso": "Prácticas Pre-Profesionales",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Sistemas Operativos II",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Robótica",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Redes de Computadoras II",
+                        "link": ""
+                    }
+                ]
+            },
+            {
+                "ciclo": "X",
+                "silabos": [
+                    {
+                        "curso": "Ética para Profesionales en Informática.pdf",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Proyecto de Competencia",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Sistemas de Información",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Tesis",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Tópicos en Tecnologías Inmersivas",
+                        "link": ""
+                    },
+                    {
+                        "curso": "Trabajo de Investigación",
+                        "link": ""
                     }
                 ]
             }
