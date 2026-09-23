@@ -23,10 +23,6 @@
             </div>
 
             <nav class="nav-list">
-                <a href="{{ route('dashboard') }}" @class(['nav-link', 'active' => request()->routeIs('dashboard')])>
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>
-                    <span>Resumen</span>
-                </a>
                 <a href="{{ route('mapa-procesos.index') }}" @class(['nav-link', 'active' => request()->routeIs('mapa-procesos.*')])>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h4M17.5 10v4M10 17.5h4M6.5 10v4"/></svg>
                     <span>Mapa de procesos</span>
