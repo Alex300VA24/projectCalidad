@@ -204,10 +204,60 @@ menuToggle?.addEventListener('click', () => { const opened = sidebar.classList.t
 menuOverlay?.addEventListener('click', closeMenu);
 sidebar?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 
-document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+const themeToggle = document.querySelector('[data-theme-toggle]');
+const themeLabel = document.querySelector('[data-theme-label]');
+const syncThemeState = () => {
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    themeToggle?.setAttribute('aria-pressed', String(isDark));
+    if (themeLabel) themeLabel.textContent = isDark ? 'Modo oscuro' : 'Modo claro';
+};
+syncThemeState();
+themeToggle?.addEventListener('click', () => {
     const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next; localStorage.setItem('sigi-theme',next);
+    syncThemeState();
 });
+
+const fontSteps = ['normal', 'grande', 'xl'];
+const fontStepLabels = { normal: 'Normal', grande: 'Grande', xl: 'Muy grande' };
+const fontSizeLabel = document.querySelector('[data-font-size-label]');
+const fontDecreaseBtn = document.querySelector('[data-font-decrease]');
+const fontIncreaseBtn = document.querySelector('[data-font-increase]');
+const syncFontSizeLabel = () => {
+    const index = fontSteps.indexOf(document.documentElement.dataset.fontSize);
+    if (fontSizeLabel) fontSizeLabel.textContent = fontStepLabels[fontSteps[index]] ?? 'Normal';
+    if (fontDecreaseBtn) fontDecreaseBtn.disabled = index <= 0;
+    if (fontIncreaseBtn) fontIncreaseBtn.disabled = index >= fontSteps.length - 1;
+};
+syncFontSizeLabel();
+const applyFontSize = (step) => {
+    document.documentElement.dataset.fontSize = step;
+    localStorage.setItem('sigi-font-size', step);
+    syncFontSizeLabel();
+    requestAnimationFrame(() => requestAnimationFrame(() => window.renderQualityCharts?.()));
+};
+document.querySelector('[data-font-increase]')?.addEventListener('click', () => {
+    const index = fontSteps.indexOf(document.documentElement.dataset.fontSize);
+    applyFontSize(fontSteps[Math.min(index + 1, fontSteps.length - 1)]);
+});
+document.querySelector('[data-font-decrease]')?.addEventListener('click', () => {
+    const index = fontSteps.indexOf(document.documentElement.dataset.fontSize);
+    applyFontSize(fontSteps[Math.max(index - 1, 0)]);
+});
+
+const contrastToggle = document.querySelector('[data-contrast-toggle]');
+contrastToggle?.setAttribute('aria-pressed', String(document.documentElement.dataset.contrast === 'alto'));
+contrastToggle?.addEventListener('click', () => {
+    const next = document.documentElement.dataset.contrast === 'alto' ? 'normal' : 'alto';
+    document.documentElement.dataset.contrast = next; localStorage.setItem('sigi-contrast', next);
+    contrastToggle.setAttribute('aria-pressed', String(next === 'alto'));
+});
+
+const accessibilityModal = document.querySelector('[data-accessibility-modal]');
+if (accessibilityModal) {
+    const dialog = setupDialog(accessibilityModal, '[data-modal-close]');
+    document.querySelector('[data-accessibility-open]')?.addEventListener('click', (event) => dialog.open(event.currentTarget));
+}
 
 const pdfModal = document.querySelector('[data-pdf-modal]');
 if (pdfModal) {

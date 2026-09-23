@@ -3,7 +3,6 @@
 namespace App\Livewire\Indicadores;
 
 use App\Models\AccionMejoraIndicador;
-use App\Models\Course;
 use App\Models\Document;
 use App\Models\IndicadorMaestro;
 use App\Models\IndicadorMedicion;
@@ -24,10 +23,6 @@ class DashboardCalidad extends Component
     public int $programaEstudioId = 0;
 
     public string $periodoAcademico = '';
-
-    public ?int $cicloAcademico = null;
-
-    public int $cursoId = 0;
 
     public ?int $medicionEditandoId = null;
 
@@ -50,13 +45,11 @@ class DashboardCalidad extends Component
 
     public function updatedProgramaEstudioId(): void
     {
-        $this->reset(['cicloAcademico', 'cursoId']);
         $this->cerrarPlan();
     }
 
     public function updatedPeriodoAcademico(): void
     {
-        $this->reset(['cicloAcademico', 'cursoId']);
         $this->cerrarPlan();
     }
 
@@ -149,10 +142,6 @@ class DashboardCalidad extends Component
             });
 
         return view('livewire.indicadores.dashboard-calidad', [
-            'programas' => ProgramaEstudio::query()->where('activo', true)->orderBy('nombre')->get(['id', 'nombre']),
-            'periodos' => $this->periodosDisponibles(),
-            'ciclos' => Matricula::query()->whereBelongsTo($programa)->where('periodo_academico', $this->periodoAcademico)->distinct()->orderBy('ciclo_academico')->pluck('ciclo_academico'),
-            'cursos' => Course::query()->whereIn('id', Matricula::query()->whereBelongsTo($programa)->where('periodo_academico', $this->periodoAcademico)->select('curso_id'))->orderBy('name')->get(['id', 'name']),
             'indicadores' => $indicadores,
             'mediciones' => $mediciones,
             'puedeConsolidar' => auth()->user()?->can('indicator.consolidate') ?? false,
@@ -200,7 +189,7 @@ class DashboardCalidad extends Component
     private function datosVacios(): array
     {
         return [
-            'programas' => collect(), 'periodos' => collect([$this->periodoActual()]), 'ciclos' => collect(), 'cursos' => collect(), 'indicadores' => collect(), 'mediciones' => collect(),
+            'indicadores' => collect(), 'mediciones' => collect(),
             'puedeConsolidar' => false,
         ];
     }

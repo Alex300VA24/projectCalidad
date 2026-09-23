@@ -9,7 +9,7 @@
 
 <div class="space-y-5">
     <div class="flex flex-wrap items-center justify-between gap-3">
-        <a href="{{ route('quality-indicators.dashboard') }}" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--indigo)] transition hover:underline">
+        <a href="{{ route('quality-indicators.dashboard', ['proceso' => $indicador->macro_proceso]) }}" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--indigo)] transition hover:underline">
             <svg class="size-4" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
             Volver a Indicadores
         </a>

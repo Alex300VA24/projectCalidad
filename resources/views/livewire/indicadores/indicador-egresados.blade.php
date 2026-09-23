@@ -8,7 +8,7 @@
 
 <div class="space-y-5">
     <div class="flex flex-wrap items-center justify-between gap-3">
-        <a href="{{ route('quality-indicators.dashboard') }}" class="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-[var(--indigo)] transition hover:underline focus-visible:ring-2 focus-visible:ring-indigo-500">
+        <a href="{{ route('quality-indicators.dashboard', ['proceso' => $indicador->macro_proceso]) }}" class="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-[var(--indigo)] transition hover:underline focus-visible:ring-2 focus-visible:ring-indigo-500">
             <svg class="size-4" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
             Volver a Indicadores
         </a>

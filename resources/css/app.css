@@ -22,6 +22,14 @@
         --shadow: 0 14px 44px rgba(0,0,0,.26); --sidebar: #0b1220;
         --sidebar-text: #e5eaf4; --focus: #93c5fd; color-scheme: dark;
     }
+    [data-contrast="alto"] {
+        --ink: #000; --ink-soft: #000; --border: #000; --surface: #fff; --canvas: #fff;
+        --surface-alt: #f0f0f0; --indigo: #0000cc; --indigo-soft: #dbdbff; --focus: #000;
+    }
+    [data-theme="dark"][data-contrast="alto"] {
+        --ink: #fff; --ink-soft: #fff; --border: #fff; --surface: #000; --canvas: #000;
+        --surface-alt: #1a1a1a; --indigo: #9ecbff; --indigo-soft: #002a52; --focus: #fff;
+    }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { margin: 0; min-width: 320px; background: var(--canvas); color: var(--ink); font: 400 16px/1.55 'Fira Sans', sans-serif; }
@@ -35,6 +43,8 @@
     [hidden] { display: none !important; }
     [x-cloak] { display: none !important; }
 }
+html[data-font-size="grande"] { zoom: 115%; }
+html[data-font-size="xl"] { zoom: 130%; }
 ::selection { color: #fff; background: var(--navy); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .skip-link { position: fixed; z-index: 1000; top: 8px; left: 8px; padding: 10px 14px; background: var(--surface); transform: translateY(-150%); }
@@ -46,14 +56,15 @@
 .brand { display: flex; align-items: center; gap: 12px; padding: 0 8px 28px; border-bottom: 1px solid rgba(255,255,255,.13); }
 .brand-mark { display: block; flex: 0 0 auto; width: 42px; height: 42px; object-fit: contain; border-radius: 6px; }
 .brand strong { display: block; font: 700 20px/1 'Fira Code', monospace; letter-spacing: .08em; }
-.brand small, .profile-chip small, .sidebar-note small { display: block; color: rgba(238,242,255,.62); font-size: 12px; }
+.brand small, .profile-chip small { display: block; color: rgba(238,242,255,.62); font-size: 12px; }
 .nav-list { display: grid; gap: 7px; margin-top: 28px; }
 .nav-link { display: flex; min-height: 48px; align-items: center; gap: 13px; padding: 11px 14px; border-radius: 7px; color: rgba(238,242,255,.72); font-weight: 500; transition: background .2s,color .2s; }
 .nav-link svg { width: 21px; height: 21px; }
 .nav-link:hover, .nav-link.active { color: #fff; background: rgba(255,255,255,.11); }
 .nav-link.active { box-shadow: inset 3px 0 #4ade80; }
-.sidebar-note { display: flex; align-items: center; gap: 10px; margin-top: auto; padding: 14px; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; background: rgba(255,255,255,.05); }
-.sidebar-note strong { display: block; font-size: 13px; }
+.sidebar-a11y-trigger { display: flex; min-height: 48px; align-items: center; gap: 13px; padding: 11px 14px; margin-top: auto; border: 1px solid rgba(255,255,255,.16); border-radius: 7px; color: #fff; background: rgba(255,255,255,.06); font-weight: 600; cursor: pointer; transition: background .2s,border-color .2s; }
+.sidebar-a11y-trigger:hover { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.3); }
+.sidebar-a11y-trigger svg { width: 21px; height: 21px; flex: 0 0 auto; }
 .status-dot { display: inline-block; flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; background: #32d583; box-shadow: 0 0 0 4px rgba(50,213,131,.14); }
 .page-shell { min-height: 100vh; }
 .topbar { position: sticky; z-index: 40; top: 0; height: 72px; display: flex; align-items: center; gap: 12px; padding: 0 18px; background: color-mix(in srgb,var(--canvas) 86%,transparent); border-bottom: 1px solid var(--border); backdrop-filter: blur(16px); }
@@ -67,6 +78,8 @@
 .avatar { display: grid; place-items: center; width: 36px; height: 36px; color: #fff; background: var(--green); border-radius: 50%; font: 600 12px 'Fira Code',monospace; }
 .icon-btn { display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); cursor: pointer; transition: border-color .2s,background .2s,color .2s; }
 .icon-btn:hover { color: var(--indigo); border-color: var(--indigo); background: var(--indigo-soft); }
+.icon-btn:disabled { cursor: not-allowed; opacity: .4; }
+.icon-btn:disabled:hover { color: inherit; border-color: var(--border); background: var(--surface); }
 .icon-btn svg { width: 21px; height: 21px; }
 .icon-btn.small { width: 38px; height: 38px; }
 .icon-btn.small svg { width: 18px; height: 18px; }
@@ -264,6 +277,16 @@ input,textarea,select { width: 100%; min-height: 44px; padding: 10px 12px; color
 .compact-table td { padding: 8px 10px; }.compact-table input { min-height: 36px; }
 .compact-modal { position: relative; width: calc(100% - 30px); max-width: 480px; margin: 10vh auto 0; padding: 22px; background: var(--surface); border-radius: 9px; box-shadow: var(--shadow); }.compact-modal header,.compact-modal footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }.compact-modal label { margin: 24px 0; }.compact-modal footer { justify-content: flex-end; }
 .reveal { animation: reveal .38s ease-out both; }@keyframes reveal { from { opacity: 0; transform: translateY(10px); } }
+.a11y-modal-body { display: grid; gap: 14px; margin: 22px 0; }
+.a11y-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-alt); }
+.a11y-row strong { display: block; }
+.a11y-row small { display: block; margin-top: 2px; color: var(--ink-soft); font-size: 13px; }
+.a11y-row-actions { display: flex; gap: 8px; }
+.a11y-row-actions .icon-btn { font: 700 16px 'Fira Sans', sans-serif; }
+[data-contrast-toggle][aria-pressed="true"], [data-theme-toggle][aria-pressed="true"] { color: var(--indigo); border-color: var(--indigo); background: var(--indigo-soft); }
+[data-theme-toggle] .moon-icon { display: none; }
+[data-theme-toggle][aria-pressed="true"] .sun-icon { display: none; }
+[data-theme-toggle][aria-pressed="true"] .moon-icon { display: block; }
 
 .accent-blue { --accent: var(--blue); --accent-soft: var(--blue-soft); }
 .accent-green { --accent: var(--green); --accent-soft: var(--green-soft); }
