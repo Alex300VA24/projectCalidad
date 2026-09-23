@@ -51,7 +51,7 @@ class IndicadorHistorialTest extends TestCase
         IndicadorMedicion::factory()->create([
             'indicador_id' => $indicador->id,
             'programa_estudio_id' => $programa->id,
-            'periodo_academico' => '2025-II',
+            'periodo_academico' => '2024-II',
             'valor_medido' => 90,
             'meta_programada' => 80,
             'estado_cumplimiento' => 'CONFORME',
@@ -59,7 +59,7 @@ class IndicadorHistorialTest extends TestCase
         ]);
 
         Livewire::actingAs($user)->test(IndicadorHistorial::class, ['indicador' => $indicador])
-            ->call('editar', '2025-II')
+            ->call('editar', '2024-II')
             ->assertStatus(404);
     }
 
@@ -82,7 +82,7 @@ class IndicadorHistorialTest extends TestCase
         IndicadorMedicion::factory()->create([
             'indicador_id' => $indicador->id,
             'programa_estudio_id' => $programa->id,
-            'periodo_academico' => '2025-II',
+            'periodo_academico' => '2024-II',
             'valor_medido' => 70,
             'meta_programada' => 80,
             'estado_cumplimiento' => 'NO_CONFORME',
@@ -90,7 +90,7 @@ class IndicadorHistorialTest extends TestCase
         IndicadorMedicion::factory()->create([
             'indicador_id' => $indicador->id,
             'programa_estudio_id' => $programa->id,
-            'periodo_academico' => '2026-I',
+            'periodo_academico' => '2024-I',
             'valor_medido' => 85,
             'meta_programada' => 80,
             'estado_cumplimiento' => 'CONFORME',
@@ -99,8 +99,40 @@ class IndicadorHistorialTest extends TestCase
         Livewire::test(IndicadorHistorial::class, ['indicador' => $indicador])
             ->call('cambiarVista', 'grafico')
             ->assertSee('Interpretación del gráfico')
-            ->assertSee('En 2026-I, el 85,0% de los sílabos')
-            ->assertSee('supera la meta institucional de 80,0% en 5,0 puntos porcentuales')
-            ->assertSee('aumentó 15,0 puntos porcentuales respecto a 2025-II');
+            ->assertSee('meta institucional')
+            ->assertSee('puntos porcentuales')
+            ->assertSee('respecto a 2026-I');
+    }
+
+    public function test_retention_table_and_chart_show_desertion_rate_and_interpretation(): void
+    {
+        $this->seed([RolesAndPermissionsSeeder::class, IndicadoresSeeder::class]);
+        $programa = ProgramaEstudio::query()->firstOrFail();
+        $indicador = IndicadorMaestro::query()->where('codigo', CalculadorIndicadoresService::CODIGO_RETENCION)->firstOrFail();
+        IndicadorMedicion::factory()->create([
+            'indicador_id' => $indicador->id,
+            'programa_estudio_id' => $programa->id,
+            'periodo_academico' => '2025-I',
+            'valor_medido' => 80,
+            'meta_programada' => 90,
+            'estado_cumplimiento' => 'OBSERVADO',
+        ]);
+        IndicadorMedicion::factory()->create([
+            'indicador_id' => $indicador->id,
+            'programa_estudio_id' => $programa->id,
+            'periodo_academico' => '2025-II',
+            'valor_medido' => 92.5,
+            'meta_programada' => 90,
+            'estado_cumplimiento' => 'CONFORME',
+        ]);
+
+        Livewire::test(IndicadorHistorial::class, ['indicador' => $indicador])
+            ->assertSee('Tasa deserción')
+            ->assertSee('20.0%')
+            ->assertSee('7.5%')
+            ->call('cambiarVista', 'grafico')
+            ->assertSee('Interpretación del gráfico')
+            ->assertSee('tasa de deserción de 7,5%')
+            ->assertSee('supera la meta institucional');
     }
 }

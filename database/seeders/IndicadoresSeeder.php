@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\IndicadorMaestro;
+use App\Models\IndicadorMedicion;
 use App\Models\PeriodoAcademico;
 use App\Models\ProgramaEstudio;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class IndicadoresSeeder extends Seeder
 {
@@ -267,6 +269,119 @@ class IndicadoresSeeder extends Seeder
                 $indicador + [
                     'unidad_medida' => 'PORCENTAJE',
                     'responsable' => 'Director de Escuela',
+                ],
+            );
+        }
+
+        $this->llenarIndicadorGestionCurricular();
+        $this->llenarIndicadorRetencion();
+    }
+
+    private function llenarIndicadorGestionCurricular(): void
+    {
+        $path = database_path('data/indicador_gestion_curricular.json');
+
+        if (! File::exists($path)) {
+            return;
+        }
+
+        $periodos = json_decode(File::get($path), true, 512, JSON_THROW_ON_ERROR);
+
+        if (! is_array($periodos)) {
+            return;
+        }
+
+        $programa = ProgramaEstudio::query()->where('codigo', 'UNT-EP')->firstOrFail();
+        $indicador = IndicadorMaestro::query()->where('codigo', 'I-M01.01-DPA-004')->first();
+
+        if ($indicador === null) {
+            return;
+        }
+
+        foreach ($periodos as $registro) {
+            $periodo = trim((string) ($registro['periodo'] ?? ''));
+            $numerador = (int) ($registro['numerador'] ?? 0);
+            $denominador = (int) ($registro['denominador'] ?? 0);
+
+            if ($periodo === '' || $denominador === 0) {
+                continue;
+            }
+
+            $valor = round(($numerador / $denominador) * 100, 2);
+
+            IndicadorMedicion::query()->updateOrCreate(
+                [
+                    'indicador_id' => $indicador->id,
+                    'programa_estudio_id' => $programa->id,
+                    'periodo_academico' => $periodo,
+                ],
+                [
+                    'valor_medido' => $valor,
+                    'meta_programada' => $indicador->meta_institucional,
+                    'estado_cumplimiento' => $indicador->clasificar($valor),
+                    'datos_fuente' => [
+                        'origen' => 'json',
+                        'numerador' => $numerador,
+                        'denominador' => $denominador,
+                    ],
+                ],
+            );
+        }
+    }
+
+    private function llenarIndicadorRetencion(): void
+    {
+        $path = database_path('data/indicador_tasa_retencion.json');
+
+        if (! File::exists($path)) {
+            return;
+        }
+
+        $registros = json_decode(File::get($path), true, 512, JSON_THROW_ON_ERROR);
+
+        if (! is_array($registros)) {
+            return;
+        }
+
+        $indicador = IndicadorMaestro::query()->where('codigo', 'M01.01.02.02-FI-001')->first();
+
+        if ($indicador === null) {
+            return;
+        }
+
+        foreach ($registros as $registro) {
+            $programaCodigo = trim((string) ($registro['programa'] ?? ''));
+            $periodo = trim((string) ($registro['periodo'] ?? ''));
+            $numerador = (int) ($registro['numerador'] ?? 0);
+            $denominador = (int) ($registro['denominador'] ?? 0);
+
+            if ($programaCodigo === '' || $periodo === '' || $denominador === 0) {
+                continue;
+            }
+
+            $programa = ProgramaEstudio::query()->where('codigo', $programaCodigo)->first();
+
+            if ($programa === null) {
+                continue;
+            }
+
+            $valor = round(($numerador / $denominador) * 100, 2);
+
+            IndicadorMedicion::query()->updateOrCreate(
+                [
+                    'indicador_id' => $indicador->id,
+                    'programa_estudio_id' => $programa->id,
+                    'periodo_academico' => $periodo,
+                ],
+                [
+                    'valor_medido' => $valor,
+                    'meta_programada' => $indicador->meta_institucional,
+                    'estado_cumplimiento' => $indicador->clasificar($valor),
+                    'datos_fuente' => [
+                        'origen' => 'json',
+                        'numerador' => $numerador,
+                        'denominador' => $denominador,
+                    ],
                 ],
             );
         }

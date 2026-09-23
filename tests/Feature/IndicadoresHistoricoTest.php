@@ -16,6 +16,23 @@ class IndicadoresHistoricoTest extends TestCase
 {
     use LazilyRefreshDatabase;
 
+    public function test_retention_measurements_are_loaded_from_json(): void
+    {
+        $this->seed(IndicadoresSeeder::class);
+
+        $mediciones = IndicadorMedicion::query()
+            ->where('programa_estudio_id', ProgramaEstudio::query()->where('codigo', 'UNT-EP')->value('id'))
+            ->whereHas('indicador', fn ($query) => $query->where('codigo', CalculadorIndicadoresService::CODIGO_RETENCION))
+            ->orderBy('periodo_academico')
+            ->get();
+
+        $this->assertCount(4, $mediciones);
+        $this->assertSame(['2024-II', '2025-I', '2025-II', '2026-I'], $mediciones->pluck('periodo_academico')->all());
+        $this->assertSame([317, 341, 336, 368], $mediciones->map(fn (IndicadorMedicion $medicion): int => $medicion->datos_fuente['numerador'])->all());
+        $this->assertSame([326, 317, 341, 336], $mediciones->map(fn (IndicadorMedicion $medicion): int => $medicion->datos_fuente['denominador'])->all());
+        $this->assertSame([97.24, 107.57, 98.53, 109.52], $mediciones->map(fn (IndicadorMedicion $medicion): float => (float) $medicion->valor_medido)->all());
+    }
+
     public function test_consolidated_period_is_not_overwritten_by_later_recalculation(): void
     {
         $this->seed(IndicadoresSeeder::class);
@@ -87,7 +104,7 @@ class IndicadoresHistoricoTest extends TestCase
         $this->seed(IndicadoresSeeder::class);
         $programa = ProgramaEstudio::query()->firstOrFail();
 
-        $valores = app(CalculadorIndicadoresService::class)->calcularValores($programa, '2026-I');
+        $valores = app(CalculadorIndicadoresService::class)->calcularValores($programa, '2026-II');
 
         $this->assertNull($valores[CalculadorIndicadoresService::CODIGO_RETENCION]);
         $this->assertNull($valores[CalculadorIndicadoresService::CODIGO_REPITENCIA]);

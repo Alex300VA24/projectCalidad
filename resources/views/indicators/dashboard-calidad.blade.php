@@ -6,3 +6,7 @@
 @section('content')
     <livewire:indicadores.dashboard-calidad />
 @endsection
+
+@push('modals')
+    <x-pdf-modal />
+@endpush

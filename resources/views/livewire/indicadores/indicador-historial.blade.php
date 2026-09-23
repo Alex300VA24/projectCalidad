@@ -11,6 +11,12 @@
             <h1 class="mt-3 max-w-2xl text-balance text-2xl font-semibold leading-tight tracking-[-0.02em] sm:text-3xl">{{ $indicador->nombre }}</h1>
             <p class="mt-3 max-w-2xl text-sm leading-6 text-white/70">{{ $indicador->finalidad }}</p>
             <p class="mb-0 mt-3 max-w-2xl font-mono text-xs leading-5 text-white/55">{{ $indicador->formula_texto }}</p>
+            @if ($documentoIndicador && ($documentoIndicador->preview_url || $documentoIndicador->external_url))
+                <button class="mt-5 inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg bg-white px-4 text-sm font-semibold text-[#172554] transition hover:bg-emerald-100" type="button" data-open-pdf data-title="{{ $documentoIndicador->title ?? 'Documento del indicador' }}" data-preview="{{ $documentoIndicador->preview_url ?? $documentoIndicador->external_url }}" data-external="{{ $documentoIndicador->external_url ?? $documentoIndicador->preview_url }}">
+                    Ver documento
+                    <svg class="size-4" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+            @endif
         </div>
     </header>
 
@@ -50,6 +56,9 @@
                                 <th class="px-5 py-3">Detalle</th>
                             @endif
                             <th class="px-5 py-3">Valor</th>
+                            @if ($esIndicadorRetencion)
+                                <th class="px-5 py-3">Tasa deserción</th>
+                            @endif
                             <th class="px-5 py-3">Meta</th>
                             <th class="px-5 py-3">Estado</th>
                             <th class="px-5 py-3"><span class="sr-only">Acción</span></th>
@@ -61,8 +70,8 @@
                                 $medicion = $mediciones->get($periodo);
                                 $bloqueado = $medicion?->consolidada_en !== null;
                                 $estilos = match ($medicion?->estado_cumplimiento) {
-                                    'CONFORME' => ['label' => 'Conforme', 'dot' => 'bg-[var(--green)]'],
-                                    'OBSERVADO' => ['label' => 'Observado', 'dot' => 'bg-[var(--amber)]'],
+                                    'CONFORME' => ['label' => 'Conforme', 'dot' => 'bg-[#88E788]'],
+                                    'OBSERVADO' => ['label' => 'Observado', 'dot' => 'bg-[#facc15]'],
                                     'CRITICO' => ['label' => 'Crítico', 'dot' => 'bg-[var(--red)]'],
                                     'NO_CONFORME' => ['label' => 'No conforme', 'dot' => 'bg-[var(--red)]'],
                                     default => ['label' => 'Sin datos', 'dot' => 'bg-slate-400'],
@@ -80,6 +89,9 @@
                                     </td>
                                 @endif
                                 <td class="px-5 py-4 font-mono text-base font-semibold">{{ $medicion ? number_format((float) $medicion->valor_medido, 1).$unidad : '—' }}</td>
+                                @if ($esIndicadorRetencion)
+                                    <td class="px-5 py-4 font-mono text-base font-semibold">{{ $medicion ? number_format(100 - (float) $medicion->valor_medido, 1).$unidad : '—' }}</td>
+                                @endif
                                 <td class="px-5 py-4 font-mono text-sm text-[var(--ink-soft)]">{{ $indicador->meta_institucional === null ? '—' : number_format((float) $indicador->meta_institucional, 0).$unidad }}</td>
                                 <td class="px-5 py-4">
                                     <span class="inline-flex size-4 items-center justify-center rounded-full ring-4 ring-black/5" title="{{ $estilos['label'] }}">
@@ -99,7 +111,7 @@
                                 </td>
                             </tr>
                         @empty
-                            <tr><td colspan="{{ $usaFormulaManual ? 6 : 5 }}" class="px-5 py-10 text-center text-sm text-[var(--ink-soft)]">Aún no hay periodos académicos disponibles.</td></tr>
+                            <tr><td colspan="{{ ($usaFormulaManual ? 6 : 5) + ($esIndicadorRetencion ? 1 : 0) }}" class="px-5 py-10 text-center text-sm text-[var(--ink-soft)]">Aún no hay periodos académicos disponibles.</td></tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -107,8 +119,8 @@
             <p class="border-t border-[var(--border)] px-5 py-3 text-xs leading-5 text-[var(--ink-soft)]">
                 <strong class="font-semibold text-[var(--ink)]">Nota.</strong>
                 El color indica el estado de cumplimiento frente a la meta institucional:
-                <span class="inline-flex items-center gap-1"><span class="size-2 rounded-full bg-[var(--green)]" aria-hidden="true"></span>verde, conforme (cumple la meta)</span>;
-                <span class="inline-flex items-center gap-1"><span class="size-2 rounded-full bg-[var(--amber)]" aria-hidden="true"></span>ámbar, observado (próximo a la meta)</span>;
+                <span class="inline-flex items-center gap-1"><span class="size-2 rounded-full bg-[#88E788]" aria-hidden="true"></span>verde, conforme (cumple la meta)</span>;
+                <span class="inline-flex items-center gap-1"><span class="size-2 rounded-full bg-[#facc15]" aria-hidden="true"></span>amarillo, observado (próximo a la meta)</span>;
                 <span class="inline-flex items-center gap-1"><span class="size-2 rounded-full bg-[var(--red)]" aria-hidden="true"></span>rojo, crítico (no cumple la meta)</span>;
                 <span class="inline-flex items-center gap-1"><span class="size-2 rounded-full bg-slate-400" aria-hidden="true"></span>gris, sin datos (medición aún no registrada)</span>.
             </p>
@@ -136,7 +148,7 @@
                     <span class="text-[var(--ink-soft)]">Último periodo registrado ({{ $ultimoPeriodo }}):</span>
                     <strong class="font-mono">{{ number_format((float) $ultimoValor, 1) }}{{ $unidad }}</strong>
                     @if ($ultimoCumple !== null)
-                        <span @class(['inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold', 'bg-[var(--green-soft)] text-[var(--green)]' => $ultimoCumple, 'bg-[var(--red-soft)] text-[var(--red)]' => ! $ultimoCumple])>
+                        <span @class(['inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold', 'bg-[#88E788] text-[#1f7a1f]' => $ultimoCumple, 'bg-[var(--red-soft)] text-[var(--red)]' => ! $ultimoCumple])>
                             {{ $ultimoCumple ? 'Cumple la meta' : 'Por debajo de la meta' }}
                         </span>
                     @endif
@@ -144,7 +156,7 @@
             @endif
 
             <div class="mx-auto mt-6 h-80 w-full max-w-3xl" wire:key="indicador-chart-{{ $indicador->id }}-{{ $ventanaOffset }}" x-init="$nextTick(() => window.renderQualityCharts?.($el))">
-                <canvas data-quality-chart data-chart-percent="1" data-chart-config="{{ json_encode($chartConfig) }}" aria-label="Gráfico de barras de {{ $indicador->nombre }}" @if ($esIndicadorSilabos) aria-describedby="syllabus-chart-interpretation" @endif role="img"></canvas>
+                <canvas data-quality-chart data-chart-percent="1" data-chart-config="{{ json_encode($chartConfig) }}" aria-label="Gráfico de barras de {{ $indicador->nombre }}" @if ($esIndicadorSilabos || $esIndicadorRetencion) aria-describedby="syllabus-chart-interpretation" @endif role="img"></canvas>
             </div>
 
             <div class="mx-auto mt-4 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-[var(--border)] pt-4 text-xs font-medium text-[var(--ink-soft)]">
@@ -155,7 +167,7 @@
                     </span>
                 @endif
                 <span class="inline-flex items-center gap-1.5">
-                    <span class="size-2.5 shrink-0 rounded-sm" style="background-color:#087f5b" aria-hidden="true"></span>
+                    <span class="size-2.5 shrink-0 rounded-sm" style="background-color:#88E788" aria-hidden="true"></span>
                     Cumple la meta
                 </span>
                 <span class="inline-flex items-center gap-1.5">
@@ -168,7 +180,8 @@
                 <strong class="font-semibold text-[var(--ink)]">Nota.</strong> Elaboración propia a partir del registro semestral del indicador.
             </p>
 
-            @if ($esIndicadorSilabos)
+            @if ($esIndicadorSilabos || $esIndicadorRetencion)
+                @php $interpretaciones = $esIndicadorSilabos ? $interpretacionesSilabos : $interpretacionesRetencion; @endphp
                 <aside id="syllabus-chart-interpretation" class="mt-6 border-t border-[var(--border)] pt-5" aria-labelledby="syllabus-interpretation-heading">
                     <div class="max-w-2xl">
                         <span class="eyebrow">Lectura del resultado</span>
@@ -176,18 +189,18 @@
                         <p class="mb-0 mt-1 text-sm leading-6 text-[var(--ink-soft)]">La lectura relaciona el último semestre medido con la meta institucional y con el periodo anterior visible.</p>
                     </div>
                     <div class="mt-4 grid gap-3 lg:grid-cols-3">
-                        @foreach ($interpretacionesSilabos as $interpretacion)
+                        @foreach ($interpretaciones as $interpretacion)
                             <article @class([
                                 'rounded-lg border p-4',
-                                'border-[var(--green)] bg-[var(--green-soft)]' => $interpretacion['tono'] === 'positivo',
-                                'border-[var(--amber)] bg-[var(--amber-soft)]' => $interpretacion['tono'] === 'atencion',
+                                'border-[#88E788] bg-[#eafbea]' => $interpretacion['tono'] === 'positivo',
+                                'border-[#facc15] bg-[#fef9c3]' => $interpretacion['tono'] === 'atencion',
                                 'border-[var(--border)] bg-[var(--surface-alt)]' => $interpretacion['tono'] === 'neutral',
                             ])>
                                 <div class="flex items-start gap-3">
                                     <span @class([
                                         'grid size-9 shrink-0 place-items-center rounded-full',
-                                        'bg-[var(--surface)] text-[var(--green)]' => $interpretacion['tono'] === 'positivo',
-                                        'bg-[var(--surface)] text-[var(--amber)]' => $interpretacion['tono'] === 'atencion',
+                                        'bg-[var(--surface)] text-[#1f7a1f]' => $interpretacion['tono'] === 'positivo',
+                                        'bg-[var(--surface)] text-[#92710b]' => $interpretacion['tono'] === 'atencion',
                                         'bg-[var(--indigo-soft)] text-[var(--indigo)]' => $interpretacion['tono'] === 'neutral',
                                     ]) aria-hidden="true">
                                         <svg class="size-4" viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-8m5 8V7"/></svg>

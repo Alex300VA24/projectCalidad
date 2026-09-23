@@ -56,6 +56,10 @@ class Document extends Model
 
     public function getPreviewUrlAttribute(): string
     {
+        if (preg_match('~https://docs\.google\.com/(spreadsheets|document|presentation)/d/([^/]+)~', $this->drive_url, $matches)) {
+            return "https://docs.google.com/{$matches[1]}/d/{$matches[2]}/preview";
+        }
+
         return $this->drive_file_id
             ? "https://drive.google.com/file/d/{$this->drive_file_id}/preview"
             : $this->drive_url;

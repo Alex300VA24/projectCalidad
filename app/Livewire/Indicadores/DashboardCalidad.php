@@ -4,6 +4,7 @@ namespace App\Livewire\Indicadores;
 
 use App\Models\AccionMejoraIndicador;
 use App\Models\Course;
+use App\Models\Document;
 use App\Models\IndicadorMaestro;
 use App\Models\IndicadorMedicion;
 use App\Models\Matricula;
@@ -136,8 +137,17 @@ class DashboardCalidad extends Component
 
         $mediciones = $calculador->calcularActuales($programa, $this->periodoAcademico);
         $porIndicador = $mediciones->keyBy('indicador_id');
+        $documentosIndicadores = Document::query()
+            ->where('document_type', Document::TIPO_CALIDAD)
+            ->get()
+            ->groupBy('section');
         $indicadores = IndicadorMaestro::query()->orderBy('codigo')->get()
-            ->each(fn (IndicadorMaestro $indicador) => $indicador->setRelation('mediciones', collect([$porIndicador->get($indicador->id)])->filter()));
+            ->each(function (IndicadorMaestro $indicador) use ($porIndicador, $documentosIndicadores): void {
+                $indicador->setRelation('mediciones', collect([$porIndicador->get($indicador->id)])->filter());
+                $documentos = $documentosIndicadores->get($indicador->macro_proceso, collect());
+                $indicador->setRelation('documento', $documentos->first(fn (Document $documento): bool => str_contains($documento->title, $indicador->codigo))
+                    ?? $documentos->first());
+            });
 
         return view('livewire.indicadores.dashboard-calidad', [
             'programas' => ProgramaEstudio::query()->where('activo', true)->orderBy('nombre')->get(['id', 'nombre']),

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Indicadores;
 
+use App\Models\Document;
 use App\Models\IndicadorMaestro;
 use App\Models\IndicadorMedicion;
 use App\Models\ProgramaEstudio;
@@ -146,7 +147,7 @@ class IndicadorHistorial extends Component
 
             $cumple = $sentidoMenorIgual ? $valor <= $meta : $valor >= $meta;
 
-            return $cumple ? '#087f5b' : '#c0362c';
+            return $cumple ? '#88E788' : '#c0362c';
         }, $valoresVentana);
 
         $config = [
@@ -198,6 +199,13 @@ class IndicadorHistorial extends Component
             ? null
             : ($sentidoMenorIgual ? $ultimoValor <= $meta : $ultimoValor >= $meta);
         $esIndicadorSilabos = $this->indicador->codigo === CalculadorIndicadoresService::CODIGO_SILABOS;
+        $esIndicadorRetencion = $this->indicador->codigo === CalculadorIndicadoresService::CODIGO_RETENCION;
+        $documentosIndicador = Document::query()
+            ->where('document_type', Document::TIPO_CALIDAD)
+            ->where('section', $this->indicador->macro_proceso)
+            ->get();
+        $documentoIndicador = $documentosIndicador->first(fn (Document $documento): bool => str_contains($documento->title, $this->indicador->codigo))
+            ?? $documentosIndicador->first();
 
         return view('livewire.indicadores.indicador-historial', [
             'periodos' => array_reverse($historico['labels']),
@@ -213,7 +221,10 @@ class IndicadorHistorial extends Component
             'ultimoCumple' => $ultimoCumple,
             'meta' => $meta,
             'esIndicadorSilabos' => $esIndicadorSilabos,
+            'esIndicadorRetencion' => $esIndicadorRetencion,
             'interpretacionesSilabos' => $esIndicadorSilabos ? $this->interpretacionesSilabos($puntosMedidos, $meta) : [],
+            'interpretacionesRetencion' => $esIndicadorRetencion ? $this->interpretacionesRetencion($puntosMedidos, $meta) : [],
+            'documentoIndicador' => $documentoIndicador,
         ]);
     }
 
@@ -282,6 +293,83 @@ class IndicadorHistorial extends Component
             $textoTendencia = 'La cobertura disminuyó '.number_format(abs($variacion), 1, ',', '.').' puntos porcentuales respecto a '.$anterior['periodo'].'.';
         } else {
             $textoTendencia = 'La cobertura se mantuvo sin variación respecto a '.$anterior['periodo'].'.';
+        }
+
+        $interpretaciones[] = [
+            'titulo' => 'Tendencia semestral',
+            'texto' => $textoTendencia,
+            'tono' => $variacion > 0 ? 'positivo' : ($variacion < 0 ? 'atencion' : 'neutral'),
+        ];
+
+        return $interpretaciones;
+    }
+
+    /**
+     * @param  list<array{periodo: string, valor: float}>  $puntosMedidos
+     * @return list<array{titulo: string, texto: string, tono: string}>
+     */
+    private function interpretacionesRetencion(array $puntosMedidos, ?float $meta): array
+    {
+        if ($puntosMedidos === []) {
+            return [[
+                'titulo' => 'Lectura pendiente',
+                'texto' => 'Aún no hay mediciones para interpretar la retención ni la deserción estudiantil.',
+                'tono' => 'neutral',
+            ]];
+        }
+
+        $ultimo = $puntosMedidos[array_key_last($puntosMedidos)];
+        $desercionUltimo = round(100 - $ultimo['valor'], 1);
+        $interpretaciones = [[
+            'titulo' => 'Resultado más reciente',
+            'texto' => 'En '.$ultimo['periodo'].', la tasa de retención fue de '.number_format($ultimo['valor'], 1, ',', '.').'%, lo que equivale a una tasa de deserción de '.number_format($desercionUltimo, 1, ',', '.').'%.',
+            'tono' => 'neutral',
+        ]];
+
+        if ($meta === null) {
+            $interpretaciones[] = [
+                'titulo' => 'Meta institucional',
+                'texto' => 'Este indicador todavía no tiene una meta institucional configurada para comparar el resultado.',
+                'tono' => 'neutral',
+            ];
+        } else {
+            $brecha = round($ultimo['valor'] - $meta, 1);
+            $metaFormateada = number_format($meta, 1, ',', '.').'%';
+
+            if ($brecha > 0) {
+                $textoMeta = 'La retención supera la meta institucional de '.$metaFormateada.' en '.number_format($brecha, 1, ',', '.').' puntos porcentuales.';
+            } elseif ($brecha < 0) {
+                $textoMeta = 'Faltan '.number_format(abs($brecha), 1, ',', '.').' puntos porcentuales de retención para alcanzar la meta institucional de '.$metaFormateada.'.';
+            } else {
+                $textoMeta = 'La retención alcanza exactamente la meta institucional de '.$metaFormateada.'.';
+            }
+
+            $interpretaciones[] = [
+                'titulo' => 'Cumplimiento de la meta',
+                'texto' => $textoMeta,
+                'tono' => $brecha >= 0 ? 'positivo' : 'atencion',
+            ];
+        }
+
+        if (count($puntosMedidos) < 2) {
+            $interpretaciones[] = [
+                'titulo' => 'Tendencia semestral',
+                'texto' => 'Se necesita al menos una segunda medición para identificar una tendencia de deserción.',
+                'tono' => 'neutral',
+            ];
+
+            return $interpretaciones;
+        }
+
+        $anterior = $puntosMedidos[count($puntosMedidos) - 2];
+        $variacion = round($ultimo['valor'] - $anterior['valor'], 1);
+
+        if ($variacion > 0) {
+            $textoTendencia = 'La retención aumentó '.number_format($variacion, 1, ',', '.').' puntos porcentuales (la deserción bajó en la misma proporción) respecto a '.$anterior['periodo'].'.';
+        } elseif ($variacion < 0) {
+            $textoTendencia = 'La retención disminuyó '.number_format(abs($variacion), 1, ',', '.').' puntos porcentuales (la deserción subió en la misma proporción) respecto a '.$anterior['periodo'].'.';
+        } else {
+            $textoTendencia = 'La retención se mantuvo sin variación respecto a '.$anterior['periodo'].'.';
         }
 
         $interpretaciones[] = [

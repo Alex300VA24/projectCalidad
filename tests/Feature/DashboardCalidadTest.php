@@ -47,7 +47,7 @@ class DashboardCalidadTest extends TestCase
         $this->get('/indicadores/calidad')
             ->assertOk()
             ->assertSee('M01.01.02.02-FI-001')
-            ->assertSee('M01.04-DDA-FI-001')
+            ->assertSee('M01.04-PG-I1')
             ->assertSee('M01.05-DCU-FI-002');
     }
 

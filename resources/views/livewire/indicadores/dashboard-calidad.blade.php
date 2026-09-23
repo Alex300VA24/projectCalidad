@@ -118,10 +118,18 @@
                         <span class="w-fit rounded bg-[var(--indigo-soft)] px-2 py-1 font-mono text-[10px] font-semibold text-[var(--indigo)]">{{ $indicador->codigo }}</span>
                         <h3 class="mt-4 text-base font-semibold leading-6">{{ $indicador->nombre }}</h3>
                         <p class="mb-5 mt-1 text-sm text-[var(--ink-soft)]">{{ $indicador->proceso }}</p>
-                        <a href="{{ route('quality-indicators.historial', $indicador->codigo) }}" class="quality-card-link primary mt-auto" aria-label="Ver {{ $indicador->nombre }}">
+                        <div class="mt-auto flex flex-wrap gap-2">
+                        <a href="{{ route('quality-indicators.historial', $indicador->codigo) }}" class="quality-card-link primary" aria-label="Ver {{ $indicador->nombre }}">
                             <svg class="size-3.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m5 10V5m5 14v-8m5 8V7"/></svg>
                             Ver
                         </a>
+                            @if ($indicador->documento && ($indicador->documento->preview_url || $indicador->documento->external_url))
+                                <button class="quality-card-link" type="button" data-open-pdf data-title="{{ $indicador->documento->title ?? 'Documento del indicador' }}" data-preview="{{ $indicador->documento->preview_url ?? $indicador->documento->external_url }}" data-external="{{ $indicador->documento->external_url ?? $indicador->documento->preview_url }}">
+                                    Ver documento
+                                    <svg class="size-3.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                </button>
+                            @endif
+                        </div>
                     </article>
                 @empty
                     <div class="col-span-full rounded-lg border border-dashed border-[var(--border)] bg-[var(--surface)] p-10 text-center"><h3>Sin indicadores en este proceso</h3><p class="mb-0 text-[var(--ink-soft)]">Aún no se ha configurado ningún indicador para {{ $proceso }}.</p></div>

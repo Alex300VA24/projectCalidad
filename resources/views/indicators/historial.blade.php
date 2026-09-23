@@ -6,3 +6,7 @@
 @section('content')
     <livewire:indicadores.indicador-historial :indicador="$indicador" />
 @endsection
+
+@push('modals')
+    <x-pdf-modal />
+@endpush
