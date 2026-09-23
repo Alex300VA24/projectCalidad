@@ -200,6 +200,7 @@ class IndicadorHistorial extends Component
             : ($sentidoMenorIgual ? $ultimoValor <= $meta : $ultimoValor >= $meta);
         $esIndicadorSilabos = $this->indicador->codigo === CalculadorIndicadoresService::CODIGO_SILABOS;
         $esIndicadorRetencion = $this->indicador->codigo === CalculadorIndicadoresService::CODIGO_RETENCION;
+        $esIndicadorRepitencia = $this->indicador->codigo === CalculadorIndicadoresService::CODIGO_REPITENCIA;
         $documentosIndicador = Document::query()
             ->where('document_type', Document::TIPO_CALIDAD)
             ->where('section', $this->indicador->macro_proceso)
@@ -222,8 +223,10 @@ class IndicadorHistorial extends Component
             'meta' => $meta,
             'esIndicadorSilabos' => $esIndicadorSilabos,
             'esIndicadorRetencion' => $esIndicadorRetencion,
+            'esIndicadorRepitencia' => $esIndicadorRepitencia,
             'interpretacionesSilabos' => $esIndicadorSilabos ? $this->interpretacionesSilabos($puntosMedidos, $meta) : [],
             'interpretacionesRetencion' => $esIndicadorRetencion ? $this->interpretacionesRetencion($puntosMedidos, $meta) : [],
+            'interpretacionesRepitencia' => $esIndicadorRepitencia ? $this->interpretacionesRepitencia($puntosMedidos, $meta) : [],
             'documentoIndicador' => $documentoIndicador,
         ]);
     }
@@ -376,6 +379,82 @@ class IndicadorHistorial extends Component
             'titulo' => 'Tendencia semestral',
             'texto' => $textoTendencia,
             'tono' => $variacion > 0 ? 'positivo' : ($variacion < 0 ? 'atencion' : 'neutral'),
+        ];
+
+        return $interpretaciones;
+    }
+
+    /**
+     * @param  list<array{periodo: string, valor: float}>  $puntosMedidos
+     * @return list<array{titulo: string, texto: string, tono: string}>
+     */
+    private function interpretacionesRepitencia(array $puntosMedidos, ?float $meta): array
+    {
+        if ($puntosMedidos === []) {
+            return [[
+                'titulo' => 'Lectura pendiente',
+                'texto' => 'Aún no hay mediciones para interpretar la repitencia estudiantil.',
+                'tono' => 'neutral',
+            ]];
+        }
+
+        $ultimo = $puntosMedidos[array_key_last($puntosMedidos)];
+        $interpretaciones = [[
+            'titulo' => 'Resultado más reciente',
+            'texto' => 'En '.$ultimo['periodo'].', el '.number_format($ultimo['valor'], 1, ',', '.').'% de los estudiantes matriculados repitió una misma experiencia curricular.',
+            'tono' => 'neutral',
+        ]];
+
+        if ($meta === null) {
+            $interpretaciones[] = [
+                'titulo' => 'Meta institucional',
+                'texto' => 'Este indicador todavía no tiene una meta institucional configurada para comparar el resultado.',
+                'tono' => 'neutral',
+            ];
+        } else {
+            $brecha = round($meta - $ultimo['valor'], 1);
+            $metaFormateada = number_format($meta, 1, ',', '.').'%';
+
+            if ($brecha > 0) {
+                $textoMeta = 'El resultado se mantiene dentro de la meta institucional (máximo '.$metaFormateada.'), con '.number_format($brecha, 1, ',', '.').' puntos porcentuales de margen.';
+            } elseif ($brecha < 0) {
+                $textoMeta = 'El resultado supera la meta institucional (máximo '.$metaFormateada.') en '.number_format(abs($brecha), 1, ',', '.').' puntos porcentuales, un nivel de repitencia por encima de lo aceptable.';
+            } else {
+                $textoMeta = 'El resultado alcanza exactamente el límite de la meta institucional de '.$metaFormateada.'.';
+            }
+
+            $interpretaciones[] = [
+                'titulo' => 'Cumplimiento de la meta',
+                'texto' => $textoMeta,
+                'tono' => $brecha >= 0 ? 'positivo' : 'atencion',
+            ];
+        }
+
+        if (count($puntosMedidos) < 2) {
+            $interpretaciones[] = [
+                'titulo' => 'Tendencia semestral',
+                'texto' => 'Se necesita al menos una segunda medición para identificar una tendencia de repitencia.',
+                'tono' => 'neutral',
+            ];
+
+            return $interpretaciones;
+        }
+
+        $anterior = $puntosMedidos[count($puntosMedidos) - 2];
+        $variacion = round($ultimo['valor'] - $anterior['valor'], 1);
+
+        if ($variacion > 0) {
+            $textoTendencia = 'La repitencia aumentó '.number_format($variacion, 1, ',', '.').' puntos porcentuales respecto a '.$anterior['periodo'].'.';
+        } elseif ($variacion < 0) {
+            $textoTendencia = 'La repitencia disminuyó '.number_format(abs($variacion), 1, ',', '.').' puntos porcentuales respecto a '.$anterior['periodo'].'.';
+        } else {
+            $textoTendencia = 'La repitencia se mantuvo sin variación respecto a '.$anterior['periodo'].'.';
+        }
+
+        $interpretaciones[] = [
+            'titulo' => 'Tendencia semestral',
+            'texto' => $textoTendencia,
+            'tono' => $variacion < 0 ? 'positivo' : ($variacion > 0 ? 'atencion' : 'neutral'),
         ];
 
         return $interpretaciones;

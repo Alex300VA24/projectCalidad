@@ -1,0 +1,26 @@
+[
+    {
+        "programa": "UNT-EP",
+        "periodo": "2024-II",
+        "numerador": 103,
+        "denominador": 317
+    },
+    {
+        "programa": "UNT-EP",
+        "periodo": "2025-I",
+        "numerador": 78,
+        "denominador": 341
+    },
+    {
+        "programa": "UNT-EP",
+        "periodo": "2025-II",
+        "numerador": 118,
+        "denominador": 336
+    },
+    {
+        "programa": "UNT-EP",
+        "periodo": "2026-I",
+        "numerador": 88,
+        "denominador": 368
+    }
+]

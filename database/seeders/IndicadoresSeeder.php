@@ -275,6 +275,7 @@ class IndicadoresSeeder extends Seeder
 
         $this->llenarIndicadorGestionCurricular();
         $this->llenarIndicadorRetencion();
+        $this->llenarIndicadorRepitencia();
     }
 
     private function llenarIndicadorGestionCurricular(): void
@@ -344,6 +345,64 @@ class IndicadoresSeeder extends Seeder
         }
 
         $indicador = IndicadorMaestro::query()->where('codigo', 'M01.01.02.02-FI-001')->first();
+
+        if ($indicador === null) {
+            return;
+        }
+
+        foreach ($registros as $registro) {
+            $programaCodigo = trim((string) ($registro['programa'] ?? ''));
+            $periodo = trim((string) ($registro['periodo'] ?? ''));
+            $numerador = (int) ($registro['numerador'] ?? 0);
+            $denominador = (int) ($registro['denominador'] ?? 0);
+
+            if ($programaCodigo === '' || $periodo === '' || $denominador === 0) {
+                continue;
+            }
+
+            $programa = ProgramaEstudio::query()->where('codigo', $programaCodigo)->first();
+
+            if ($programa === null) {
+                continue;
+            }
+
+            $valor = round(($numerador / $denominador) * 100, 2);
+
+            IndicadorMedicion::query()->updateOrCreate(
+                [
+                    'indicador_id' => $indicador->id,
+                    'programa_estudio_id' => $programa->id,
+                    'periodo_academico' => $periodo,
+                ],
+                [
+                    'valor_medido' => $valor,
+                    'meta_programada' => $indicador->meta_institucional,
+                    'estado_cumplimiento' => $indicador->clasificar($valor),
+                    'datos_fuente' => [
+                        'origen' => 'json',
+                        'numerador' => $numerador,
+                        'denominador' => $denominador,
+                    ],
+                ],
+            );
+        }
+    }
+
+    private function llenarIndicadorRepitencia(): void
+    {
+        $path = database_path('data/indicador_repitencia.json');
+
+        if (! File::exists($path)) {
+            return;
+        }
+
+        $registros = json_decode(File::get($path), true, 512, JSON_THROW_ON_ERROR);
+
+        if (! is_array($registros)) {
+            return;
+        }
+
+        $indicador = IndicadorMaestro::query()->where('codigo', 'M01.01.02.02-FI-002')->first();
 
         if ($indicador === null) {
             return;

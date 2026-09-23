@@ -156,7 +156,7 @@
             @endif
 
             <div class="mx-auto mt-6 h-80 w-full max-w-3xl" wire:key="indicador-chart-{{ $indicador->id }}-{{ $ventanaOffset }}" x-init="$nextTick(() => window.renderQualityCharts?.($el))">
-                <canvas data-quality-chart data-chart-percent="1" data-chart-config="{{ json_encode($chartConfig) }}" aria-label="Gráfico de barras de {{ $indicador->nombre }}" @if ($esIndicadorSilabos || $esIndicadorRetencion) aria-describedby="syllabus-chart-interpretation" @endif role="img"></canvas>
+                <canvas data-quality-chart data-chart-percent="1" data-chart-config="{{ json_encode($chartConfig) }}" aria-label="Gráfico de barras de {{ $indicador->nombre }}" @if ($esIndicadorSilabos || $esIndicadorRetencion || $esIndicadorRepitencia) aria-describedby="syllabus-chart-interpretation" @endif role="img"></canvas>
             </div>
 
             <div class="mx-auto mt-4 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-[var(--border)] pt-4 text-xs font-medium text-[var(--ink-soft)]">
@@ -180,8 +180,14 @@
                 <strong class="font-semibold text-[var(--ink)]">Nota.</strong> Elaboración propia a partir del registro semestral del indicador.
             </p>
 
-            @if ($esIndicadorSilabos || $esIndicadorRetencion)
-                @php $interpretaciones = $esIndicadorSilabos ? $interpretacionesSilabos : $interpretacionesRetencion; @endphp
+            @if ($esIndicadorSilabos || $esIndicadorRetencion || $esIndicadorRepitencia)
+                @php
+                    $interpretaciones = match (true) {
+                        $esIndicadorSilabos => $interpretacionesSilabos,
+                        $esIndicadorRetencion => $interpretacionesRetencion,
+                        default => $interpretacionesRepitencia,
+                    };
+                @endphp
                 <aside id="syllabus-chart-interpretation" class="mt-6 border-t border-[var(--border)] pt-5" aria-labelledby="syllabus-interpretation-heading">
                     <div class="max-w-2xl">
                         <span class="eyebrow">Lectura del resultado</span>
