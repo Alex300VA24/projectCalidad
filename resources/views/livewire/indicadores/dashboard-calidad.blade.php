@@ -119,7 +119,7 @@
                         <h3 class="mt-4 text-base font-semibold leading-6">{{ $indicador->nombre }}</h3>
                         <p class="mb-5 mt-1 text-sm text-[var(--ink-soft)]">{{ $indicador->proceso }}</p>
                         <div class="mt-auto flex flex-wrap gap-2">
-                        <a href="{{ route('quality-indicators.historial', $indicador->codigo) }}" class="quality-card-link primary" aria-label="Ver {{ $indicador->nombre }}">
+                        <a href="{{ route(str_contains($indicador->codigo, '/') ? 'quality-indicators.historial-with-slash' : 'quality-indicators.historial', $indicador->codigo) }}" class="quality-card-link primary" aria-label="Ver {{ $indicador->nombre }}">
                             <svg class="size-3.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m5 10V5m5 14v-8m5 8V7"/></svg>
                             Ver
                         </a>
@@ -138,74 +138,4 @@
         @endforeach
     </section>
 
-    <section aria-labelledby="student-support-heading">
-        <h2 id="student-support-heading" class="sr-only">Acompañamiento estudiantil</h2>
-        <article class="rounded-lg border border-[var(--border)] bg-[#172554] p-5 text-white shadow-sm">
-            <span class="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-200">Tutoría y derivaciones · F-07</span><h3 class="mt-2 text-xl">Cobertura de acompañamiento estudiantil</h3>
-            <div class="mt-6 grid grid-cols-3 gap-2 sm:gap-4">
-                @foreach ([['label' => 'Programadas', 'value' => $resumenTutoria['programadas']], ['label' => 'Realizadas', 'value' => $resumenTutoria['realizadas']], ['label' => 'Derivaciones', 'value' => $resumenTutoria['derivaciones']]] as $dato)
-                    <div class="rounded-lg border border-white/15 bg-white/[0.07] p-3 sm:p-4"><strong class="block font-mono text-2xl sm:text-3xl">{{ $dato['value'] }}</strong><span class="mt-1 block text-xs text-white/65 sm:text-sm">{{ $dato['label'] }}</span></div>
-                @endforeach
-            </div>
-            <p class="mb-0 mt-5 text-sm leading-6 text-white/65">Las derivaciones médicas, psicológicas y sociales se cuentan desde los registros emitidos durante el semestre.</p>
-        </article>
-    </section>
-
-    <section class="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 shadow-sm" aria-labelledby="graduate-metrics-heading">
-        <span class="eyebrow">SE-01 y SE-02</span>
-        <h2 id="graduate-metrics-heading" class="mt-1">Resultados de egresados</h2>
-        <div class="mt-4 grid gap-3 sm:grid-cols-3">
-            @foreach ([['label' => 'Titulados', 'value' => $resumenEgresados['titulados']], ['label' => 'Laborando', 'value' => $resumenEgresados['laborando']], ['label' => 'En su especialidad', 'value' => $resumenEgresados['especialidad']]] as $metrica)
-                <article class="rounded-lg bg-[var(--surface-alt)] p-4"><span class="text-sm text-[var(--ink-soft)]">{{ $metrica['label'] }}</span><strong class="mt-1 block font-mono text-2xl">{{ $metrica['value'] === null ? 'Sin datos' : number_format($metrica['value'], 1).'%' }}</strong></article>
-            @endforeach
-        </div>
-        <p class="mb-0 mt-3 text-sm text-[var(--ink-soft)]">Metricas independientes. Derivaciones y empleo en especialidad son descriptivos sin meta oficial configurada.</p>
-    </section>
-
-    <section class="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)] shadow-sm" aria-labelledby="plans-heading">
-        <div class="flex flex-wrap items-end justify-between gap-3 border-b border-[var(--border)] p-5">
-            <div><span class="eyebrow">Gestión correctiva</span><h2 id="plans-heading" class="mt-1">Planes de mejora</h2><p class="mb-0 mt-1 text-sm text-[var(--ink-soft)]">Registra causas y acciones para indicadores observados o críticos.</p></div>
-            <span class="rounded-full bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-800">{{ $planesPendientes->count() }} requieren atención</span>
-        </div>
-        <div class="overflow-x-auto">
-            <table class="w-full min-w-[760px] border-collapse text-left">
-                <thead class="bg-[var(--surface-alt)] font-mono text-[11px] uppercase tracking-[0.08em] text-[var(--ink-soft)]"><tr><th class="px-5 py-3">Indicador</th><th class="px-5 py-3">Estado</th><th class="px-5 py-3">Análisis</th><th class="px-5 py-3">Acción</th><th class="px-5 py-3"><span class="sr-only">Editar</span></th></tr></thead>
-                <tbody class="divide-y divide-[var(--border)] [&>tr:nth-child(even)]:bg-[var(--surface-alt)]/40">
-                    @forelse ($planesPendientes as $medicion)
-                        <tr class="transition-colors hover:bg-indigo-50/60">
-                            <td class="px-5 py-4"><strong class="block text-sm">{{ $medicion->indicador->nombre }}</strong><small class="mt-1 block font-mono text-[11px] text-indigo-700">{{ $medicion->indicador->codigo }}</small></td>
-                            <td class="px-5 py-4"><span @class(['inline-flex rounded-full px-2.5 py-1 text-xs font-semibold', 'bg-red-50 text-red-700' => $medicion->estado_cumplimiento === 'CRITICO', 'bg-amber-50 text-amber-800' => $medicion->estado_cumplimiento === 'OBSERVADO'])>{{ ucfirst(mb_strtolower($medicion->estado_cumplimiento)) }}</span></td>
-                            <td class="max-w-xs px-5 py-4 text-sm text-[var(--ink-soft)]">{{ $medicion->analisis_causas ?: 'Pendiente de registrar' }}</td>
-                            <td class="max-w-xs px-5 py-4 text-sm text-[var(--ink-soft)]">{{ $medicion->acciones_mejora ?: 'Pendiente de registrar' }}</td>
-                            <td class="px-5 py-4 text-right"><button type="button" wire:click="editarPlan({{ $medicion->indicador_id }})" class="min-h-11 cursor-pointer rounded-lg border border-[var(--border)] px-3 text-sm font-semibold transition hover:border-indigo-500 hover:text-indigo-700 focus-visible:ring-2 focus-visible:ring-indigo-500">{{ $medicion->acciones_mejora ? 'Editar' : 'Registrar' }}</button></td>
-                        </tr>
-                    @empty
-                        <tr><td colspan="5" class="px-5 py-10 text-center text-sm text-[var(--ink-soft)]">No hay indicadores observados o críticos en este periodo.</td></tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    @if ($medicionEditandoId)
-        <div class="fixed inset-0 z-[110] grid place-items-end sm:place-items-center" role="presentation" x-on:keydown.escape.window="$wire.cerrarPlan()">
-            <button type="button" class="absolute inset-0 cursor-pointer bg-slate-950/70 backdrop-blur-sm" wire:click="cerrarPlan" aria-label="Cerrar formulario"></button>
-            <section class="relative max-h-[92vh] w-full overflow-y-auto rounded-t-2xl bg-[var(--surface)] p-5 shadow-2xl sm:w-[min(92vw,620px)] sm:rounded-xl sm:p-7" role="dialog" aria-modal="true" aria-labelledby="quality-plan-title" x-init="$nextTick(() => $el.querySelector('textarea')?.focus())">
-                <div class="flex items-start justify-between gap-4">
-                    <div><span class="eyebrow">Acción correctiva</span><h2 id="quality-plan-title" class="mt-1">Plan de mejora</h2></div>
-                    <button type="button" wire:click="cerrarPlan" class="grid size-11 cursor-pointer place-items-center rounded-lg border border-[var(--border)] transition hover:border-indigo-500 hover:text-indigo-700" aria-label="Cerrar"><svg class="size-5" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-                </div>
-                <form wire:submit="guardarPlan" class="mt-6 grid gap-5">
-                    <label class="grid gap-2 text-sm font-semibold"><span>Análisis de causas</span><textarea wire:model="analisisCausas" rows="5" maxlength="3000" class="min-h-32 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-3 text-base font-normal outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20" placeholder="Describe las causas verificables de la desviación"></textarea>@error('analisisCausas') <span class="text-sm font-normal text-red-700">{{ $message }}</span> @enderror</label>
-                    <label class="grid gap-2 text-sm font-semibold"><span>Acciones de mejora</span><textarea wire:model="accionesMejora" rows="5" maxlength="3000" class="min-h-32 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-3 text-base font-normal outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20" placeholder="Define acciones, responsables y plazos"></textarea>@error('accionesMejora') <span class="text-sm font-normal text-red-700">{{ $message }}</span> @enderror</label>
-                    <div class="grid gap-4 sm:grid-cols-2">
-                        <label class="grid gap-2 text-sm font-semibold"><span>Responsable</span><select wire:model="responsableId" class="min-h-11 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 font-normal focus:ring-2 focus:ring-indigo-500"><option value="">Selecciona</option>@foreach($usuariosResponsables as $usuario)<option value="{{ $usuario->id }}">{{ $usuario->name }}</option>@endforeach</select>@error('responsableId') <span class="text-sm font-normal text-red-700">{{ $message }}</span> @enderror</label>
-                        <label class="grid gap-2 text-sm font-semibold"><span>Fecha limite</span><input type="date" wire:model="fechaLimite" class="min-h-11 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 font-normal focus:ring-2 focus:ring-indigo-500">@error('fechaLimite') <span class="text-sm font-normal text-red-700">{{ $message }}</span> @enderror</label>
-                    </div>
-                    <label class="grid gap-2 text-sm font-semibold"><span>Evidencia URL (opcional)</span><input type="url" wire:model="evidenciaUrl" class="min-h-11 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 font-normal focus:ring-2 focus:ring-indigo-500">@error('evidenciaUrl') <span class="text-sm font-normal text-red-700">{{ $message }}</span> @enderror</label>
-                    <div class="flex flex-col-reverse gap-2 border-t border-[var(--border)] pt-5 sm:flex-row sm:justify-end"><button type="button" wire:click="cerrarPlan" class="min-h-11 cursor-pointer rounded-lg border border-[var(--border)] px-5 font-semibold transition hover:border-indigo-500">Cancelar</button><button type="submit" class="min-h-11 cursor-pointer rounded-lg bg-emerald-700 px-5 font-semibold text-white transition hover:bg-emerald-800 disabled:cursor-wait disabled:opacity-70" wire:loading.attr="disabled">Guardar plan</button></div>
-                </form>
-            </section>
-        </div>
-    @endif
 </div>

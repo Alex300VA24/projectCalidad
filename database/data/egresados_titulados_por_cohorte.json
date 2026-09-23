@@ -1,0 +1,20 @@
+{
+  "indicador": "EGRESADOS TITULADOS por promoción o cohorte (%)",
+  "codigo_indicador": "M01.03.04/PG - I1",
+  "proceso": "TITULACIÓN - M01.03.04 - PREGRADO Y PROGRAMAS DE SEGUNDA ESPECIALIDAD",
+  "formula_calculo": "(N° Total EGRESADOS TITULADOS por promoción o cohorte / N° total de egresados por promoción o cohorte)*100",
+  "periodos": [
+    {
+      "periodo_cohorte": "2026",
+      "metricas_rango_proyectado": {
+        "rango_egresados_titulados": "18 a 22",
+        "rango_total_egresados": "38 a 42"
+      },
+      "metricas_calculo_promedio": {
+        "numero_egresados_titulados_promedio": 20,
+        "numero_total_egresados_promedio": 40,
+        "porcentaje_titulados": 50.0
+      }
+    }
+  ]
+}

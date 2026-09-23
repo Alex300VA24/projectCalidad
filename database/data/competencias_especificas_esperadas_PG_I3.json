@@ -1,0 +1,101 @@
+{
+  "indicador": {
+    "codigo": "M01.04/PG-I3",
+    "nombre": "Estudiantes que logran las COMPETENCIAS ESPECÍFICAS esperadas (%)",
+    "proceso": "Seguimiento al Desempeño de los Estudiantes",
+    "objetivo": "Evaluar la eficacia de la formación (%)",
+    "unidad": "%",
+    "frecuencia_medicion_oficial": "Anual",
+    "formula_oficial": "(N° de estudiantes que logran el nivel esperado de desarrollo de COMPETENCIAS ESPECÍFICAS / N° total de estudiantes por promoción o cohorte) * 100",
+    "criterio_operativo_para_los_datos_disponibles": "(numero_estudiantes_que_logran_nivel_esperado / total_estudiantes_matriculados) * 100",
+    "interpretacion_operativa": "Para cada experiencia curricular de especialidad se toma como estudiantes que logran el nivel esperado a los estudiantes aprobados del curso.",
+    "responsable": "Director(a) de Escuela Profesional",
+    "fuente_verificacion": "Resultados de las evaluaciones en las experiencias curriculares (Estudios Generales y de especialidad)."
+  },
+  "periodos": [
+    {
+      "periodo_interno": "2025-I",
+      "cantidad_cursos_especialidad": 4,
+      "experiencias_curriculares": [
+        {
+          "nombre_curso": "GEOMETRÍA ANALÍTICA",
+          "codigo_curso_reporte": null,
+          "codigo_curso_plan_estudios": null,
+          "ciclo_plan": null,
+          "tipo": "EE",
+          "numero_estudiantes_que_logran_nivel_esperado": 52,
+          "total_estudiantes_matriculados": 59
+        },
+        {
+          "nombre_curso": "MATEMÁTICA DISCRETA",
+          "codigo_curso_reporte": null,
+          "codigo_curso_plan_estudios": null,
+          "ciclo_plan": null,
+          "tipo": "EE",
+          "numero_estudiantes_que_logran_nivel_esperado": 51,
+          "total_estudiantes_matriculados": 68
+        },
+        {
+          "nombre_curso": "FÍSICA PARA CIENCIA DE LA COMPUTACIÓN",
+          "codigo_curso_reporte": null,
+          "codigo_curso_plan_estudios": null,
+          "ciclo_plan": null,
+          "tipo": "EE",
+          "numero_estudiantes_que_logran_nivel_esperado": 66,
+          "total_estudiantes_matriculados": 69
+        },
+        {
+          "nombre_curso": "ANÁLISIS NUMÉRICO",
+          "codigo_curso_reporte": null,
+          "codigo_curso_plan_estudios": null,
+          "ciclo_plan": null,
+          "tipo": "EE",
+          "numero_estudiantes_que_logran_nivel_esperado": 43,
+          "total_estudiantes_matriculados": 61
+        }
+      ]
+    },
+    {
+      "periodo_interno": "2026-I",
+      "cantidad_cursos_especialidad": 4,
+      "experiencias_curriculares": [
+        {
+          "nombre_curso": "GEOMETRÍA ANALÍTICA",
+          "codigo_curso_reporte": null,
+          "codigo_curso_plan_estudios": null,
+          "ciclo_plan": null,
+          "tipo": "EE",
+          "numero_estudiantes_que_logran_nivel_esperado": 66,
+          "total_estudiantes_matriculados": 82
+        },
+        {
+          "nombre_curso": "MATEMÁTICA DISCRETA",
+          "codigo_curso_reporte": null,
+          "codigo_curso_plan_estudios": null,
+          "ciclo_plan": null,
+          "tipo": "EE",
+          "numero_estudiantes_que_logran_nivel_esperado": 50,
+          "total_estudiantes_matriculados": 75
+        },
+        {
+          "nombre_curso": "FÍSICA PARA CIENCIA DE LA COMPUTACIÓN",
+          "codigo_curso_reporte": null,
+          "codigo_curso_plan_estudios": null,
+          "ciclo_plan": null,
+          "tipo": "EE",
+          "numero_estudiantes_que_logran_nivel_esperado": 63,
+          "total_estudiantes_matriculados": 67
+        },
+        {
+          "nombre_curso": "ANÁLISIS NUMÉRICO",
+          "codigo_curso_reporte": null,
+          "codigo_curso_plan_estudios": null,
+          "ciclo_plan": null,
+          "tipo": "EE",
+          "numero_estudiantes_que_logran_nivel_esperado": 46,
+          "total_estudiantes_matriculados": 77
+        }
+      ]
+    }
+  ]
+}

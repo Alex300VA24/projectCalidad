@@ -1,0 +1,53 @@
+{
+  "indicador": "Egresados de la carrera x promoción (%)",
+  "codigo_indicador": "M01.05/PG - I1",
+  "proceso": "Seguimiento a los Egresados - M01.05 - PREGRADO Y PROGRAMAS DE SEGUNDA ESPECIALIDAD",
+  "formula_calculo": "(N° de egresados por promoción / N° total de ingresantes de la promoción) x 100",
+  "periodos": [
+    {
+      "periodo_promocion": "2022",
+      "metricas": {
+        "numero_total_ingresantes": 69,
+        "rango_egresados_estimado": "38 a 42",
+        "numero_egresados_promedio": 40,
+        "porcentaje_egreso_promedio": 57.97
+      }
+    },
+    {
+      "periodo_promocion": "2023",
+      "metricas": {
+        "numero_total_ingresantes": 69,
+        "rango_egresados_estimado": "38 a 42",
+        "numero_egresados_promedio": 40,
+        "porcentaje_egreso_promedio": 57.97
+      }
+    },
+    {
+      "periodo_promocion": "2024",
+      "metricas": {
+        "numero_total_ingresantes": 72,
+        "rango_egresados_estimado": "38 a 42",
+        "numero_egresados_promedio": 40,
+        "porcentaje_egreso_promedio": 55.56
+      }
+    },
+    {
+      "periodo_promocion": "2025",
+      "metricas": {
+        "numero_total_ingresantes": 76,
+        "rango_egresados_estimado": "38 a 42",
+        "numero_egresados_promedio": 40,
+        "porcentaje_egreso_promedio": 52.63
+      }
+    },
+    {
+      "periodo_promocion": "2026",
+      "metricas": {
+        "numero_total_ingresantes": 76,
+        "rango_egresados_estimado": "38 a 42",
+        "numero_egresados_promedio": 40,
+        "porcentaje_egreso_promedio": 52.63
+      }
+    }
+  ]
+}

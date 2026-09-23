@@ -1,0 +1,40 @@
+{
+  "indicador": "Satisfacción de los empleadores (%)",
+  "codigo_indicador": "M01.05/PG - I5",
+  "proceso": "Seguimiento a los Egresados - M01.05 - PREGRADO Y PROGRAMAS DE SEGUNDA",
+  "formula_calculo": "(N° de empleadores satisfechos + muy satisfechos) / N° total de empleadores encuestados) x 100",
+  "periodos": [
+    {
+      "periodo_encuesta": "2026",
+      "metricas": {
+        "numero_empleadores_satisfechos": 83,
+        "numero_total_encuestados": 100,
+        "porcentaje_satisfaccion_integral": 82.8,
+        "meta": ">= 80%",
+        "estado": "CUMPLIDO",
+        "competencias_especificas": [
+          {
+            "dimension": "Desarrollo de Software y Programación",
+            "nivel_satisfaccion": 88.5
+          },
+          {
+            "dimension": "Gestión de Bases de Datos y TI",
+            "nivel_satisfaccion": 85.0
+          },
+          {
+            "dimension": "Resolución de Problemas e Innovación",
+            "nivel_satisfaccion": 82.0
+          },
+          {
+            "dimension": "Trabajo en Equipo y Habilidades Blandas",
+            "nivel_satisfaccion": 78.5
+          },
+          {
+            "dimension": "Dominio de Idioma Extranjero (Inglés Técnico)",
+            "nivel_satisfaccion": 65.0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -11,9 +11,9 @@ use App\Models\Matricula;
 use App\Models\PeriodoAcademico;
 use App\Models\ProgramaEstudio;
 use App\Models\Syllabus;
-use App\Models\User;
 use App\Services\CalculadorIndicadoresService;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
@@ -141,12 +141,11 @@ class DashboardCalidad extends Component
             ->where('document_type', Document::TIPO_CALIDAD)
             ->get()
             ->groupBy('section');
-        $indicadores = IndicadorMaestro::query()->orderBy('codigo')->get()
+        $indicadores = IndicadorMaestro::query()->vigentes()->orderBy('codigo')->get()
             ->each(function (IndicadorMaestro $indicador) use ($porIndicador, $documentosIndicadores): void {
                 $indicador->setRelation('mediciones', collect([$porIndicador->get($indicador->id)])->filter());
                 $documentos = $documentosIndicadores->get($indicador->macro_proceso, collect());
-                $indicador->setRelation('documento', $documentos->first(fn (Document $documento): bool => str_contains($documento->title, $indicador->codigo))
-                    ?? $documentos->first());
+                $indicador->setRelation('documento', $this->documentoIndicador($indicador, $documentos));
             });
 
         return view('livewire.indicadores.dashboard-calidad', [
@@ -156,16 +155,6 @@ class DashboardCalidad extends Component
             'cursos' => Course::query()->whereIn('id', Matricula::query()->whereBelongsTo($programa)->where('periodo_academico', $this->periodoAcademico)->select('curso_id'))->orderBy('name')->get(['id', 'name']),
             'indicadores' => $indicadores,
             'mediciones' => $mediciones,
-            'planesPendientes' => $mediciones->whereIn('estado_cumplimiento', ['OBSERVADO', 'CRITICO', 'NO_CONFORME'])->values(),
-            'resumenEstados' => [
-                'CONFORME' => $mediciones->where('estado_cumplimiento', 'CONFORME')->count(),
-                'OBSERVADO' => $mediciones->whereIn('estado_cumplimiento', ['OBSERVADO', 'NO_CONFORME'])->count(),
-                'CRITICO' => $mediciones->where('estado_cumplimiento', 'CRITICO')->count(),
-                'SIN_DATOS' => $indicadores->count() - $mediciones->whereNotIn('estado_cumplimiento', ['SIN_CONFIGURACION'])->count(),
-            ],
-            'resumenTutoria' => $calculador->resumenTutoria($programa, $this->periodoAcademico),
-            'resumenEgresados' => $calculador->resumenEgresados($programa, $this->periodoAcademico),
-            'usuariosResponsables' => User::query()->orderBy('name')->get(['id', 'name']),
             'puedeConsolidar' => auth()->user()?->can('indicator.consolidate') ?? false,
         ]);
     }
@@ -194,15 +183,25 @@ class DashboardCalidad extends Component
         return now()->format('Y').(now()->month <= 6 ? '-I' : '-II');
     }
 
+    /** @param  Collection<int, Document>  $documentos */
+    private function documentoIndicador(IndicadorMaestro $indicador, Collection $documentos): ?Document
+    {
+        $tituloDocumento = Arr::get($indicador->configuracion ?? [], 'documento_titulo');
+
+        if (is_string($tituloDocumento) && $tituloDocumento !== '') {
+            return $documentos->first(fn (Document $documento): bool => $documento->title === $tituloDocumento);
+        }
+
+        return $documentos->first(fn (Document $documento): bool => str_contains($documento->title, $indicador->codigo))
+            ?? $documentos->first();
+    }
+
     /** @return array<string, mixed> */
     private function datosVacios(): array
     {
         return [
-            'programas' => collect(), 'periodos' => collect([$this->periodoActual()]), 'ciclos' => collect(), 'cursos' => collect(), 'indicadores' => collect(), 'mediciones' => collect(), 'planesPendientes' => collect(),
-            'resumenEstados' => ['CONFORME' => 0, 'OBSERVADO' => 0, 'CRITICO' => 0, 'SIN_DATOS' => 0],
-            'resumenTutoria' => ['programadas' => 0, 'realizadas' => 0, 'derivaciones' => 0],
-            'resumenEgresados' => ['titulados' => null, 'laborando' => null, 'especialidad' => null],
-            'usuariosResponsables' => collect(), 'puedeConsolidar' => false,
+            'programas' => collect(), 'periodos' => collect([$this->periodoActual()]), 'ciclos' => collect(), 'cursos' => collect(), 'indicadores' => collect(), 'mediciones' => collect(),
+            'puedeConsolidar' => false,
         ];
     }
 }

@@ -17,6 +17,9 @@ Route::get('/indicadores/calidad/exportar', ExportarIndicadoresController::class
 Route::get('/indicadores/calidad/{indicador:codigo}/historial', function (IndicadorMaestro $indicador) {
     return view('indicators.historial', ['indicador' => $indicador]);
 })->name('quality-indicators.historial');
+Route::get('/indicadores/calidad/historial/{indicador:codigo}', function (IndicadorMaestro $indicador) {
+    return view('indicators.historial', ['indicador' => $indicador]);
+})->where('indicador', '.*')->name('quality-indicators.historial-with-slash');
 
 Route::get('/documentos', [DocumentController::class, 'index'])->name('documents.index');
 Route::post('/documentos', [DocumentController::class, 'store'])->name('documents.store');

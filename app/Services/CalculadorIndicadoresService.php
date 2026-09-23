@@ -34,10 +34,6 @@ class CalculadorIndicadoresService
 
     public const CODIGO_TUTORIA = 'M01.04-DDA-FI-001';
 
-    public const CODIGO_TITULADOS = 'M01.05-DCU-FI-001';
-
-    public const CODIGO_INSERCION = 'M01.05-DCU-FI-002';
-
     public function __construct(
         private EvaluadorCumplimientoIndicadorService $evaluador,
         private IndicadoresCacheService $cache,
@@ -64,7 +60,7 @@ class CalculadorIndicadoresService
             ->get()
             ->keyBy('indicador_id');
 
-        return IndicadorMaestro::query()->orderBy('codigo')->get()
+        return IndicadorMaestro::query()->vigentes()->orderBy('codigo')->get()
             ->map(function (IndicadorMaestro $indicador) use ($existentes, $periodoAcademico, $programaEstudio, $valores): ?IndicadorMedicion {
                 $valor = $valores[$indicador->codigo] ?? null;
 
@@ -272,8 +268,6 @@ class CalculadorIndicadoresService
     /** @return array<string, float|null> */
     private function calcularValoresSinCache(ProgramaEstudio $programaEstudio, string $periodoAcademico): array
     {
-        $egresados = $this->resumenEgresados($programaEstudio, $periodoAcademico);
-
         return [
             self::CODIGO_SILABOS => $this->porcentajeSilabosVisados($programaEstudio, $periodoAcademico),
             self::CODIGO_RETENCION => $this->tasaRetencion($programaEstudio, $periodoAcademico),
@@ -281,8 +275,6 @@ class CalculadorIndicadoresService
             self::CODIGO_INCIDENCIAS => $this->resolucionIncidencias($programaEstudio, $periodoAcademico),
             self::CODIGO_AVANCE => $this->avanceSilabico($programaEstudio, $periodoAcademico),
             self::CODIGO_TUTORIA => $this->eficaciaTutoria($programaEstudio, $periodoAcademico),
-            self::CODIGO_TITULADOS => $egresados['titulados'],
-            self::CODIGO_INSERCION => $egresados['laborando'],
         ];
     }
 

@@ -310,7 +310,7 @@ class MapaProcesosCatalogService
                 'role' => 'Responsable de Seguimiento',
                 'entities' => ['Responsable de Seguimiento'],
                 'route' => 'graduate-registries.index',
-                'indicator_code' => 'M01.05-DCU-FI-001',
+                'indicator_code' => 'M01.03.04/PG-I1',
                 'formats' => [
                     [
                         'code' => 'F1',
@@ -343,7 +343,7 @@ class MapaProcesosCatalogService
                 'role' => 'Dirección de Escuela',
                 'entities' => ['Dirección de Escuela'],
                 'route' => 'educational-objective-evaluations.index',
-                'indicator_code' => 'M01.05-DCU-FI-002',
+                'indicator_code' => 'M01.05/PG-I2',
                 'formats' => [
                     [
                         'code' => 'F6',

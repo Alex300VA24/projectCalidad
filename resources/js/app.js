@@ -6,14 +6,22 @@ const valueLabelsPlugin = {
         chart.data.datasets.forEach((dataset, datasetIndex) => {
             if (!dataset.showValueLabels) return;
             const { ctx } = chart;
+            const isHorizontal = chart.options.indexAxis === 'y';
+            const isApaFigure = chart.canvas.dataset.chartApa === '1';
             ctx.save();
-            ctx.font = '600 11px system-ui, sans-serif';
+            ctx.font = isApaFigure ? '600 12px Arial, sans-serif' : '600 11px system-ui, sans-serif';
             ctx.fillStyle = dataset.borderColor || '#172554';
-            ctx.textAlign = 'center';
+            ctx.textAlign = isHorizontal ? 'left' : 'center';
+            ctx.textBaseline = isHorizontal ? 'middle' : 'alphabetic';
             chart.getDatasetMeta(datasetIndex).data.forEach((point, index) => {
                 const value = dataset.data[index];
                 if (value === null || value === undefined) return;
-                ctx.fillText(`${Number(value).toFixed(1)}${dataset.valueLabelSuffix || ''}`, point.x, point.y - 10);
+                const decimals = Number.isInteger(dataset.valueLabelDecimals)
+                    ? dataset.valueLabelDecimals
+                    : (isHorizontal ? (Number.isInteger(Number(value)) ? 0 : 2) : 1);
+                const x = isHorizontal ? Math.min(point.x + 7, chart.chartArea.right - 42) : point.x;
+                const y = isHorizontal ? point.y : point.y - 10;
+                ctx.fillText(`${Number(value).toFixed(decimals)}${dataset.valueLabelSuffix || ''}`, x, y);
             });
             ctx.restore();
         });
@@ -46,24 +54,113 @@ window.renderQualityCharts = (root = document) => {
         const config = JSON.parse(canvas.dataset.chartConfig);
         const isDoughnut = config.type === 'doughnut';
         const isPercentLine = canvas.dataset.chartPercent === '1';
+        const isHorizontalPercent = canvas.dataset.chartHorizontalPercent === '1';
+        const isStudentCount = canvas.dataset.chartStudentCount === '1';
+        const isApaFigure = canvas.dataset.chartApa === '1';
+        const chartTextColor = isApaFigure ? '#374151' : textColor;
+        const chartGridColor = isApaFigure ? '#d1d5db' : gridColor;
+        const courseDetails = config.data.datasets.find((dataset) => dataset.courseDetails)?.courseDetails;
+        const metricDetails = config.data.datasets.find((dataset) => dataset.metricDetails)?.metricDetails;
+        const tooltipAsPercent = config.data.datasets.some((dataset) => dataset.tooltipAsPercent);
         config.options = {
             responsive: true,
             maintainAspectRatio: false,
-            layout: isPercentLine ? { padding: { top: 24 } } : undefined,
+            cutout: isDoughnut ? '68%' : undefined,
+            indexAxis: isHorizontalPercent ? 'y' : undefined,
+            layout: isHorizontalPercent
+                ? { padding: { right: 52 } }
+                : ((isPercentLine || isStudentCount) ? { padding: { top: 24 } } : undefined),
             animation: reducedMotion ? false : { duration: 350 },
             plugins: {
                 legend: {
-                    display: !isPercentLine,
+                    display: !isPercentLine && !isHorizontalPercent && !isStudentCount,
                     position: 'bottom',
-                    labels: { color: textColor, usePointStyle: true, padding: 18 },
+                    labels: { color: chartTextColor, usePointStyle: true, padding: 18 },
                 },
-                tooltip: { intersect: false },
+                tooltip: {
+                    intersect: false,
+                    callbacks: courseDetails
+                        ? {
+                            title: (items) => courseDetails[items[0]?.dataIndex]?.nombre_curso || '',
+                            label: (context) => {
+                                const course = courseDetails[context.dataIndex];
+                                if (!course) return '';
+
+                                if (Object.hasOwn(course, 'porcentaje_logro')) {
+                                    const percentage = course.porcentaje_logro === null
+                                        ? 'Sin datos'
+                                        : `${Number(course.porcentaje_logro).toFixed(2)} %`;
+
+                                    return [
+                                        `Código del reporte: ${course.codigo_curso_reporte || 'No disponible'}`,
+                                        `Código del plan de estudios: ${course.codigo_curso_plan_estudios || 'No disponible'}`,
+                                        `Tipo: ${course.tipo}`,
+                                        `Ciclo: ${course.ciclo_plan || 'No disponible'}`,
+                                        `Estudiantes que logran el nivel esperado: ${course.numero_estudiantes_que_logran_nivel_esperado}`,
+                                        `Total matriculados: ${course.total_estudiantes_matriculados}`,
+                                        `Porcentaje de logro: ${percentage}`,
+                                    ];
+                                }
+
+                                if (Object.hasOwn(course, 'numero_aprobados')) {
+                                    const percentage = course.porcentaje_desaprobados === null
+                                        ? 'Sin datos'
+                                        : `${Number(course.porcentaje_desaprobados).toFixed(2)} %`;
+
+                                    return [
+                                        `Código: ${course.codigo_curso}`,
+                                        `Período: ${course.periodo || 'No disponible'}`,
+                                        `Estudiantes aprobados: ${course.numero_aprobados}`,
+                                        `Estudiantes desaprobados: ${course.numero_desaprobados}`,
+                                        `Total matriculados: ${course.total_matriculados}`,
+                                        `Porcentaje de desaprobados: ${percentage}`,
+                                    ];
+                                }
+
+                                return [
+                                    `Código: ${course.codigo_curso}`,
+                                    `Desaprobados: ${course.numero_desaprobados}`,
+                                    `Total matriculados: ${course.total_matriculados}`,
+                                    `Porcentaje de desaprobados: ${Number(course.porcentaje_desaprobados).toFixed(2)}%`,
+                                ];
+                            },
+                        }
+                        : metricDetails ? {
+                            label: (context) => {
+                                const value = Number(context.raw);
+                                const total = Number(metricDetails.total);
+                                const percentage = total > 0 ? ((value / total) * 100).toFixed(2) : '0.00';
+
+                                return [
+                                    `${context.label}: ${value} de ${total}`,
+                                    `Porcentaje: ${percentage} %`,
+                                    `Período: ${metricDetails.periodo}`,
+                                ];
+                            },
+                        } : tooltipAsPercent ? {
+                            label: (context) => `${context.dataset.label}: ${Number(context.parsed.x).toFixed(2)} %`,
+                        } : (isStudentCount ? {
+                            label: (context) => `Cantidad de estudiantes: ${context.parsed.y}`,
+                            afterBody: () => `Período: ${canvas.dataset.chartPeriod || ''}`,
+                        } : undefined),
+                },
             },
             scales: isDoughnut ? undefined : {
-                x: { ticks: { color: textColor }, grid: { display: false } },
-                y: isPercentLine
-                    ? { min: 0, max: 100, ticks: { color: textColor, callback: (value) => `${value}%` }, grid: { color: gridColor } }
-                    : { beginAtZero: true, ticks: { color: textColor }, grid: { color: gridColor } },
+                x: isHorizontalPercent
+                    ? { min: 0, max: 100, ticks: { color: chartTextColor, callback: (value) => `${value}%`, font: { size: isApaFigure ? 12 : 11 } }, grid: { color: chartGridColor } }
+                    : { ticks: { color: chartTextColor }, grid: { display: false } },
+                y: isHorizontalPercent
+                    ? { ticks: { color: chartTextColor, autoSkip: false, font: { size: isApaFigure ? 12 : 11 } }, grid: { display: false } }
+                    : isStudentCount
+                    ? {
+                        beginAtZero: true,
+                        ticks: { color: chartTextColor, precision: 0 },
+                        title: { display: true, text: 'Cantidad de estudiantes', color: chartTextColor },
+                        grid: { color: chartGridColor },
+                    }
+                    : isPercentLine
+                    ? { min: 0, max: 100, ticks: { color: chartTextColor, callback: (value) => `${value}%` }, grid: { color: chartGridColor } }
+                    : { beginAtZero: true, ticks: { color: chartTextColor }, grid: { color: chartGridColor } },
             },
         };
 

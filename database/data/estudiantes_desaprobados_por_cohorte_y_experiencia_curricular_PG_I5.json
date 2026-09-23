@@ -1,0 +1,1063 @@
+{
+  "indicador": {
+    "codigo": "M01.04/PG-I5",
+    "nombre": "Estudiantes desaprobados (%) - Por promoción o cohorte y por experiencia curricular",
+    "proceso": "Seguimiento al Desempeño de los Estudiantes",
+    "frecuencia_medicion": "Semestral",
+    "unidad": "%",
+    "formula_calculo": "(numero_estudiantes_desaprobados / total_estudiantes_matriculados) * 100",
+    "nota_fuente": "La ficha oficial indica desaprobados, no aprobados. Se incluyen ambas cantidades para conservar los datos de origen.",
+    "limitacion": "Los reportes permiten desglosar por período y curso, pero no identifican promoción o cohorte."
+  },
+  "periodos": [
+    {
+      "periodo_interno": "2024-II",
+      "experiencias_curriculares": [
+        {
+          "nombre_curso": "INTRODUCCION AL ANALISIS MATEMATICO",
+          "codigo_curso": "1863",
+          "numero_estudiantes_aprobados": 13,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 13
+        },
+        {
+          "nombre_curso": "ESTRUCTURA DE DATOS",
+          "codigo_curso": "1946",
+          "numero_estudiantes_aprobados": 60,
+          "numero_estudiantes_desaprobados": 10,
+          "total_estudiantes_matriculados": 70
+        },
+        {
+          "nombre_curso": "ANALISIS MATEMATICO",
+          "codigo_curso": "1861",
+          "numero_estudiantes_aprobados": 55,
+          "numero_estudiantes_desaprobados": 19,
+          "total_estudiantes_matriculados": 74
+        },
+        {
+          "nombre_curso": "ETICA, CONVIVENCIA HUMANA Y CIUDADANIA",
+          "codigo_curso": "1860",
+          "numero_estudiantes_aprobados": 65,
+          "numero_estudiantes_desaprobados": 2,
+          "total_estudiantes_matriculados": 67
+        },
+        {
+          "nombre_curso": "SOCIEDAD CULTURA Y ECOLOGIA",
+          "codigo_curso": "1858",
+          "numero_estudiantes_aprobados": 65,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 65
+        },
+        {
+          "nombre_curso": "CULTURA INVESTIGATIVA Y PENSAMIENTO CRITICO",
+          "codigo_curso": "1859",
+          "numero_estudiantes_aprobados": 65,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 65
+        },
+        {
+          "nombre_curso": "ESTADISTICA GENERAL",
+          "codigo_curso": "1873",
+          "numero_estudiantes_aprobados": 67,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 68
+        },
+        {
+          "nombre_curso": "TALLER DE MANEJO DE TIC",
+          "codigo_curso": "1888",
+          "numero_estudiantes_aprobados": 16,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 17
+        },
+        {
+          "nombre_curso": "TALLER DE DANZAS FOLCLORICAS",
+          "codigo_curso": "1889",
+          "numero_estudiantes_aprobados": 17,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 17
+        },
+        {
+          "nombre_curso": "TALLER DE DEPORTE",
+          "codigo_curso": "1890",
+          "numero_estudiantes_aprobados": 23,
+          "numero_estudiantes_desaprobados": 3,
+          "total_estudiantes_matriculados": 26
+        },
+        {
+          "nombre_curso": "TALLER DE MUSICA",
+          "codigo_curso": "2057",
+          "numero_estudiantes_aprobados": 9,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 9
+        },
+        {
+          "nombre_curso": "FISICA PARA CIENCIA DE LA COMPUTACION",
+          "codigo_curso": "2131",
+          "numero_estudiantes_aprobados": 19,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 19
+        },
+        {
+          "nombre_curso": "INNOVACION Y EMPRENDIMIENTO",
+          "codigo_curso": "2475",
+          "numero_estudiantes_aprobados": 58,
+          "numero_estudiantes_desaprobados": 2,
+          "total_estudiantes_matriculados": 60
+        },
+        {
+          "nombre_curso": "COMPUTACION GRAFICA",
+          "codigo_curso": "2470",
+          "numero_estudiantes_aprobados": 47,
+          "numero_estudiantes_desaprobados": 21,
+          "total_estudiantes_matriculados": 68
+        },
+        {
+          "nombre_curso": "ORGANIZACIÓN DE ARCHIVOS",
+          "codigo_curso": "2471",
+          "numero_estudiantes_aprobados": 66,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 67
+        },
+        {
+          "nombre_curso": "ALGORITMOS Y COMPLEJIDAD",
+          "codigo_curso": "2472",
+          "numero_estudiantes_aprobados": 59,
+          "numero_estudiantes_desaprobados": 4,
+          "total_estudiantes_matriculados": 63
+        },
+        {
+          "nombre_curso": "LENGUAJES FORMALES Y AUTOMATAS",
+          "codigo_curso": "2473",
+          "numero_estudiantes_aprobados": 52,
+          "numero_estudiantes_desaprobados": 37,
+          "total_estudiantes_matriculados": 89
+        },
+        {
+          "nombre_curso": "ELECTRONICA PARA COMPUTACION",
+          "codigo_curso": "2474",
+          "numero_estudiantes_aprobados": 45,
+          "numero_estudiantes_desaprobados": 20,
+          "total_estudiantes_matriculados": 65
+        },
+        {
+          "nombre_curso": "COMPUTACIÓN GRÁFICA AVANZADA",
+          "codigo_curso": "3042",
+          "numero_estudiantes_aprobados": 38,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 38
+        },
+        {
+          "nombre_curso": "BASE DE DATOS II",
+          "codigo_curso": "3043",
+          "numero_estudiantes_aprobados": 45,
+          "numero_estudiantes_desaprobados": 3,
+          "total_estudiantes_matriculados": 48
+        },
+        {
+          "nombre_curso": "INGENIERÍA DE SOFTWARE II",
+          "codigo_curso": "3044",
+          "numero_estudiantes_aprobados": 56,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 57
+        },
+        {
+          "nombre_curso": "INTELIGENCIA ARTIFICIAL II",
+          "codigo_curso": "3045",
+          "numero_estudiantes_aprobados": 43,
+          "numero_estudiantes_desaprobados": 6,
+          "total_estudiantes_matriculados": 49
+        },
+        {
+          "nombre_curso": "COMUNICACIÓN DE DATOS",
+          "codigo_curso": "3046",
+          "numero_estudiantes_aprobados": 52,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 52
+        },
+        {
+          "nombre_curso": "ARQUITECTURA Y ORGANIZACIÓN DE COMPUTADORAS",
+          "codigo_curso": "3047",
+          "numero_estudiantes_aprobados": 28,
+          "numero_estudiantes_desaprobados": 24,
+          "total_estudiantes_matriculados": 52
+        },
+        {
+          "nombre_curso": "ROBÓTICA",
+          "codigo_curso": "3815",
+          "numero_estudiantes_aprobados": 38,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 39
+        },
+        {
+          "nombre_curso": "REDES DE COMPUTADORAS II",
+          "codigo_curso": "3816",
+          "numero_estudiantes_aprobados": 38,
+          "numero_estudiantes_desaprobados": 2,
+          "total_estudiantes_matriculados": 40
+        },
+        {
+          "nombre_curso": "SISTEMAS OPERATIVOS II",
+          "codigo_curso": "3817",
+          "numero_estudiantes_aprobados": 42,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 42
+        },
+        {
+          "nombre_curso": "PRACTICAS PRE-PROFESIONALES",
+          "codigo_curso": "3818",
+          "numero_estudiantes_aprobados": 44,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 44
+        },
+        {
+          "nombre_curso": "PROYECTO DE TESIS",
+          "codigo_curso": "3824",
+          "numero_estudiantes_aprobados": 6,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 6
+        },
+        {
+          "nombre_curso": "TÓPICOS EN TECNOLOGÍAS INMERSIVA",
+          "codigo_curso": "3825",
+          "numero_estudiantes_aprobados": 44,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 44
+        },
+        {
+          "nombre_curso": "SISTEMAS DE INFORMACIÓN",
+          "codigo_curso": "3826",
+          "numero_estudiantes_aprobados": 51,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 51
+        },
+        {
+          "nombre_curso": "ÉTICA PARA PROFESIONALES EN INFORMÁTICA",
+          "codigo_curso": "3827",
+          "numero_estudiantes_aprobados": 46,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 47
+        },
+        {
+          "nombre_curso": "PROYECTO DE COMPETENCIA",
+          "codigo_curso": "3828",
+          "numero_estudiantes_aprobados": 46,
+          "numero_estudiantes_desaprobados": 3,
+          "total_estudiantes_matriculados": 49
+        },
+        {
+          "nombre_curso": "TESIS",
+          "codigo_curso": "3830",
+          "numero_estudiantes_aprobados": 39,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 40
+        }
+      ]
+    },
+    {
+      "periodo_interno": "2025-I",
+      "experiencias_curriculares": [
+        {
+          "nombre_curso": "ALGORITMO Y PROGRAMACION",
+          "codigo_curso": "1945",
+          "numero_estudiantes_aprobados": 75,
+          "numero_estudiantes_desaprobados": 2,
+          "total_estudiantes_matriculados": 77
+        },
+        {
+          "nombre_curso": "DESARROLLO PERSONAL",
+          "codigo_curso": "1854",
+          "numero_estudiantes_aprobados": 73,
+          "numero_estudiantes_desaprobados": 3,
+          "total_estudiantes_matriculados": 76
+        },
+        {
+          "nombre_curso": "LECTURA CRITICA Y REDACCION DE TEXTOS ACADEMICOS",
+          "codigo_curso": "1857",
+          "numero_estudiantes_aprobados": 76,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 77
+        },
+        {
+          "nombre_curso": "INTRODUCCION AL ANALISIS MATEMATICO",
+          "codigo_curso": "1863",
+          "numero_estudiantes_aprobados": 52,
+          "numero_estudiantes_desaprobados": 26,
+          "total_estudiantes_matriculados": 78
+        },
+        {
+          "nombre_curso": "DESARROLLO DEL PENSAMIENTO LOGICO MATEMATICO",
+          "codigo_curso": "1855",
+          "numero_estudiantes_aprobados": 48,
+          "numero_estudiantes_desaprobados": 37,
+          "total_estudiantes_matriculados": 85
+        },
+        {
+          "nombre_curso": "FISICA GENERAL",
+          "codigo_curso": "1865",
+          "numero_estudiantes_aprobados": 54,
+          "numero_estudiantes_desaprobados": 23,
+          "total_estudiantes_matriculados": 77
+        },
+        {
+          "nombre_curso": "TALLER DE TECNICAS DE COMUNICACION EFICAZ",
+          "codigo_curso": "1883",
+          "numero_estudiantes_aprobados": 20,
+          "numero_estudiantes_desaprobados": 4,
+          "total_estudiantes_matriculados": 24
+        },
+        {
+          "nombre_curso": "TALLER DE MUSICA",
+          "codigo_curso": "1884",
+          "numero_estudiantes_aprobados": 10,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 10
+        },
+        {
+          "nombre_curso": "TALLER DE LIDERAZGO Y TRABAJO EN EQUIPO",
+          "codigo_curso": "1908",
+          "numero_estudiantes_aprobados": 28,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 29
+        },
+        {
+          "nombre_curso": "TALLER DE DEPORTE",
+          "codigo_curso": "2055",
+          "numero_estudiantes_aprobados": 10,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 10
+        },
+        {
+          "nombre_curso": "TALLER DE TEATRO",
+          "codigo_curso": "2056",
+          "numero_estudiantes_aprobados": 3,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 4
+        },
+        {
+          "nombre_curso": "ANALISIS MATEMATICO",
+          "codigo_curso": "1861",
+          "numero_estudiantes_aprobados": 9,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 9
+        },
+        {
+          "nombre_curso": "GEOMETRIA ANALITICA",
+          "codigo_curso": "2127",
+          "numero_estudiantes_aprobados": 52,
+          "numero_estudiantes_desaprobados": 7,
+          "total_estudiantes_matriculados": 59
+        },
+        {
+          "nombre_curso": "PARADIGMAS DE LENGUAJE DE PROGRAMACION",
+          "codigo_curso": "2128",
+          "numero_estudiantes_aprobados": 52,
+          "numero_estudiantes_desaprobados": 14,
+          "total_estudiantes_matriculados": 66
+        },
+        {
+          "nombre_curso": "ESTRATEGIAS ALGORITMICAS",
+          "codigo_curso": "2129",
+          "numero_estudiantes_aprobados": 69,
+          "numero_estudiantes_desaprobados": 7,
+          "total_estudiantes_matriculados": 76
+        },
+        {
+          "nombre_curso": "MATEMATICA DISCRETA",
+          "codigo_curso": "2130",
+          "numero_estudiantes_aprobados": 51,
+          "numero_estudiantes_desaprobados": 17,
+          "total_estudiantes_matriculados": 68
+        },
+        {
+          "nombre_curso": "FISICA PARA CIENCIA DE LA COMPUTACION",
+          "codigo_curso": "2131",
+          "numero_estudiantes_aprobados": 66,
+          "numero_estudiantes_desaprobados": 3,
+          "total_estudiantes_matriculados": 69
+        },
+        {
+          "nombre_curso": "ANALISIS NUMERICO",
+          "codigo_curso": "2132",
+          "numero_estudiantes_aprobados": 43,
+          "numero_estudiantes_desaprobados": 18,
+          "total_estudiantes_matriculados": 61
+        },
+        {
+          "nombre_curso": "INGENIERÍA DE SOFTWARE I",
+          "codigo_curso": "2755",
+          "numero_estudiantes_aprobados": 52,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 52
+        },
+        {
+          "nombre_curso": "BASE DE DATOS I",
+          "codigo_curso": "2754",
+          "numero_estudiantes_aprobados": 66,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 66
+        },
+        {
+          "nombre_curso": "INTELIGENCIA ARTIFICIAL I",
+          "codigo_curso": "2756",
+          "numero_estudiantes_aprobados": 54,
+          "numero_estudiantes_desaprobados": 14,
+          "total_estudiantes_matriculados": 68
+        },
+        {
+          "nombre_curso": "COMPILADORES",
+          "codigo_curso": "2757",
+          "numero_estudiantes_aprobados": 42,
+          "numero_estudiantes_desaprobados": 13,
+          "total_estudiantes_matriculados": 55
+        },
+        {
+          "nombre_curso": "TÉCNICAS DIGITALES PARA COMPUTACIÓN",
+          "codigo_curso": "2758",
+          "numero_estudiantes_aprobados": 47,
+          "numero_estudiantes_desaprobados": 17,
+          "total_estudiantes_matriculados": 64
+        },
+        {
+          "nombre_curso": "METODOLOGÍA DE LA INVESTIGACIÓN CIENTÍFICA",
+          "codigo_curso": "2759",
+          "numero_estudiantes_aprobados": 55,
+          "numero_estudiantes_desaprobados": 3,
+          "total_estudiantes_matriculados": 58
+        },
+        {
+          "nombre_curso": "BASE DE DATOS AVANZADA",
+          "codigo_curso": "3351",
+          "numero_estudiantes_aprobados": 40,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 40
+        },
+        {
+          "nombre_curso": "DESARROLLO DE SOFTWARE",
+          "codigo_curso": "3352",
+          "numero_estudiantes_aprobados": 61,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 61
+        },
+        {
+          "nombre_curso": "PERCEPCIÓN Y VISIÓN POR COMPUTADORA",
+          "codigo_curso": "3353",
+          "numero_estudiantes_aprobados": 39,
+          "numero_estudiantes_desaprobados": 7,
+          "total_estudiantes_matriculados": 46
+        },
+        {
+          "nombre_curso": "REDES DE COMPUTADORAS I",
+          "codigo_curso": "3354",
+          "numero_estudiantes_aprobados": 40,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 40
+        },
+        {
+          "nombre_curso": "SISTEMAS OPERATIVOS I",
+          "codigo_curso": "3355",
+          "numero_estudiantes_aprobados": 41,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 42
+        },
+        {
+          "nombre_curso": "GESTIÓN DE PROYECTOS INFORMÁTICOS",
+          "codigo_curso": "3356",
+          "numero_estudiantes_aprobados": 48,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 49
+        },
+        {
+          "nombre_curso": "PRACTICAS PRE-PROFESIONALES",
+          "codigo_curso": "3818",
+          "numero_estudiantes_aprobados": 11,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 12
+        },
+        {
+          "nombre_curso": "INTERACCIÓN HUMANO-COMPUTADOR",
+          "codigo_curso": "3819",
+          "numero_estudiantes_aprobados": 47,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 47
+        },
+        {
+          "nombre_curso": "TÓPICOS EN BASE DE DATOS",
+          "codigo_curso": "3820",
+          "numero_estudiantes_aprobados": 33,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 33
+        },
+        {
+          "nombre_curso": "TÓPICOS EN INGENIERÍA DE SOFTWARE",
+          "codigo_curso": "3821",
+          "numero_estudiantes_aprobados": 27,
+          "numero_estudiantes_desaprobados": 5,
+          "total_estudiantes_matriculados": 32
+        },
+        {
+          "nombre_curso": "INGENIERÍA DE SOFTWARE AVANZADA",
+          "codigo_curso": "3822",
+          "numero_estudiantes_aprobados": 43,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 43
+        },
+        {
+          "nombre_curso": "SEGURIDAD INFORMÁTICA",
+          "codigo_curso": "3823",
+          "numero_estudiantes_aprobados": 36,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 36
+        },
+        {
+          "nombre_curso": "PROYECTO DE TESIS",
+          "codigo_curso": "3824",
+          "numero_estudiantes_aprobados": 43,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 44
+        },
+        {
+          "nombre_curso": "TESIS",
+          "codigo_curso": "3830",
+          "numero_estudiantes_aprobados": 5,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 5
+        },
+        {
+          "nombre_curso": "EXAMEN DE SUFICIENCIA",
+          "codigo_curso": "5213",
+          "numero_estudiantes_aprobados": 0,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 0
+        }
+      ]
+    },
+    {
+      "periodo_interno": "2025-II",
+      "experiencias_curriculares": [
+        {
+          "nombre_curso": "ALGORITMOS Y COMPLEJIDAD",
+          "codigo_curso": "2472",
+          "numero_estudiantes_aprobados": 46,
+          "numero_estudiantes_desaprobados": 22,
+          "total_estudiantes_matriculados": 68
+        },
+        {
+          "nombre_curso": "ANALISIS MATEMATICO",
+          "codigo_curso": "1861",
+          "numero_estudiantes_aprobados": 47,
+          "numero_estudiantes_desaprobados": 19,
+          "total_estudiantes_matriculados": 66
+        },
+        {
+          "nombre_curso": "ANALISIS NUMERICO",
+          "codigo_curso": "2132",
+          "numero_estudiantes_aprobados": 10,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 10
+        },
+        {
+          "nombre_curso": "ARQUITECTURA Y ORGANIZACIÓN DE COMPUTADORAS",
+          "codigo_curso": "3047",
+          "numero_estudiantes_aprobados": 28,
+          "numero_estudiantes_desaprobados": 23,
+          "total_estudiantes_matriculados": 51
+        },
+        {
+          "nombre_curso": "BASE DE DATOS II",
+          "codigo_curso": "3043",
+          "numero_estudiantes_aprobados": 59,
+          "numero_estudiantes_desaprobados": 14,
+          "total_estudiantes_matriculados": 73
+        },
+        {
+          "nombre_curso": "COMPUTACION GRAFICA",
+          "codigo_curso": "2470",
+          "numero_estudiantes_aprobados": 59,
+          "numero_estudiantes_desaprobados": 15,
+          "total_estudiantes_matriculados": 74
+        },
+        {
+          "nombre_curso": "COMPUTACIÓN GRÁFICA AVANZADA",
+          "codigo_curso": "3042",
+          "numero_estudiantes_aprobados": 50,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 50
+        },
+        {
+          "nombre_curso": "COMUNICACIÓN DE DATOS",
+          "codigo_curso": "3046",
+          "numero_estudiantes_aprobados": 51,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 51
+        },
+        {
+          "nombre_curso": "CULTURA INVESTIGATIVA Y PENSAMIENTO CRITICO",
+          "codigo_curso": "1859",
+          "numero_estudiantes_aprobados": 74,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 75
+        },
+        {
+          "nombre_curso": "DESARROLLO DEL PENSAMIENTO LOGICO MATEMATICO",
+          "codigo_curso": "1855",
+          "numero_estudiantes_aprobados": 13,
+          "numero_estudiantes_desaprobados": 4,
+          "total_estudiantes_matriculados": 17
+        },
+        {
+          "nombre_curso": "ELECTRONICA PARA COMPUTACION",
+          "codigo_curso": "2474",
+          "numero_estudiantes_aprobados": 51,
+          "numero_estudiantes_desaprobados": 34,
+          "total_estudiantes_matriculados": 85
+        },
+        {
+          "nombre_curso": "ESTADISTICA GENERAL",
+          "codigo_curso": "1873",
+          "numero_estudiantes_aprobados": 72,
+          "numero_estudiantes_desaprobados": 2,
+          "total_estudiantes_matriculados": 74
+        },
+        {
+          "nombre_curso": "ESTRUCTURA DE DATOS",
+          "codigo_curso": "1946",
+          "numero_estudiantes_aprobados": 66,
+          "numero_estudiantes_desaprobados": 20,
+          "total_estudiantes_matriculados": 86
+        },
+        {
+          "nombre_curso": "ETICA, CONVIVENCIA HUMANA Y CIUDADANIA",
+          "codigo_curso": "1860",
+          "numero_estudiantes_aprobados": 68,
+          "numero_estudiantes_desaprobados": 2,
+          "total_estudiantes_matriculados": 70
+        },
+        {
+          "nombre_curso": "GEOMETRIA ANALITICA",
+          "codigo_curso": "2127",
+          "numero_estudiantes_aprobados": 6,
+          "numero_estudiantes_desaprobados": 9,
+          "total_estudiantes_matriculados": 15
+        },
+        {
+          "nombre_curso": "INGENIERÍA DE SOFTWARE II",
+          "codigo_curso": "3044",
+          "numero_estudiantes_aprobados": 57,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 57
+        },
+        {
+          "nombre_curso": "INNOVACION Y EMPRENDIMIENTO",
+          "codigo_curso": "2475",
+          "numero_estudiantes_aprobados": 63,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 64
+        },
+        {
+          "nombre_curso": "INTELIGENCIA ARTIFICIAL II",
+          "codigo_curso": "3045",
+          "numero_estudiantes_aprobados": 59,
+          "numero_estudiantes_desaprobados": 2,
+          "total_estudiantes_matriculados": 61
+        },
+        {
+          "nombre_curso": "INTRODUCCION AL ANALISIS MATEMATICO",
+          "codigo_curso": "1863",
+          "numero_estudiantes_aprobados": 15,
+          "numero_estudiantes_desaprobados": 7,
+          "total_estudiantes_matriculados": 22
+        },
+        {
+          "nombre_curso": "LENGUAJES FORMALES Y AUTOMATAS",
+          "codigo_curso": "2473",
+          "numero_estudiantes_aprobados": 29,
+          "numero_estudiantes_desaprobados": 47,
+          "total_estudiantes_matriculados": 76
+        },
+        {
+          "nombre_curso": "MATEMATICA DISCRETA",
+          "codigo_curso": "2130",
+          "numero_estudiantes_aprobados": 6,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 7
+        },
+        {
+          "nombre_curso": "ORGANIZACIÓN DE ARCHIVOS",
+          "codigo_curso": "2471",
+          "numero_estudiantes_aprobados": 59,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 59
+        },
+        {
+          "nombre_curso": "PRACTICAS PRE-PROFESIONALES",
+          "codigo_curso": "3818",
+          "numero_estudiantes_aprobados": 34,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 35
+        },
+        {
+          "nombre_curso": "PROYECTO DE COMPETENCIA",
+          "codigo_curso": "3828",
+          "numero_estudiantes_aprobados": 44,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 44
+        },
+        {
+          "nombre_curso": "PROYECTO DE TESIS",
+          "codigo_curso": "3824",
+          "numero_estudiantes_aprobados": 4,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 4
+        },
+        {
+          "nombre_curso": "REDES DE COMPUTADORAS II",
+          "codigo_curso": "3816",
+          "numero_estudiantes_aprobados": 48,
+          "numero_estudiantes_desaprobados": 5,
+          "total_estudiantes_matriculados": 53
+        },
+        {
+          "nombre_curso": "ROBÓTICA",
+          "codigo_curso": "3815",
+          "numero_estudiantes_aprobados": 43,
+          "numero_estudiantes_desaprobados": 2,
+          "total_estudiantes_matriculados": 45
+        },
+        {
+          "nombre_curso": "SISTEMAS DE INFORMACIÓN",
+          "codigo_curso": "3826",
+          "numero_estudiantes_aprobados": 37,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 38
+        },
+        {
+          "nombre_curso": "SISTEMAS OPERATIVOS II",
+          "codigo_curso": "3817",
+          "numero_estudiantes_aprobados": 45,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 45
+        },
+        {
+          "nombre_curso": "SOCIEDAD CULTURA Y ECOLOGIA",
+          "codigo_curso": "1858",
+          "numero_estudiantes_aprobados": 61,
+          "numero_estudiantes_desaprobados": 2,
+          "total_estudiantes_matriculados": 63
+        },
+        {
+          "nombre_curso": "TALLER DE DANZAS FOLCLORICAS",
+          "codigo_curso": "1889",
+          "numero_estudiantes_aprobados": 4,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 4
+        },
+        {
+          "nombre_curso": "TALLER DE DEPORTE",
+          "codigo_curso": "1890",
+          "numero_estudiantes_aprobados": 35,
+          "numero_estudiantes_desaprobados": 2,
+          "total_estudiantes_matriculados": 37
+        },
+        {
+          "nombre_curso": "TALLER DE MANEJO DE TIC",
+          "codigo_curso": "1888",
+          "numero_estudiantes_aprobados": 24,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 24
+        },
+        {
+          "nombre_curso": "TALLER DE MUSICA",
+          "codigo_curso": "2057",
+          "numero_estudiantes_aprobados": 14,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 14
+        },
+        {
+          "nombre_curso": "TESIS",
+          "codigo_curso": "3830",
+          "numero_estudiantes_aprobados": 42,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 43
+        },
+        {
+          "nombre_curso": "TRABAJO DE INVESTIGACIÓN",
+          "codigo_curso": "5244",
+          "numero_estudiantes_aprobados": 24,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 24
+        },
+        {
+          "nombre_curso": "TÓPICOS EN TECNOLOGÍAS INMERSIVA",
+          "codigo_curso": "3825",
+          "numero_estudiantes_aprobados": 46,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 46
+        },
+        {
+          "nombre_curso": "ÉTICA PARA PROFESIONALES EN INFORMÁTICA",
+          "codigo_curso": "3827",
+          "numero_estudiantes_aprobados": 49,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 49
+        }
+      ]
+    },
+    {
+      "periodo_interno": "2026-I",
+      "experiencias_curriculares": [
+        {
+          "nombre_curso": "ALGORITMO Y PROGRAMACION",
+          "codigo_curso": "1945",
+          "numero_estudiantes_aprobados": 79,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 79
+        },
+        {
+          "nombre_curso": "DESARROLLO PERSONAL",
+          "codigo_curso": "1854",
+          "numero_estudiantes_aprobados": 80,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 80
+        },
+        {
+          "nombre_curso": "LECTURA CRITICA Y REDACCION DE TEXTOS ACADEMICOS",
+          "codigo_curso": "1857",
+          "numero_estudiantes_aprobados": 78,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 79
+        },
+        {
+          "nombre_curso": "INTRODUCCION AL ANALISIS MATEMATICO",
+          "codigo_curso": "1863",
+          "numero_estudiantes_aprobados": 73,
+          "numero_estudiantes_desaprobados": 14,
+          "total_estudiantes_matriculados": 87
+        },
+        {
+          "nombre_curso": "DESARROLLO DEL PENSAMIENTO LOGICO MATEMATICO",
+          "codigo_curso": "1855",
+          "numero_estudiantes_aprobados": 82,
+          "numero_estudiantes_desaprobados": 12,
+          "total_estudiantes_matriculados": 94
+        },
+        {
+          "nombre_curso": "FISICA GENERAL",
+          "codigo_curso": "1865",
+          "numero_estudiantes_aprobados": 64,
+          "numero_estudiantes_desaprobados": 21,
+          "total_estudiantes_matriculados": 85
+        },
+        {
+          "nombre_curso": "TALLER DE MUSICA",
+          "codigo_curso": "1884",
+          "numero_estudiantes_aprobados": 2,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 2
+        },
+        {
+          "nombre_curso": "TALLER DE LIDERAZGO Y TRABAJO EN EQUIPO",
+          "codigo_curso": "1908",
+          "numero_estudiantes_aprobados": 30,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 30
+        },
+        {
+          "nombre_curso": "TALLER DE DEPORTE",
+          "codigo_curso": "2055",
+          "numero_estudiantes_aprobados": 19,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 19
+        },
+        {
+          "nombre_curso": "TALLER DE TEATRO",
+          "codigo_curso": "2056",
+          "numero_estudiantes_aprobados": 5,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 5
+        },
+        {
+          "nombre_curso": "TALLER DE TECNICAS DE COMUNICACION EFICAZ",
+          "codigo_curso": "1883",
+          "numero_estudiantes_aprobados": 28,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 28
+        },
+        {
+          "nombre_curso": "ANALISIS NUMERICO",
+          "codigo_curso": "2132",
+          "numero_estudiantes_aprobados": 46,
+          "numero_estudiantes_desaprobados": 31,
+          "total_estudiantes_matriculados": 77
+        },
+        {
+          "nombre_curso": "GEOMETRIA ANALITICA",
+          "codigo_curso": "2127",
+          "numero_estudiantes_aprobados": 66,
+          "numero_estudiantes_desaprobados": 16,
+          "total_estudiantes_matriculados": 82
+        },
+        {
+          "nombre_curso": "PARADIGMAS DE LENGUAJE DE PROGRAMACION",
+          "codigo_curso": "2128",
+          "numero_estudiantes_aprobados": 38,
+          "numero_estudiantes_desaprobados": 12,
+          "total_estudiantes_matriculados": 50
+        },
+        {
+          "nombre_curso": "ESTRATEGIAS ALGORITMICAS",
+          "codigo_curso": "2129",
+          "numero_estudiantes_aprobados": 43,
+          "numero_estudiantes_desaprobados": 29,
+          "total_estudiantes_matriculados": 72
+        },
+        {
+          "nombre_curso": "MATEMATICA DISCRETA",
+          "codigo_curso": "2130",
+          "numero_estudiantes_aprobados": 50,
+          "numero_estudiantes_desaprobados": 25,
+          "total_estudiantes_matriculados": 75
+        },
+        {
+          "nombre_curso": "FISICA PARA CIENCIA DE LA COMPUTACION",
+          "codigo_curso": "2131",
+          "numero_estudiantes_aprobados": 63,
+          "numero_estudiantes_desaprobados": 4,
+          "total_estudiantes_matriculados": 67
+        },
+        {
+          "nombre_curso": "INGENIERÍA DE SOFTWARE I",
+          "codigo_curso": "2755",
+          "numero_estudiantes_aprobados": 64,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 64
+        },
+        {
+          "nombre_curso": "BASE DE DATOS I",
+          "codigo_curso": "2754",
+          "numero_estudiantes_aprobados": 58,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 58
+        },
+        {
+          "nombre_curso": "INTELIGENCIA ARTIFICIAL I",
+          "codigo_curso": "2756",
+          "numero_estudiantes_aprobados": 78,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 78
+        },
+        {
+          "nombre_curso": "COMPILADORES",
+          "codigo_curso": "2757",
+          "numero_estudiantes_aprobados": 73,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 73
+        },
+        {
+          "nombre_curso": "TÉCNICAS DIGITALES PARA COMPUTACIÓN",
+          "codigo_curso": "2758",
+          "numero_estudiantes_aprobados": 49,
+          "numero_estudiantes_desaprobados": 21,
+          "total_estudiantes_matriculados": 70
+        },
+        {
+          "nombre_curso": "METODOLOGÍA DE LA INVESTIGACIÓN CIENTÍFICA",
+          "codigo_curso": "2759",
+          "numero_estudiantes_aprobados": 66,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 67
+        },
+        {
+          "nombre_curso": "BASE DE DATOS AVANZADA",
+          "codigo_curso": "3351",
+          "numero_estudiantes_aprobados": 57,
+          "numero_estudiantes_desaprobados": 4,
+          "total_estudiantes_matriculados": 61
+        },
+        {
+          "nombre_curso": "DESARROLLO DE SOFTWARE",
+          "codigo_curso": "3352",
+          "numero_estudiantes_aprobados": 46,
+          "numero_estudiantes_desaprobados": 11,
+          "total_estudiantes_matriculados": 57
+        },
+        {
+          "nombre_curso": "PERCEPCIÓN Y VISIÓN POR COMPUTADORA",
+          "codigo_curso": "3353",
+          "numero_estudiantes_aprobados": 39,
+          "numero_estudiantes_desaprobados": 6,
+          "total_estudiantes_matriculados": 45
+        },
+        {
+          "nombre_curso": "REDES DE COMPUTADORAS I",
+          "codigo_curso": "3354",
+          "numero_estudiantes_aprobados": 52,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 53
+        },
+        {
+          "nombre_curso": "SISTEMAS OPERATIVOS I",
+          "codigo_curso": "3355",
+          "numero_estudiantes_aprobados": 54,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 54
+        },
+        {
+          "nombre_curso": "GESTIÓN DE PROYECTOS INFORMÁTICOS",
+          "codigo_curso": "3356",
+          "numero_estudiantes_aprobados": 59,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 59
+        },
+        {
+          "nombre_curso": "INTERACCIÓN HUMANO-COMPUTADOR",
+          "codigo_curso": "3819",
+          "numero_estudiantes_aprobados": 46,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 47
+        },
+        {
+          "nombre_curso": "TÓPICOS EN BASE DE DATOS",
+          "codigo_curso": "3820",
+          "numero_estudiantes_aprobados": 51,
+          "numero_estudiantes_desaprobados": 7,
+          "total_estudiantes_matriculados": 58
+        },
+        {
+          "nombre_curso": "TÓPICOS EN INGENIERÍA DE SOFTWARE",
+          "codigo_curso": "3821",
+          "numero_estudiantes_aprobados": 56,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 57
+        },
+        {
+          "nombre_curso": "INGENIERÍA DE SOFTWARE AVANZADA",
+          "codigo_curso": "3822",
+          "numero_estudiantes_aprobados": 44,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 44
+        },
+        {
+          "nombre_curso": "SEGURIDAD INFORMÁTICA",
+          "codigo_curso": "3823",
+          "numero_estudiantes_aprobados": 34,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 35
+        },
+        {
+          "nombre_curso": "PROYECTO DE TESIS",
+          "codigo_curso": "3824",
+          "numero_estudiantes_aprobados": 36,
+          "numero_estudiantes_desaprobados": 1,
+          "total_estudiantes_matriculados": 37
+        },
+        {
+          "nombre_curso": "EXAMEN DE SUFICIENCIA",
+          "codigo_curso": "5213",
+          "numero_estudiantes_aprobados": 0,
+          "numero_estudiantes_desaprobados": 0,
+          "total_estudiantes_matriculados": 0
+        }
+      ]
+    }
+  ]
+}

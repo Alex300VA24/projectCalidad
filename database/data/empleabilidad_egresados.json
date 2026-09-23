@@ -1,0 +1,16 @@
+{
+  "indicador": "Empleabilidad de los egresados (% de egresados que trabajan en su carrera)",
+  "codigo_indicador": "M01.05/PG - I2",
+  "proceso": "Seguimiento a los Egresados - M01.05 - PREGRADO Y PROGRAMAS DE SEGUNDA",
+  "formula_calculo": "(N° de egresados que trabajan en áreas correspondientes al ejercicio profesional del programa / N° total de egresados encuestados) x 100",
+  "periodos": [
+    {
+      "periodo_encuesta": "2026",
+      "metricas": {
+        "numero_egresados_trabajando": 17,
+        "numero_total_encuestados": 20,
+        "porcentaje_empleabilidad": 85.0
+      }
+    }
+  ]
+}

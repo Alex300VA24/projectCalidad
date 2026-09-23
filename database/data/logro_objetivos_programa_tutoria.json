@@ -1,0 +1,56 @@
+{
+  "indicador": {
+    "codigo": "M01.04/PG-I7",
+    "nombre": "Logro de objetivos del programa de tutoría académica y apoyo pedagógico (%)",
+    "formula": "(N° de actividades ejecutadas / N° de actividades planificadas) x 100",
+    "unidad": "%",
+    "frecuencia": "Semestral"
+  },
+  "periodos": [
+    {
+      "periodo": "2024-I",
+      "metricas": {
+        "actividades_planificadas": 6,
+        "actividades_ejecutadas": 6
+      },
+      "porcentaje_reportado": 100,
+      "estado": "verde"
+    },
+    {
+      "periodo": "2024-II",
+      "metricas": {
+        "actividades_planificadas": 3,
+        "actividades_ejecutadas": 3
+      },
+      "porcentaje_reportado": 100,
+      "estado": "verde"
+    },
+    {
+      "periodo": "2025-I",
+      "metricas": {
+        "actividades_planificadas": 4,
+        "actividades_ejecutadas": 4
+      },
+      "porcentaje_reportado": 100,
+      "estado": "verde"
+    },
+    {
+      "periodo": "2025-II",
+      "metricas": {
+        "actividades_planificadas": 5,
+        "actividades_ejecutadas": 4
+      },
+      "porcentaje_reportado": 80,
+      "estado": "amarillo"
+    },
+    {
+      "periodo": "2026-I",
+      "metricas": {
+        "actividades_planificadas": 4,
+        "actividades_ejecutadas": 4
+      },
+      "porcentaje_reportado": 100,
+      "estado": "verde"
+    }
+  ]
+}

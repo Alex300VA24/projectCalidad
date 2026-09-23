@@ -1,0 +1,16 @@
+{
+  "indicador": "Cumplimiento de los objetivos educacionales (%)",
+  "codigo_indicador": "M01.05/PG - I3",
+  "proceso": "Seguimiento a los Egresados - M01.05 - PREGRADO Y PROGRAMAS DE SEGUNDA",
+  "formula_calculo": "(N° de objetivos educacionales con un nivel de logro en nivel bueno y muy bueno / N° total de objetivos educacionales del programa) x 100",
+  "periodos": [
+    {
+      "periodo_encuesta": "2026",
+      "metricas": {
+        "numero_oe_bueno_muy_bueno": 3,
+        "numero_total_oe": 3,
+        "porcentaje_cumplimiento": 100.0
+      }
+    }
+  ]
+}

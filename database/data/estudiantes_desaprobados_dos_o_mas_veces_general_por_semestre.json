@@ -1,0 +1,44 @@
+{
+  "indicador": {
+    "codigo": "M01.03.02.02/PG-I2",
+    "nombre": "Estudiantes desaprobados dos o más veces en una experiencia curricular (%)",
+    "proceso": "Evaluación del Estudiante",
+    "alcance_datos": "General por semestre",
+    "formula_calculo": "(total_estudiantes_dos_o_mas_veces / total_estudiantes_matriculados_semestre) * 100",
+    "nota": "La información disponible es general por semestre y no permite identificar la experiencia curricular ni al estudiante de forma individual. Para este indicador se considera como numerador la suma de estudiantes que llevaron un curso por segunda, tercera o cuarta vez en el semestre, y como denominador el total de estudiantes matriculados en dicho semestre."
+  },
+  "periodos": [
+    {
+      "periodo_interno": "2024-II",
+      "segunda_vez": 72,
+      "tercera_vez": 22,
+      "cuarta_vez": 6,
+      "total_estudiantes_dos_o_mas_veces": 100,
+      "total_estudiantes_matriculados_semestre": 317
+    },
+    {
+      "periodo_interno": "2025-I",
+      "segunda_vez": 60,
+      "tercera_vez": 15,
+      "cuarta_vez": 3,
+      "total_estudiantes_dos_o_mas_veces": 78,
+      "total_estudiantes_matriculados_semestre": 341
+    },
+    {
+      "periodo_interno": "2025-II",
+      "segunda_vez": 96,
+      "tercera_vez": 20,
+      "cuarta_vez": 2,
+      "total_estudiantes_dos_o_mas_veces": 118,
+      "total_estudiantes_matriculados_semestre": 336
+    },
+    {
+      "periodo_interno": "2026-I",
+      "segunda_vez": 68,
+      "tercera_vez": 19,
+      "cuarta_vez": 1,
+      "total_estudiantes_dos_o_mas_veces": 88,
+      "total_estudiantes_matriculados_semestre": 368
+    }
+  ]
+}

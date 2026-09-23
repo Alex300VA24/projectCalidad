@@ -1,0 +1,38 @@
+{
+  "indicador": {
+    "codigo": "M01.04/PG-I8",
+    "nombre": "Satisfacción del estudiante con los programas de consejería académica y tutoría (%)",
+    "formula": "((N° de estudiantes satisfechos + N° de estudiantes muy satisfechos) / N° total de estudiantes encuestados) x 100",
+    "unidad": "%",
+    "frecuencia": "Semestral"
+  },
+  "periodos": [
+    {
+      "periodo": "2024",
+      "metricas": {
+        "numero_estudiantes_satisfechos": 449,
+        "numero_estudiantes_muy_satisfechos": 842,
+        "numero_total_estudiantes": 1360
+      },
+      "porcentaje_reportado": 94.93
+    },
+    {
+      "periodo": "2025",
+      "metricas": {
+        "numero_estudiantes_satisfechos": 496,
+        "numero_estudiantes_muy_satisfechos": 1048,
+        "numero_total_estudiantes": 1651
+      },
+      "porcentaje_reportado": 93.52
+    },
+    {
+      "periodo": "2026-I",
+      "metricas": {
+        "numero_estudiantes_satisfechos": 567,
+        "numero_estudiantes_muy_satisfechos": 1444,
+        "numero_total_estudiantes": 2138
+      },
+      "porcentaje_reportado": 94.06
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "indicador": {
+    "codigo": "M01.04/PG-I2",
+    "nombre": "Estudiantes que logran las COMPETENCIAS GENERALES esperadas (%)",
+    "proceso": "Seguimiento al Desempeño de los Estudiantes",
+    "objetivo": "Evaluar la eficacia de la formación en la etapa de Estudios Generales",
+    "unidad": "%",
+    "frecuencia_medicion_oficial": "Anual",
+    "formula_oficial": "(N° de estudiantes que logran el nivel esperado de desarrollo de COMPETENCIAS GENERALES / N° total de estudiantes por promoción o cohorte) * 100",
+    "criterio_operativo_para_los_datos_disponibles": "(numero_estudiantes_que_logran_nivel_esperado / total_estudiantes_matriculados) * 100",
+    "interpretacion_operativa": "Para cada curso de tipo EG se toma como estudiantes que logran el nivel esperado a los estudiantes aprobados del curso."
+  },
+  "periodos": [
+    {
+      "periodo_interno": "2024-II",
+      "cantidad_cursos_eg": 7,
+      "experiencias_curriculares": [
+        {
+          "nombre_curso": "INTRODUCCION AL ANALISIS MATEMATICO",
+          "codigo_curso_reporte": "1863",
+          "codigo_curso_plan_estudios": "13028",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 13,
+          "total_estudiantes_matriculados": 13
+        },
+        {
+          "nombre_curso": "ANALISIS MATEMATICO",
+          "codigo_curso_reporte": "1861",
+          "codigo_curso_plan_estudios": "13034",
+          "ciclo_plan": "II",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 55,
+          "total_estudiantes_matriculados": 74
+        },
+        {
+          "nombre_curso": "ETICA, CONVIVENCIA HUMANA Y CIUDADANIA",
+          "codigo_curso_reporte": "1860",
+          "codigo_curso_plan_estudios": "13040",
+          "ciclo_plan": "II",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 65,
+          "total_estudiantes_matriculados": 67
+        },
+        {
+          "nombre_curso": "SOCIEDAD CULTURA Y ECOLOGIA",
+          "codigo_curso_reporte": "1858",
+          "codigo_curso_plan_estudios": "13043",
+          "ciclo_plan": "II",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 65,
+          "total_estudiantes_matriculados": 65
+        },
+        {
+          "nombre_curso": "CULTURA INVESTIGATIVA Y PENSAMIENTO CRITICO",
+          "codigo_curso_reporte": "1859",
+          "codigo_curso_plan_estudios": "13036",
+          "ciclo_plan": "II",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 65,
+          "total_estudiantes_matriculados": 65
+        },
+        {
+          "nombre_curso": "ESTADISTICA GENERAL",
+          "codigo_curso_reporte": "1873",
+          "codigo_curso_plan_estudios": "13038",
+          "ciclo_plan": "II",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 67,
+          "total_estudiantes_matriculados": 68
+        },
+        {
+          "nombre_curso": "TALLER DE MANEJO DE TIC",
+          "codigo_curso_reporte": "1888",
+          "codigo_curso_plan_estudios": "13046",
+          "ciclo_plan": "II",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 16,
+          "total_estudiantes_matriculados": 17
+        }
+      ]
+    },
+    {
+      "periodo_interno": "2025-I",
+      "cantidad_cursos_eg": 7,
+      "experiencias_curriculares": [
+        {
+          "nombre_curso": "DESARROLLO PERSONAL",
+          "codigo_curso_reporte": "1854",
+          "codigo_curso_plan_estudios": "13024",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 73,
+          "total_estudiantes_matriculados": 76
+        },
+        {
+          "nombre_curso": "LECTURA CRITICA Y REDACCION DE TEXTOS ACADEMICOS",
+          "codigo_curso_reporte": "1857",
+          "codigo_curso_plan_estudios": "13029",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 76,
+          "total_estudiantes_matriculados": 77
+        },
+        {
+          "nombre_curso": "INTRODUCCION AL ANALISIS MATEMATICO",
+          "codigo_curso_reporte": "1863",
+          "codigo_curso_plan_estudios": "13028",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 52,
+          "total_estudiantes_matriculados": 78
+        },
+        {
+          "nombre_curso": "DESARROLLO DEL PENSAMIENTO LOGICO MATEMATICO",
+          "codigo_curso_reporte": "1855",
+          "codigo_curso_plan_estudios": "13023",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 48,
+          "total_estudiantes_matriculados": 85
+        },
+        {
+          "nombre_curso": "FISICA GENERAL",
+          "codigo_curso_reporte": "1865",
+          "codigo_curso_plan_estudios": "13027",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 54,
+          "total_estudiantes_matriculados": 77
+        },
+        {
+          "nombre_curso": "TALLER DE LIDERAZGO Y TRABAJO EN EQUIPO",
+          "codigo_curso_reporte": "1908",
+          "codigo_curso_plan_estudios": "13031",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 28,
+          "total_estudiantes_matriculados": 29
+        },
+        {
+          "nombre_curso": "ANALISIS MATEMATICO",
+          "codigo_curso_reporte": "1861",
+          "codigo_curso_plan_estudios": "13034",
+          "ciclo_plan": "II",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 9,
+          "total_estudiantes_matriculados": 9
+        }
+      ]
+    },
+    {
+      "periodo_interno": "2025-II",
+      "cantidad_cursos_eg": 7,
+      "experiencias_curriculares": [
+        {
+          "nombre_curso": "INTRODUCCION AL ANALISIS MATEMATICO",
+          "codigo_curso_reporte": "1863",
+          "codigo_curso_plan_estudios": "13028",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 15,
+          "total_estudiantes_matriculados": 22
+        },
+        {
+          "nombre_curso": "ANALISIS MATEMATICO",
+          "codigo_curso_reporte": "1861",
+          "codigo_curso_plan_estudios": "13034",
+          "ciclo_plan": "II",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 47,
+          "total_estudiantes_matriculados": 66
+        },
+        {
+          "nombre_curso": "ETICA, CONVIVENCIA HUMANA Y CIUDADANIA",
+          "codigo_curso_reporte": "1860",
+          "codigo_curso_plan_estudios": "13040",
+          "ciclo_plan": "II",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 68,
+          "total_estudiantes_matriculados": 70
+        },
+        {
+          "nombre_curso": "SOCIEDAD CULTURA Y ECOLOGIA",
+          "codigo_curso_reporte": "1858",
+          "codigo_curso_plan_estudios": "13043",
+          "ciclo_plan": "II",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 61,
+          "total_estudiantes_matriculados": 63
+        },
+        {
+          "nombre_curso": "CULTURA INVESTIGATIVA Y PENSAMIENTO CRITICO",
+          "codigo_curso_reporte": "1859",
+          "codigo_curso_plan_estudios": "13036",
+          "ciclo_plan": "II",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 74,
+          "total_estudiantes_matriculados": 75
+        },
+        {
+          "nombre_curso": "ESTADISTICA GENERAL",
+          "codigo_curso_reporte": "1873",
+          "codigo_curso_plan_estudios": "13038",
+          "ciclo_plan": "II",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 72,
+          "total_estudiantes_matriculados": 74
+        },
+        {
+          "nombre_curso": "TALLER DE MANEJO DE TIC",
+          "codigo_curso_reporte": "1888",
+          "codigo_curso_plan_estudios": "13046",
+          "ciclo_plan": "II",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 24,
+          "total_estudiantes_matriculados": 24
+        }
+      ]
+    },
+    {
+      "periodo_interno": "2026-I",
+      "cantidad_cursos_eg": 6,
+      "experiencias_curriculares": [
+        {
+          "nombre_curso": "DESARROLLO PERSONAL",
+          "codigo_curso_reporte": "1854",
+          "codigo_curso_plan_estudios": "13024",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 80,
+          "total_estudiantes_matriculados": 80
+        },
+        {
+          "nombre_curso": "LECTURA CRITICA Y REDACCION DE TEXTOS ACADEMICOS",
+          "codigo_curso_reporte": "1857",
+          "codigo_curso_plan_estudios": "13029",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 78,
+          "total_estudiantes_matriculados": 79
+        },
+        {
+          "nombre_curso": "INTRODUCCION AL ANALISIS MATEMATICO",
+          "codigo_curso_reporte": "1863",
+          "codigo_curso_plan_estudios": "13028",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 73,
+          "total_estudiantes_matriculados": 87
+        },
+        {
+          "nombre_curso": "DESARROLLO DEL PENSAMIENTO LOGICO MATEMATICO",
+          "codigo_curso_reporte": "1855",
+          "codigo_curso_plan_estudios": "13023",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 82,
+          "total_estudiantes_matriculados": 94
+        },
+        {
+          "nombre_curso": "FISICA GENERAL",
+          "codigo_curso_reporte": "1865",
+          "codigo_curso_plan_estudios": "13027",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 64,
+          "total_estudiantes_matriculados": 85
+        },
+        {
+          "nombre_curso": "TALLER DE LIDERAZGO Y TRABAJO EN EQUIPO",
+          "codigo_curso_reporte": "1908",
+          "codigo_curso_plan_estudios": "13031",
+          "ciclo_plan": "I",
+          "tipo": "EG",
+          "numero_estudiantes_que_logran_nivel_esperado": 30,
+          "total_estudiantes_matriculados": 30
+        }
+      ]
+    }
+  ]
+}

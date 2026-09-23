@@ -1,0 +1,20 @@
+{
+  "indicador": "Satisfacción de los egresados (%)",
+  "codigo_indicador": "M01.05/PG - I4",
+  "proceso": "Seguimiento a los Egresados - M01.05 - PREGRADO Y PROGRAMAS DE SEGUNDA",
+  "formula_calculo": "((N° de egresados satisfechos + muy satisfechos) / N° total de egresados encuestados) x 100",
+  "periodos": [
+    {
+      "periodo_encuesta": "2026",
+      "metricas": {
+        "numero_satisfechos_muy_satisfechos": 16,
+        "desglose": {
+          "muy_satisfechos": 3,
+          "satisfechos": 13
+        },
+        "numero_total_encuestados": 20,
+        "porcentaje_satisfaccion": 80.0
+      }
+    }
+  ]
+}

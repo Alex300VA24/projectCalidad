@@ -1,22 +1,32 @@
 <div class="space-y-5">
-    <a href="{{ route('quality-indicators.dashboard') }}" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--indigo)] transition hover:underline">
-        <svg class="size-4" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-        Volver a Indicadores
-    </a>
+    <div class="flex flex-wrap items-center justify-between gap-3">
+        <a href="{{ route('quality-indicators.dashboard') }}" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--indigo)] transition hover:underline">
+            <svg class="size-4" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            Volver a Indicadores
+        </a>
+
+        <x-indicador-navegador :indicador="$indicador" :indicadores="$indicadoresDisponibles" :codigo-anterior="$codigoIndicadorAnterior" :codigo-siguiente="$codigoIndicadorSiguiente" />
+    </div>
 
     <header class="relative overflow-hidden rounded-xl bg-[#172554] px-5 py-6 text-white shadow-[0_18px_50px_rgba(23,37,84,.18)] sm:px-7">
         <div class="pointer-events-none absolute inset-0 opacity-15" aria-hidden="true" style="background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(to left,#000,transparent 80%)"></div>
-        <div class="relative">
-            <span class="rounded bg-white/10 px-2 py-1 font-mono text-[11px] font-semibold text-emerald-200">{{ $indicador->codigo }}</span>
-            <h1 class="mt-3 max-w-2xl text-balance text-2xl font-semibold leading-tight tracking-[-0.02em] sm:text-3xl">{{ $indicador->nombre }}</h1>
-            <p class="mt-3 max-w-2xl text-sm leading-6 text-white/70">{{ $indicador->finalidad }}</p>
-            <p class="mb-0 mt-3 max-w-2xl font-mono text-xs leading-5 text-white/55">{{ $indicador->formula_texto }}</p>
-            @if ($documentoIndicador && ($documentoIndicador->preview_url || $documentoIndicador->external_url))
-                <button class="mt-5 inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg bg-white px-4 text-sm font-semibold text-[#172554] transition hover:bg-emerald-100" type="button" data-open-pdf data-title="{{ $documentoIndicador->title ?? 'Documento del indicador' }}" data-preview="{{ $documentoIndicador->preview_url ?? $documentoIndicador->external_url }}" data-external="{{ $documentoIndicador->external_url ?? $documentoIndicador->preview_url }}">
-                    Ver documento
-                    <svg class="size-4" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                </button>
-            @endif
+        <div class="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div class="min-w-0 flex-1">
+                <span class="rounded bg-white/10 px-2 py-1 font-mono text-[11px] font-semibold text-emerald-200">{{ $indicador->codigo }}</span>
+                <h1 class="mt-3 text-balance text-2xl font-semibold leading-tight tracking-[-0.02em] sm:text-3xl">{{ $indicador->nombre }}</h1>
+            </div>
+            <div class="rounded-lg border border-white/15 bg-white/5 p-4 lg:w-96 lg:shrink-0">
+                <span class="text-[11px] font-semibold uppercase tracking-wide text-white/50">Finalidad</span>
+                <p class="mb-0 mt-1 text-sm leading-6 text-white/80">{{ $indicador->finalidad }}</p>
+                <span class="mt-4 block text-[11px] font-semibold uppercase tracking-wide text-white/50">Fórmula</span>
+                <p class="mb-0 mt-1 font-mono text-xs leading-5 text-white/70">{{ $indicador->formula_texto }}</p>
+                @if ($documentoIndicador && ($documentoIndicador->preview_url || $documentoIndicador->external_url))
+                    <button class="mt-4 inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-white px-4 text-sm font-semibold text-[#172554] transition hover:bg-emerald-100" type="button" data-open-pdf data-title="{{ $documentoIndicador->title ?? 'Documento del indicador' }}" data-preview="{{ $documentoIndicador->preview_url ?? $documentoIndicador->external_url }}" data-external="{{ $documentoIndicador->external_url ?? $documentoIndicador->preview_url }}">
+                        Ver documento
+                        <svg class="size-4" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                @endif
+            </div>
         </div>
     </header>
 
