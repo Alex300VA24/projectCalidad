@@ -16,9 +16,7 @@
     <div class="app-shell">
         <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
             <div class="brand">
-                <span class="brand-mark" aria-hidden="true">
-                    <svg viewBox="0 0 32 32"><path d="M6 7h20v5H6zM6 15h13v5H6zM6 23h8v3H6z"/><path d="M22 15h4v11h-4z"/></svg>
-                </span>
+                <img class="brand-mark" src="{{ asset('image.png') }}" alt="Escuela Profesional de Informática">
                 <span><strong>SIGI</strong><small>Gestión de calidad</small></span>
             </div>
 

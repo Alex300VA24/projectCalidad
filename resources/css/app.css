@@ -44,8 +44,7 @@
 .sidebar { position: fixed; z-index: 60; inset: 0 auto 0 0; width: min(84vw,280px); padding: 24px 18px; color: var(--sidebar-text); background: var(--sidebar); transform: translateX(-102%); transition: transform .25s ease; display: flex; flex-direction: column; }
 .sidebar.open { transform: none; }
 .brand { display: flex; align-items: center; gap: 12px; padding: 0 8px 28px; border-bottom: 1px solid rgba(255,255,255,.13); }
-.brand-mark { display: grid; place-items: center; width: 42px; height: 42px; color: #0c3; background: #eef2ff; border-radius: 6px; }
-.brand-mark svg { width: 26px; stroke: none; fill: #172554; }
+.brand-mark { display: block; flex: 0 0 auto; width: 42px; height: 42px; object-fit: contain; border-radius: 6px; }
 .brand strong { display: block; font: 700 20px/1 'Fira Code', monospace; letter-spacing: .08em; }
 .brand small, .profile-chip small, .sidebar-note small { display: block; color: rgba(238,242,255,.62); font-size: 12px; }
 .nav-list { display: grid; gap: 7px; margin-top: 28px; }
